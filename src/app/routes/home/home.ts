@@ -1,11 +1,12 @@
 import { NgClass } from '@angular/common';
 import { Component, HostListener } from '@angular/core';
 import { LucideAngularModule } from 'lucide-angular';
+import { CountdownComponent } from '../../components/countdown.component';
 import { TimelineExercisesComponent } from '../../components/timeline-exercises.component';
 
 @Component({
   selector: 'app-home',
-  imports: [TimelineExercisesComponent, NgClass, LucideAngularModule],
+  imports: [TimelineExercisesComponent, CountdownComponent, NgClass, LucideAngularModule],
   templateUrl: './home.html',
   styleUrl: './home.css'
 })
