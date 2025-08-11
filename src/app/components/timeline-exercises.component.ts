@@ -56,8 +56,8 @@ import { Component } from '@angular/core';
                     <div class="flex items-center justify-center text-center">
                       <div class="text-cyan-400">
                         <i class="lucide-zap w-8 h-8 mx-auto mb-2 animate-pulse"></i>
-                        <p class="font-black text-lg">1KM RUNNING</p>
-                        <p class="text-sm text-gray-300">Por las calles de Ibiza</p>
+                        <p class="font-black text-lg">+500m Run</p>
+                        <!-- <p class="text-sm text-gray-300">Por las calles de Ibiza</p> -->
                       </div>
                     </div>
                   </div>
@@ -73,58 +73,65 @@ import { Component } from '@angular/core';
 export class TimelineExercisesComponent {
   exercises = [
     {
-      name: 'SKI ERG',
-      description: 'Comienza el desafío con este ejercicio de cuerpo completo que simula el esquí nórdico. Trabajarás brazos, core y piernas.',
-      duration: '1000m',
+      name: 'SANDBAG',
+      description: 'Comienza el desafío trabajando brazos, core y piernas.',
+      duration: '500m',
       target: 'Resistencia cardiovascular',
       icon: 'lucide-move'
     },
     {
-      name: 'SLED PUSH',
-      description: 'Empuja el trineo cargado con peso a través de la pista. Potencia pura de piernas y core.',
-      duration: '50m',
+      name: 'Assault Bike',
+      description: '',
+      duration: '20Cal',
       target: 'Fuerza explosiva',
       icon: 'lucide-arrow-up'
     },
     {
-      name: 'SLED PULL',
-      description: 'Tira del trineo hacia ti usando toda la cadena posterior. Fuerza y técnica en cada movimiento.',
-      duration: '50m',
+      name: 'Farmers Carry',
+      description: '',
+      duration: '100m',
       target: 'Fuerza de tracción',
       icon: 'lucide-repeat'
     },
     {
-      name: 'BURPEE BROAD JUMPS',
-      description: 'La combinación perfecta de resistencia y explosividad. Cada repetición es un desafío completo.',
-      duration: '80m',
+      name: 'ROWING',
+      description: '',
+      duration: '20Cal',
       target: 'Potencia y resistencia',
       icon: 'lucide-activity'
     },
     {
-      name: 'ROWING',
-      description: 'Rema con fuerza y técnica. Este ejercicio pondrá a prueba tu resistencia cardiovascular.',
-      duration: '1000m',
+      name: 'HUSSAFELL CARRY',
+      description: '',
+      duration: '500m',
       target: 'Cardio y fuerza',
       icon: 'lucide-move'
     },
     {
-      name: 'FARMERS CARRY',
-      description: 'Carga el peso y camina. Simple en concepto, brutal en ejecución. Fuerza de agarre y core.',
-      duration: '200m',
+      name: 'SKI ERG',
+      description: '',
+      duration: '20cal',
       target: 'Fuerza funcional',
       icon: 'lucide-dumbbell'
     },
     {
-      name: 'SANDBAG LUNGES',
-      description: 'Zancadas con saco de arena. Cada paso es una prueba de equilibrio, fuerza y resistencia.',
+      name: 'WALKING LUNGES',
+      description: '',
       duration: '100m',
       target: 'Fuerza unilateral',
       icon: 'lucide-timer'
     },
     {
-      name: 'WALL BALLS',
-      description: 'El gran final. Lanza la pelota medicinal contra la pared en este último empujón hacia la gloria.',
-      duration: '75 reps',
+      name: 'BEAR CRAWL',
+      description: '',
+      duration: '100m',
+      target: 'Resistencia muscular',
+      icon: 'lucide-crosshair'
+    },
+    {
+      name: 'BURPEE WALL BALLS',
+      description: '',
+      duration: '20',
       target: 'Resistencia muscular',
       icon: 'lucide-crosshair'
     }

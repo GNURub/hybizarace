@@ -1,16 +1,18 @@
-import { NgClass } from '@angular/common';
-import { Component, HostListener } from '@angular/core';
+import { DatePipe, NgClass, UpperCasePipe } from '@angular/common';
+import { Component, HostListener, inject } from '@angular/core';
 import { LucideAngularModule } from 'lucide-angular';
 import { CountdownComponent } from '../../components/countdown.component';
-import { TimelineExercisesComponent } from '../../components/timeline-exercises.component';
+import { TimelineSectionComponent } from '../../components/timeline-section.component';
+import { EVENT_DATE } from '../../tokens/EVENT_DATE';
 
 @Component({
   selector: 'app-home',
-  imports: [TimelineExercisesComponent, CountdownComponent, NgClass, LucideAngularModule],
+  imports: [CountdownComponent, TimelineSectionComponent, NgClass, LucideAngularModule, DatePipe, UpperCasePipe],
   templateUrl: './home.html',
   styleUrl: './home.css'
 })
 export class Home {
+  protected readonly EVENT_DATE = inject(EVENT_DATE);
   mousePosition = { x: 0, y: 0 };
   scrollY = 0;
 

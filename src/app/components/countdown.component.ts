@@ -1,10 +1,11 @@
-import { DecimalPipe } from '@angular/common';
-import { Component, OnDestroy, OnInit, signal } from '@angular/core';
+import { DatePipe, DecimalPipe } from '@angular/common';
+import { AfterViewInit, Component, inject, OnDestroy, signal } from '@angular/core';
 import { LucideAngularModule } from 'lucide-angular';
+import { EVENT_DATE } from '../tokens/EVENT_DATE';
 
 @Component({
   selector: 'app-countdown',
-  imports: [LucideAngularModule, DecimalPipe],
+  imports: [LucideAngularModule, DecimalPipe, DatePipe],
   template: `
     <section class="py-16 relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
       <!-- Animated background -->
@@ -127,7 +128,7 @@ import { LucideAngularModule } from 'lucide-angular';
           <div class="inline-flex items-center gap-4 bg-slate-900/50 backdrop-blur-sm border border-cyan-400/30 rounded-full px-8 py-4 hover:border-cyan-400 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-400/20">
             <lucide-icon name="calendar" class="w-6 h-6 text-cyan-400 animate-pulse"></lucide-icon>
             <span class="text-xl font-bold text-white">
-              16 DE MAYO, 2026
+              {{ targetDate | date:'fullDate' }}
             </span>
             <div class="w-2 h-2 bg-yellow-400 rounded-full animate-ping"></div>
             <span class="text-lg text-gray-300">
@@ -204,8 +205,8 @@ import { LucideAngularModule } from 'lucide-angular';
     }
   `]
 })
-export class CountdownComponent implements OnInit, OnDestroy {
-  targetDate = new Date('2026-05-16T00:00:00').getTime();
+export class CountdownComponent implements AfterViewInit, OnDestroy {
+  readonly targetDate = inject(EVENT_DATE);
   protected readonly timeLeft = signal({
     days: 0,
     hours: 0,
@@ -215,7 +216,7 @@ export class CountdownComponent implements OnInit, OnDestroy {
 
   private intervalId: any;
 
-  ngOnInit() {
+  ngAfterViewInit() {
     this.updateCountdown();
     this.intervalId = setInterval(() => {
       this.updateCountdown();
@@ -230,7 +231,7 @@ export class CountdownComponent implements OnInit, OnDestroy {
 
   private updateCountdown() {
     const now = new Date().getTime();
-    const distance = this.targetDate - now;
+    const distance = this.targetDate.getTime() - now;
 
     if (distance > 0) {
       this.timeLeft.set({
