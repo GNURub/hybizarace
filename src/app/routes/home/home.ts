@@ -2,6 +2,7 @@ import { DatePipe, NgClass } from '@angular/common';
 import { Component, HostListener, inject } from '@angular/core';
 import { LucideAngularModule } from 'lucide-angular';
 import { CountdownComponent } from '../../components/countdown.component';
+import { SponsorsComponent } from '../../components/sponsors.component';
 import { TimelineSectionComponent } from '../../components/timeline-section.component';
 import { EVENT_DATE } from '../../tokens/EVENT_DATE';
 
@@ -10,6 +11,7 @@ import { EVENT_DATE } from '../../tokens/EVENT_DATE';
   imports: [
     CountdownComponent,
     TimelineSectionComponent,
+    SponsorsComponent,
     NgClass,
     LucideAngularModule,
     DatePipe,
