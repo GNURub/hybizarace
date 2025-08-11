@@ -56,8 +56,7 @@ import { LucideAngularModule } from 'lucide-angular';
         <div class="relative mb-16">
           <div class="overflow-hidden rounded-lg border border-cyan-400/20 bg-gradient-to-r from-slate-900/50 to-slate-800/50 backdrop-blur-sm">
             <div
-              class="flex animate-marquee hover:pause-marquee group"
-              style="width: calc(200px * 16)"
+              class="flex"
             >
               <!-- First set of sponsors -->
               @for (sponsor of sponsors; track sponsor.name) {
@@ -66,28 +65,7 @@ import { LucideAngularModule } from 'lucide-angular';
                     <img
                       [src]="sponsor.logo"
                       [alt]="sponsor.name + ' logo'"
-                      class="max-w-full max-h-full object-contain filter grayscale brightness-75 transition-all duration-500 group-hover/sponsor:grayscale-0 group-hover/sponsor:brightness-100 group-hover/sponsor:drop-shadow-lg"
-                    />
-
-                    <!-- Hover glow effect -->
-                    <div class="absolute inset-0 bg-gradient-to-r from-cyan-400/10 to-yellow-400/10 rounded opacity-0 group-hover/sponsor:opacity-100 transition-opacity duration-500"></div>
-                  </div>
-
-                  <!-- Sponsor name tooltip -->
-                  <div class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-slate-800 text-cyan-400 text-xs font-bold px-2 py-1 rounded opacity-0 group-hover/sponsor:opacity-100 transition-all duration-300 whitespace-nowrap">
-                    {{ sponsor.name }}
-                  </div>
-                </div>
-              }
-
-              <!-- Duplicate set for seamless loop -->
-              @for (sponsor of sponsors; track sponsor.name + '_duplicate') {
-                <div class="flex-shrink-0 w-[200px] h-[100px] mx-4 relative group/sponsor">
-                  <div class="w-full h-full flex items-center justify-center p-4 transition-all duration-500 group-hover/sponsor:scale-110">
-                    <img
-                      [src]="sponsor.logo"
-                      [alt]="sponsor.name + ' logo'"
-                      class="max-w-full max-h-full object-contain filter grayscale brightness-75 transition-all duration-500 group-hover/sponsor:grayscale-0 group-hover/sponsor:brightness-100 group-hover/sponsor:drop-shadow-lg"
+                      class="max-w-full max-h-full object-contain transition-all duration-500 group-hover/sponsor:drop-shadow-lg grayscale invert"
                     />
 
                     <!-- Hover glow effect -->
@@ -138,26 +116,6 @@ import { LucideAngularModule } from 'lucide-angular';
     </section>
   `,
   styles: [`
-    @keyframes marquee {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(-50%);
-      }
-    }
-
-    .animate-marquee {
-      animation: marquee 20s linear infinite;
-    }
-
-    .pause-marquee:hover {
-      animation-play-state: paused;
-    }
-
-    .group:hover .pause-marquee {
-      animation-play-state: paused;
-    }
 
     @keyframes float {
       0%, 100% {
