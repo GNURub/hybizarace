@@ -73,7 +73,7 @@ import { Component } from '@angular/core';
                     'md:pl-16': i % 2 === 0,
                     'md:pr-16': i % 2 === 1,
                   }"
-                  class="w-full md:w-1/2 p-6"
+                  class="w-auto p-6 mt-50"
                 >
                   <div
                     class="bg-gradient-to-br from-cyan-900/40 to-blue-900/40 backdrop-blur-sm border border-cyan-400/30 rounded-2xl p-6 transform hover:scale-105 transition-all duration-300"
@@ -83,7 +83,7 @@ import { Component } from '@angular/core';
                         <i
                           class="lucide-zap w-8 h-8 mx-auto mb-2 animate-pulse"
                         ></i>
-                        <p class="font-black text-lg">+500m Run</p>
+                        <p class="font-black text-lg">+ 🏃 500m Run</p>
                         <!-- <p class="text-sm text-gray-300">Por las calles de Ibiza</p> -->
                       </div>
                     </div>
