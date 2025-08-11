@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { TimelineExercisesComponent } from './timeline-exercises.component';
 
 @Component({
-    selector: 'app-timeline-section',
-    imports: [TimelineExercisesComponent],
-    template: `
+  selector: 'app-timeline-section',
+  imports: [TimelineExercisesComponent],
+  template: `
     <!-- Timeline Section -->
     <section class="py-32 relative overflow-hidden bg-slate-950">
       <div
@@ -48,10 +48,12 @@ import { TimelineExercisesComponent } from './timeline-exercises.component';
         </div>
 
         <app-timeline-exercises></app-timeline-exercises>
+
+        <div class="text-center mt-16"><div class="relative inline-block"><div class="absolute inset-0 bg-gradient-to-r from-cyan-400 to-yellow-400 rounded-full blur-xl opacity-30 animate-pulse"></div><span data-slot="badge" class="inline-flex items-center justify-center rounded-md border w-fit whitespace-nowrap shrink-0 [&amp;&gt;svg]:size-3 gap-1 [&amp;&gt;svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent [a&amp;]:hover:bg-primary/90 relative bg-gradient-to-r from-cyan-400 to-yellow-400 text-slate-900 font-black text-xl px-8 py-4">🏆 ¡FINISHER HYBIZA RACE! 🏆</span></div><p class="text-gray-300 mt-4 text-lg"><span class="text-cyan-400 font-bold">¡Felicidades!</span> Has completado el desafío más épico de Ibiza</p></div>
       </div>
     </section>
   `,
-    styles: [`
+  styles: [`
     .animate-gradient-x {
       background-size: 200% 200%;
       animation: gradient-x 3s ease infinite;
