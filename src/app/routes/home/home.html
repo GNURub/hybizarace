@@ -590,14 +590,11 @@
             <div class="p-8 text-center relative z-10">
               <div
                 [ngClass]="{
-                  'bg-gradient-to-br from-yellow-400 to-orange-500':
-                    prize.color === 'yellow',
-                  'bg-gradient-to-br from-cyan-400 to-blue-500':
-                    prize.color === 'cyan',
-                  'bg-gradient-to-br from-gray-400 to-gray-600':
-                    prize.color === 'gray',
+                  'from-yellow-400 to-orange-500': prize.color === 'yellow',
+                  'from-cyan-400 to-blue-500': prize.color === 'cyan',
+                  'from-gray-400 to-gray-600': prize.color === 'gray',
                 }"
-                class="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:animate-bounce shadow-xl"
+                class="w-20 h-20 bg-gradient-to-br rounded-full flex items-center justify-center mx-auto mb-6 group-hover:animate-bounce shadow-xl"
               >
                 <i-lucide
                   class="w-10 h-10 text-slate-900"
@@ -721,17 +718,17 @@
 
       <div class="flex flex-col sm:flex-row gap-8 justify-center">
         <button
-          class="relative bg-slate-900 hover:bg-slate-800 text-white font-black px-12 py-6 text-xl transform hover:scale-110 transition-all duration-300 shadow-2xl hover:shadow-slate-900/50 overflow-hidden group"
+          class="inline-flex items-center justify-center gap-2 whitespace-nowrap disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive h-10 rounded-md has-[>svg]:px-4 relative bg-slate-900 hover:bg-slate-800 text-white font-black px-12 py-6 text-xl transform hover:scale-110 transition-all duration-300 shadow-2xl hover:shadow-slate-900/50 overflow-hidden group"
         >
           <div
             class="absolute inset-0 bg-white/10 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"
           ></div>
-          <i-lucide name="zap" class="w-6 h-6 mr-3 animate-pulse"></i-lucide>
+          <i-lucide name="zap" class="mr-3 animate-pulse"></i-lucide>
           INSCRÍBETE AHORA
         </button>
 
         <button
-          class="relative bg-transparent border-2 border-white text-white hover:bg-white hover:text-slate-900 font-black px-12 py-6 text-xl transform hover:scale-110 transition-all duration-300 shadow-2xl overflow-hidden group"
+          class="inline-flex items-center justify-center gap-2 whitespace-nowrap disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive h-10 rounded-md has-[>svg]:px-4 relative bg-transparent border-2 border-white text-white hover:bg-white hover:text-slate-900 font-black px-12 py-6 text-xl transform hover:scale-110 transition-all duration-300 shadow-2xl overflow-hidden group"
         >
           <div
             class="absolute inset-0 bg-white transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700 opacity-0 group-hover:opacity-100"
@@ -739,7 +736,7 @@
 
           <i-lucide
             name="target"
-            class="w-6 h-6 mr-3 group-hover:animate-spin"
+            class="mr-3 group-hover:animate-spin"
           ></i-lucide>
           MÁS INFORMACIÓN
         </button>

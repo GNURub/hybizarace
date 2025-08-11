@@ -1,4 +1,4 @@
-import { DatePipe, NgClass, UpperCasePipe } from '@angular/common';
+import { DatePipe, NgClass } from '@angular/common';
 import { Component, HostListener, inject } from '@angular/core';
 import { LucideAngularModule } from 'lucide-angular';
 import { CountdownComponent } from '../../components/countdown.component';
@@ -13,7 +13,6 @@ import { EVENT_DATE } from '../../tokens/EVENT_DATE';
     NgClass,
     LucideAngularModule,
     DatePipe,
-    UpperCasePipe,
   ],
   templateUrl: './home.html',
   styleUrl: './home.css',
@@ -79,15 +78,15 @@ export class Home {
       color: 'yellow',
     },
     {
+      name: 'DUO',
+      title: 'PAREJAS',
+      desc: 'Compite junto a tu compañero en esta aventura épica',
+      color: 'yellow',
+    },
+    {
       name: 'TEAM',
       title: 'EQUIPOS',
       desc: 'Compite junto a tu compañero en esta aventura épica',
-      color: 'cyan',
-    },
-    {
-      name: 'U18',
-      title: 'JUVENIL',
-      desc: 'Para los futuros campeones menores de 18 años',
       color: 'yellow',
     },
   ];
