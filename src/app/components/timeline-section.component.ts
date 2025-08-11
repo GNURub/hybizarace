@@ -49,25 +49,41 @@ import { TimelineExercisesComponent } from './timeline-exercises.component';
 
         <app-timeline-exercises></app-timeline-exercises>
 
-        <div class="text-center mt-16"><div class="relative inline-block"><div class="absolute inset-0 bg-gradient-to-r from-cyan-400 to-yellow-400 rounded-full blur-xl opacity-30 animate-pulse"></div><span data-slot="badge" class="inline-flex items-center justify-center rounded-md border w-fit whitespace-nowrap shrink-0 [&amp;&gt;svg]:size-3 gap-1 [&amp;&gt;svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent [a&amp;]:hover:bg-primary/90 relative bg-gradient-to-r from-cyan-400 to-yellow-400 text-slate-900 font-black text-xl px-8 py-4">🏆 ¡FINISHER HYBIZA RACE! 🏆</span></div><p class="text-gray-300 mt-4 text-lg"><span class="text-cyan-400 font-bold">¡Felicidades!</span> Has completado el desafío más épico de Ibiza</p></div>
+        <div class="text-center mt-16">
+          <div class="relative inline-block">
+            <div
+              class="absolute inset-0 bg-gradient-to-r from-cyan-400 to-yellow-400 rounded-full blur-xl opacity-30 animate-pulse"
+            ></div>
+            <span
+              class="inline-flex items-center justify-center rounded-md border w-fit whitespace-nowrap shrink-0 [&amp;&gt;svg]:size-3 gap-1 [&amp;&gt;svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent [a&amp;]:hover:bg-primary/90 relative bg-gradient-to-r from-cyan-400 to-yellow-400 text-slate-900 font-black text-xl px-8 py-4"
+              >🏆 ¡FINISHER HYBIZA RACE! 🏆</span
+            >
+          </div>
+          <p class="text-gray-300 mt-4 text-lg">
+            <span class="text-cyan-400 font-bold">¡Felicidades!</span> Has
+            completado el desafío más épico de Ibiza
+          </p>
+        </div>
       </div>
     </section>
   `,
-  styles: [`
-    .animate-gradient-x {
-      background-size: 200% 200%;
-      animation: gradient-x 3s ease infinite;
-    }
+  styles: [
+    `
+      .animate-gradient-x {
+        background-size: 200% 200%;
+        animation: gradient-x 3s ease infinite;
+      }
 
-    @keyframes gradient-x {
-      0%, 100% {
-        background-position: 0% 50%;
+      @keyframes gradient-x {
+        0%,
+        100% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
       }
-      50% {
-        background-position: 100% 50%;
-      }
-    }
-  `]
+    `,
+  ],
 })
-export class TimelineSectionComponent {
-}
+export class TimelineSectionComponent { }
