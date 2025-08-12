@@ -47,6 +47,47 @@ import { Category, ExerciseType, TimelineExercisesComponent } from './timeline-e
           </p>
         </div>
 
+        <!-- Selector de categoria/exerciseType -->
+        <div class="flex justify-center mb-16">
+          <div class="bg-slate-900/50 backdrop-blur-sm border border-yellow-400/30 rounded-2xl p-8">
+            <!-- Selector de Categoría -->
+            <div class="mb-8">
+              <h3 class="text-xl font-bold text-yellow-400 mb-4 text-center">Categoría</h3>
+              <div class="flex gap-4 justify-center">
+                @for (cat of categories; track cat.value) {
+                  <button
+                    (click)="category.set(cat.value)"
+                    [class.ring-4]="category() === cat.value"
+                    [class.ring-yellow-400]="category() === cat.value"
+                    [class.scale-110]="category() === cat.value"
+                    class="group relative w-20 h-20 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 flex items-center justify-center font-black text-slate-900 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-yellow-400/50"
+                  >
+                    <span class="text-sm">{{ cat.label }}</span>
+                  </button>
+                }
+              </div>
+            </div>
+
+            <!-- Selector de Tipo de Ejercicio -->
+            <div>
+              <h3 class="text-xl font-bold text-yellow-400 mb-4 text-center">Modalidad</h3>
+              <div class="flex gap-3 justify-center flex-wrap">
+                @for (type of exerciseTypes; track type.value) {
+                  <button
+                    (click)="exerciseType.set(type.value)"
+                    [class.ring-4]="exerciseType() === type.value"
+                    [class.ring-yellow-400]="exerciseType() === type.value"
+                    [class.scale-110]="exerciseType() === type.value"
+                    class="group relative w-16 h-16 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 flex items-center justify-center font-bold text-slate-900 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-yellow-400/50"
+                  >
+                    <span class="text-xs">{{ type.label }}</span>
+                  </button>
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+
         <app-timeline-exercises [category]="category()" [exerciseType]="exerciseType()" />
 
         <div class="text-center mt-16">
@@ -89,4 +130,19 @@ import { Category, ExerciseType, TimelineExercisesComponent } from './timeline-e
 export class TimelineSectionComponent {
   public readonly category = signal<Category>('individual');
   public readonly exerciseType = signal<ExerciseType>('men');
+
+  public readonly categories = [
+    { value: 'individual' as Category, label: 'IND' },
+    { value: 'duo' as Category, label: 'DUO' },
+    { value: 'team' as Category, label: 'TEAM' }
+  ];
+
+  public readonly exerciseTypes = [
+    { value: 'men' as ExerciseType, label: 'H' },
+    { value: 'women' as ExerciseType, label: 'M' },
+    { value: 'mix' as ExerciseType, label: 'MIX' },
+    { value: 'pro_men' as ExerciseType, label: 'PRO H' },
+    { value: 'pro_women' as ExerciseType, label: 'PRO M' },
+    { value: 'pro_mix' as ExerciseType, label: 'PRO MIX' }
+  ];
 }
