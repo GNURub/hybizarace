@@ -64,11 +64,13 @@ interface Exercise {
                   </p>
 
                   <div class="space-y-3">
-                    <div class="flex items-center ">
-                      <i-lucide name="weight" class="w-4 h-4 mr-2 text-yellow-400" />
-                      <span class="mr-2">🏋️ Peso: </span>
-                      <span class="font-bold text-cyan-400">{{ getWeight(exercise) }}</span>
-                    </div>
+                    @if ( getWeight(exercise); as weight) {
+                      <div class="flex items-center ">
+                        <span class="mr-2">🏋️ Peso: </span>
+                        <span class="font-bold text-cyan-400">{{ weight }}</span>
+                      </div>
+                    }
+                    <div class="flex items-center">
                      <span class="mr-2">🎯 Objetivo: </span> <span class="font-bold text-cyan-400"> {{ getDuration(exercise) }}</span>
                     </div>
                     <div class="flex items-center text-yellow-400">
