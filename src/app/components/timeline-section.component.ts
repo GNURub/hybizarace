@@ -32,7 +32,7 @@ import { TimelineExercisesComponent } from './timeline-exercises.component';
             <span
               class="bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-500 bg-clip-text text-transparent animate-gradient-x"
             >
-              8 ESTACIONES
+              9 ESTACIONES
             </span>
             <br />
             <span
@@ -47,7 +47,7 @@ import { TimelineExercisesComponent } from './timeline-exercises.component';
           </p>
         </div>
 
-        <app-timeline-exercises></app-timeline-exercises>
+        <app-timeline-exercises />
 
         <div class="text-center mt-16">
           <div class="relative inline-block">

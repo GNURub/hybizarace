@@ -41,9 +41,9 @@ export class Home {
   eventInfo = [
     {
       icon: 'target',
-      title: '8 ESTACIONES',
+      title: '9 ESTACIONES',
       description:
-        'Supera 8 estaciones de fitness funcional que pondrán a prueba tu fuerza, resistencia y determinación.',
+        'Supera 9 estaciones de fitness funcional que pondrán a prueba tu fuerza, resistencia y determinación.',
       color: 'cyan',
       delay: '0',
     },
@@ -142,7 +142,7 @@ export class Home {
     },
     {
       title: 'CONTACTO',
-      links: ['info@hybizarace.com', '+34 971 XXX XXX', 'Ibiza, España'],
+      links: ['info@hybizarace.es', '+34 971 XXX XXX', 'Ibiza, España'],
     },
   ];
 }
