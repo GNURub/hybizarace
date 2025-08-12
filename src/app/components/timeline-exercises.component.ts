@@ -1,9 +1,9 @@
 import { NgClass, NgStyle } from '@angular/common';
-import { afterNextRender, Component, ElementRef, OnDestroy, signal, viewChildren } from '@angular/core';
+import { afterNextRender, Component, ElementRef, input, OnDestroy, viewChildren } from '@angular/core';
 import { LucideAngularModule } from "lucide-angular";
 
-type Category = 'individual' | 'duo' | 'team';
-type ExerciseType = 'men' | 'women' | 'mix' | 'pro_men' | 'pro_men' | 'pro_women' | 'pro_mix';
+export type Category = 'individual' | 'duo' | 'team';
+export type ExerciseType = 'men' | 'women' | 'mix' | 'pro_men' | 'pro_men' | 'pro_women' | 'pro_mix';
 interface Exercise {
   name: string;
   description: string;
@@ -116,8 +116,8 @@ export class TimelineExercisesComponent implements OnDestroy {
   exerciseElements = viewChildren<ElementRef<HTMLElement>>('exerciseElement');
   private observer?: IntersectionObserver;
 
-  public readonly category = signal<Category>('individual');
-  public readonly exerciseType = signal<ExerciseType>('men');
+  public readonly category = input.required<Category>();
+  public readonly exerciseType = input.required<ExerciseType>();
 
   exercises: Exercise[] = [
     {

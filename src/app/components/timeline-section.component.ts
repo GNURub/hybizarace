@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { TimelineExercisesComponent } from './timeline-exercises.component';
+import { Component, signal } from '@angular/core';
+import { Category, ExerciseType, TimelineExercisesComponent } from './timeline-exercises.component';
 
 @Component({
   selector: 'app-timeline-section',
@@ -47,7 +47,7 @@ import { TimelineExercisesComponent } from './timeline-exercises.component';
           </p>
         </div>
 
-        <app-timeline-exercises />
+        <app-timeline-exercises [category]="category()" [exerciseType]="exerciseType()" />
 
         <div class="text-center mt-16">
           <div class="relative inline-block">
@@ -86,4 +86,7 @@ import { TimelineExercisesComponent } from './timeline-exercises.component';
     `,
   ],
 })
-export class TimelineSectionComponent { }
+export class TimelineSectionComponent {
+  public readonly category = signal<Category>('individual');
+  public readonly exerciseType = signal<ExerciseType>('men');
+}
