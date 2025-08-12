@@ -1,6 +1,16 @@
 import { NgClass, NgStyle } from '@angular/common';
-import { afterNextRender, Component, ElementRef, OnDestroy, viewChildren } from '@angular/core';
+import { afterNextRender, Component, ElementRef, OnDestroy, signal, viewChildren } from '@angular/core';
 import { LucideAngularModule } from "lucide-angular";
+
+type Category = 'individual' | 'duo' | 'team';
+type ExerciseType = 'men' | 'women' | 'mix' | 'pro_men' | 'pro_men' | 'pro_women' | 'pro_mix';
+interface Exercise {
+  name: string;
+  description: string;
+  duration: string | Record<Category, Record<Partial<ExerciseType>, string>>;
+  target: string;
+  weight?: Record<Category, Record<ExerciseType, string>>;
+}
 
 @Component({
   selector: 'app-timeline-exercises',
@@ -54,8 +64,12 @@ import { LucideAngularModule } from "lucide-angular";
                   </p>
 
                   <div class="space-y-3">
-                    <div class="flex items-center text-cyan-400">
-                      <span class="font-bold">🎯 Objetivo: {{ exercise.duration }}</span>
+                    <div class="flex items-center ">
+                      <i-lucide name="weight" class="w-4 h-4 mr-2 text-yellow-400" />
+                      <span class="mr-2">🏋️ Peso: </span>
+                      <span class="font-bold text-cyan-400">{{ getWeight(exercise) }}</span>
+                    </div>
+                     <span class="mr-2">🎯 Objetivo: </span> <span class="font-bold text-cyan-400"> {{ getDuration(exercise) }}</span>
                     </div>
                     <div class="flex items-center text-yellow-400">
                       <i-lucide name="target" class="w-4 h-4 mr-2" />
@@ -100,41 +114,197 @@ export class TimelineExercisesComponent implements OnDestroy {
   exerciseElements = viewChildren<ElementRef<HTMLElement>>('exerciseElement');
   private observer?: IntersectionObserver;
 
-  exercises = [
+  public readonly category = signal<Category>('individual');
+  public readonly exerciseType = signal<ExerciseType>('men');
+
+  exercises: Exercise[] = [
     {
       name: 'SANDBAG',
       description: 'Comienza el desafío trabajando brazos, core y piernas.',
       duration: '500 metros',
       target: 'Resistencia cardiovascular',
+      weight: {
+        individual: {
+          men: '25 kg',
+          women: '20 kg',
+          mix: '',
+          pro_men: '40 kg',
+          pro_women: '30 kg',
+          pro_mix: ''
+        },
+        duo: {
+          men: '25 kg',
+          women: '20 kg',
+          mix: '25 kg',
+          pro_men: '30 kg',
+          pro_women: '25 kg',
+          pro_mix: '30 kg'
+        },
+        team: {
+          men: '25 kg',
+          women: '20 kg',
+          mix: '20-25 kg',
+          pro_men: '25 kg',
+          pro_women: '20 kg',
+          pro_mix: '20-25 kg'
+        }
+      },
     },
     {
       name: 'Assault Bike',
       description: 'Pedalea con fuerza para activar todo el cuerpo.',
-      duration: '20 Calorías',
+      duration: {
+        individual: {
+          men: '20 Calorías',
+          women: '20 Calorías',
+          mix: '20 Calorías',
+          pro_men: '50 Calorías',
+          pro_women: '50 Calorías',
+          pro_mix: '50 Calorías'
+        },
+        duo: {
+          men: '20 Calorías',
+          women: '20 Calorías',
+          mix: '20 Calorías',
+          pro_men: '50 Calorías',
+          pro_women: '50 Calorías',
+          pro_mix: '50 Calorías'
+        },
+        team: {
+          men: '20 Calorías',
+          women: '20 Calorías',
+          mix: '20 Calorías',
+          pro_men: '50 Calorías',
+          pro_women: '50 Calorías',
+          pro_mix: '50 Calorías'
+        }
+      },
       target: 'Fuerza explosiva',
     },
     {
       name: 'Farmers Carry',
-      description: 'Transporta el peso a lo largo de 100 metros.',
+      description: 'Transporta los discos a lo largo de 100 metros.',
       duration: '100 metros',
       target: 'Fuerza de tracción',
+      weight: {
+        individual: {
+          men: '2x10kg',
+          women: '2x5kg',
+          mix: '2x5kg-10kg',
+          pro_men: '2x15kg',
+          pro_women: '2x10kg',
+          pro_mix: '2x10kg-15kg'
+        },
+        duo: {
+          men: '2x10kg',
+          women: '2x5kg',
+          mix: '2x10kg',
+          pro_men: '2x12.5kg',
+          pro_women: '2x7.5kg',
+          pro_mix: '2x7.5kg'
+        },
+        team: {
+          men: '2x10kg',
+          women: '2x5kg',
+          mix: '2x5kg-10kg',
+          pro_men: '2x12.5kg',
+          pro_women: '2x7.5kg',
+          pro_mix: '2x7.5kg-12.5kg'
+        }
+      },
     },
     {
       name: 'ROWING',
       description: 'Remar con fuerza para activar la parte superior del cuerpo.',
-      duration: '20 Calorías',
+      duration: {
+        individual: {
+          men: '20 Calorías',
+          women: '20 Calorías',
+          mix: '20 Calorías',
+          pro_men: '20 Calorías',
+          pro_women: '20 Calorías',
+          pro_mix: '20 Calorías'
+        },
+        duo: {
+          men: '20 Calorías',
+          women: '20 Calorías',
+          mix: '20 Calorías',
+          pro_men: '50 Calorías',
+          pro_women: '50 Calorías',
+          pro_mix: '50 Calorías'
+        },
+        team: {
+          men: '20 Calorías',
+          women: '20 Calorías',
+          mix: '20 Calorías',
+          pro_men: '20 Calorías',
+          pro_women: '20 Calorías',
+          pro_mix: '20 Calorías'
+        }
+      },
       target: 'Potencia y resistencia',
     },
     {
       name: 'HUSSAFELL CARRY',
-      description: 'Transporta el peso a lo largo de 500 metros.',
+      description: 'Transporta el saco a lo largo de 500 metros.',
       duration: '500 metros',
       target: 'Cardio y fuerza',
+      weight: {
+        individual: {
+          men: '30 kg',
+          women: '20 kg',
+          mix: '20-30 kg',
+          pro_men: '40 kg',
+          pro_women: '30 kg',
+          pro_mix: '30-40 kg'
+        },
+        duo: {
+          men: '30 kg',
+          women: '20 kg',
+          mix: '30 kg',
+          pro_men: '40 kg',
+          pro_women: '30 kg',
+          pro_mix: '40 kg'
+        },
+        team: {
+          men: '30 kg',
+          women: '20 kg',
+          mix: '20-30 kg',
+          pro_men: '40 kg',
+          pro_women: '30 kg',
+          pro_mix: '30-40 kg'
+        }
+      },
     },
     {
       name: 'SKI ERG',
       description: 'Deslízate hacia atrás y hacia adelante para activar todo el cuerpo.',
-      duration: '20 Calorías',
+      duration: {
+        individual: {
+          men: '20 Calorías',
+          women: '20 Calorías',
+          mix: '20 Calorías',
+          pro_men: '20 Calorías',
+          pro_women: '20 Calorías',
+          pro_mix: '20 Calorías'
+        },
+        duo: {
+          men: '20 Calorías',
+          women: '20 Calorías',
+          mix: '20 Calorías',
+          pro_men: '50 Calorías',
+          pro_women: '50 Calorías',
+          pro_mix: '50 Calorías'
+        },
+        team: {
+          men: '20 Calorías',
+          women: '20 Calorías',
+          mix: '20 Calorías',
+          pro_men: '20 Calorías',
+          pro_women: '20 Calorías',
+          pro_mix: '20 Calorías'
+        }
+      },
       target: 'Fuerza funcional',
     },
     {
@@ -142,20 +312,119 @@ export class TimelineExercisesComponent implements OnDestroy {
       description: 'Da un paso hacia adelante y baja la rodilla trasera hacia el suelo.',
       duration: '100 metros',
       target: 'Fuerza unilateral',
+      weight: {
+        individual: {
+          men: '2x12.5kg',
+          women: '2x7.5kg',
+          mix: '2x7.5kg-12.5kg',
+          pro_men: '2x15kg',
+          pro_women: '2x10kg',
+          pro_mix: '2x10kg-15kg'
+        },
+        duo: {
+          men: '2x12.5kg',
+          women: '2x7.5kg',
+          mix: '2x12.5kg',
+          pro_men: '2x15kg',
+          pro_women: '2x10kg',
+          pro_mix: '2x15kg'
+        },
+        team: {
+          men: '2x12.5kg',
+          women: '2x7.5kg',
+          mix: '2x7.5kg-12.5kg',
+          pro_men: '2x15kg',
+          pro_women: '2x10kg',
+          pro_mix: '2x10kg-15kg'
+        }
+      },
     },
     {
       name: 'BEAR CRAWL',
-      description: 'Desplázate en cuatro patas para trabajar todo el cuerpo.',
+      description: 'Desplázate en cuatro patas mientras desplazas una pelota.',
       duration: '100 metros',
       target: 'Resistencia muscular',
+      weight: {
+        individual: {
+          men: '25 kg',
+          women: '20 kg',
+          mix: '20-25 kg',
+          pro_men: '40 kg',
+          pro_women: '30 kg',
+          pro_mix: '30-40 kg'
+        },
+        duo: {
+          men: '25 kg',
+          women: '20 kg',
+          mix: '25 kg',
+          pro_men: '30 kg',
+          pro_women: '25 kg',
+          pro_mix: '30 kg'
+        },
+        team: {
+          men: '25 kg',
+          women: '20 kg',
+          mix: '20-25 kg',
+          pro_men: '30 kg',
+          pro_women: '25 kg',
+          pro_mix: '25-30 kg'
+        }
+      },
     },
     {
       name: 'BURPEE WALL BALLS',
       description: 'Realiza un burpee y lanza la pelota contra la pared.',
       duration: '20 repeticiones',
       target: 'Resistencia muscular',
+      weight: {
+        individual: {
+          men: '6 kg',
+          women: '4 kg',
+          mix: '4-6 kg',
+          pro_men: '8 kg',
+          pro_women: '6 kg',
+          pro_mix: '6-8 kg'
+        },
+        duo: {
+          men: '6 kg',
+          women: '4 kg',
+          mix: '6 kg',
+          pro_men: '9 kg',
+          pro_women: '6 kg',
+          pro_mix: '9 kg'
+        },
+        team: {
+          men: '6 kg',
+          women: '4 kg',
+          mix: '4-6 kg',
+          pro_men: '8 kg',
+          pro_women: '6 kg',
+          pro_mix: '6-8 kg'
+        }
+      },
     },
   ];
+
+  getDuration(exercise: Exercise): string {
+    if (typeof exercise.duration === 'string') {
+      return exercise.duration;
+    }
+    const categoryData = exercise.duration[this.category()];
+    if (categoryData) {
+      return categoryData[this.exerciseType()] || 'N/A';
+    }
+    return 'N/A';
+  }
+
+  getWeight(exercise: Exercise): string {
+    if (exercise.weight) {
+      const categoryData = exercise.weight[this.category()];
+      if (categoryData) {
+        return categoryData[this.exerciseType()] || 'N/A';
+      }
+    }
+    return '';
+  }
 
   constructor() {
     afterNextRender(() => {

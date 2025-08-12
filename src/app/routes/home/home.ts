@@ -49,9 +49,9 @@ export class Home {
     },
     {
       icon: 'clock',
-      title: '1KM RUNNING',
+      title: '800 METROS RUNNING',
       description:
-        'Entre cada estación, corre 1km por los paisajes más espectaculares de Ibiza.',
+        'Entre cada estación, corre 800 metros.',
       color: 'yellow',
       delay: '200',
     },
