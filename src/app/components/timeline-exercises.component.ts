@@ -1,9 +1,10 @@
-import { NgClass } from '@angular/common';
-import { Component } from '@angular/core';
+import { NgClass, NgStyle } from '@angular/common';
+import { afterNextRender, Component, ElementRef, OnDestroy, viewChildren } from '@angular/core';
+import { LucideAngularModule } from "lucide-angular";
 
 @Component({
   selector: 'app-timeline-exercises',
-  imports: [NgClass],
+  imports: [NgClass, NgStyle, LucideAngularModule],
   template: `
     <div class="max-w-6xl mx-auto">
       <div class="relative">
@@ -16,8 +17,9 @@ import { Component } from '@angular/core';
         <div class="space-y-16">
           @for (exercise of exercises; track exercise.name; let i = $index) {
             <div
+              #exerciseElement
               [ngClass]="{ 'md:flex-row-reverse': i % 2 === 1 }"
-              class="relative flex flex-col md:flex-row items-center"
+              class="relative flex flex-col md:flex-row items-center opacity-0 translate-y-8 transition-all duration-700 ease-out"
             >
               <!-- Exercise number (center) -->
               <div
@@ -36,11 +38,9 @@ import { Component } from '@angular/core';
                 >
                   <div class="flex items-center mb-6">
                     <div
-                      class="w-12 h-12 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center mr-4 group-hover:animate-bounce"
+                      class="size-24 bg-cover bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center mr-4 group-hover:animate-bounce"
+                      [ngStyle]="{ 'background-image': 'url(/ejercicios/' + (i + 1) + '.jpg)' }"
                     >
-                      <i
-                        [class]="exercise.icon + ' w-6 h-6 text-slate-900'"
-                      ></i>
                     </div>
                     <h3 class="text-2xl font-black text-yellow-400">
                       {{ exercise.name }}
@@ -55,11 +55,10 @@ import { Component } from '@angular/core';
 
                   <div class="space-y-3">
                     <div class="flex items-center text-cyan-400">
-                      <i class="lucide-clock w-4 h-4 mr-2"></i>
-                      <span class="font-bold">{{ exercise.duration }}</span>
+                      <span class="font-bold">🎯 Objetivo: {{ exercise.duration }}</span>
                     </div>
                     <div class="flex items-center text-yellow-400">
-                      <i class="lucide-target w-4 h-4 mr-2"></i>
+                      <i-lucide name="target" class="w-4 h-4 mr-2" />
                       <span class="font-bold">{{ exercise.target }}</span>
                     </div>
                   </div>
@@ -97,70 +96,103 @@ import { Component } from '@angular/core';
     </div>
   `,
 })
-export class TimelineExercisesComponent {
+export class TimelineExercisesComponent implements OnDestroy {
+  exerciseElements = viewChildren<ElementRef<HTMLElement>>('exerciseElement');
+  private observer?: IntersectionObserver;
+
   exercises = [
     {
       name: 'SANDBAG',
       description: 'Comienza el desafío trabajando brazos, core y piernas.',
-      duration: '500m',
+      duration: '500 metros',
       target: 'Resistencia cardiovascular',
-      icon: 'lucide-move',
     },
     {
       name: 'Assault Bike',
-      description: '',
-      duration: '20Cal',
+      description: 'Pedalea con fuerza para activar todo el cuerpo.',
+      duration: '20 Calorías',
       target: 'Fuerza explosiva',
-      icon: 'lucide-arrow-up',
     },
     {
       name: 'Farmers Carry',
-      description: '',
-      duration: '100m',
+      description: 'Transporta el peso a lo largo de 100 metros.',
+      duration: '100 metros',
       target: 'Fuerza de tracción',
-      icon: 'lucide-repeat',
     },
     {
       name: 'ROWING',
-      description: '',
-      duration: '20Cal',
+      description: 'Remar con fuerza para activar la parte superior del cuerpo.',
+      duration: '20 Calorías',
       target: 'Potencia y resistencia',
-      icon: 'lucide-activity',
     },
     {
       name: 'HUSSAFELL CARRY',
-      description: '',
-      duration: '500m',
+      description: 'Transporta el peso a lo largo de 500 metros.',
+      duration: '500 metros',
       target: 'Cardio y fuerza',
-      icon: 'lucide-move',
     },
     {
       name: 'SKI ERG',
-      description: '',
-      duration: '20cal',
+      description: 'Deslízate hacia atrás y hacia adelante para activar todo el cuerpo.',
+      duration: '20 Calorías',
       target: 'Fuerza funcional',
-      icon: 'lucide-dumbbell',
     },
     {
       name: 'WALKING LUNGES',
-      description: '',
-      duration: '100m',
+      description: 'Da un paso hacia adelante y baja la rodilla trasera hacia el suelo.',
+      duration: '100 metros',
       target: 'Fuerza unilateral',
-      icon: 'lucide-timer',
     },
     {
       name: 'BEAR CRAWL',
-      description: '',
-      duration: '100m',
+      description: 'Desplázate en cuatro patas para trabajar todo el cuerpo.',
+      duration: '100 metros',
       target: 'Resistencia muscular',
-      icon: 'lucide-crosshair',
     },
     {
       name: 'BURPEE WALL BALLS',
-      description: '',
-      duration: '20',
+      description: 'Realiza un burpee y lanza la pelota contra la pared.',
+      duration: '20 repeticiones',
       target: 'Resistencia muscular',
-      icon: 'lucide-crosshair',
     },
   ];
+
+  constructor() {
+    afterNextRender(() => {
+      this.setupIntersectionObserver();
+    });
+  }
+
+
+  ngOnDestroy() {
+    if (this.observer) {
+      this.observer.disconnect();
+    }
+  }
+
+  private setupIntersectionObserver() {
+    this.observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const element = entry.target as HTMLElement;
+            element.classList.remove('opacity-0', 'translate-y-8');
+            element.classList.add('opacity-100', 'translate-y-0');
+            this.observer?.unobserve(element);
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      }
+    );
+
+    // Observar todos los elementos cuando estén disponibles
+    setTimeout(() => {
+      this.exerciseElements().forEach(elementRef => {
+        this.observer?.observe(elementRef.nativeElement);
+      });
+    }, 0);
+  }
 }
