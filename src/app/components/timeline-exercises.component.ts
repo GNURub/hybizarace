@@ -165,7 +165,7 @@ export class TimelineExercisesComponent implements OnDestroy {
   exercises: Exercise[] = [
     {
       name: 'SANDBAG',
-      description: 'Comienza el desafío trabajando brazos, core y piernas.',
+      description: 'Carga el saco y recorre la distancia manteniendo el core firme. Abraza el peso, da pasos cortos y controla la respiración para proteger la zona lumbar.',
       duration: '500 metros',
       target: 'Resistencia cardiovascular',
       weight: {
@@ -188,7 +188,7 @@ export class TimelineExercisesComponent implements OnDestroy {
     },
     {
       name: 'Assault Bike',
-      description: 'Pedalea con fuerza para activar todo el cuerpo.',
+      description: 'Trabaja tren superior e inferior a la vez. Mantén una cadencia constante, empuja y tira con los brazos sin bloquear los codos y evita esprintar al inicio.',
       duration: {
         individual: {
           men: {
@@ -242,7 +242,7 @@ export class TimelineExercisesComponent implements OnDestroy {
     },
     {
       name: 'Farmers Carry',
-      description: 'Transporta los discos a lo largo de 100 metros.',
+      description: 'Transporta las cargas con postura alta. Hombros abajo y atrás, agarre fuerte, pasos cortos y mirada al frente para minimizar el balanceo.',
       duration: '100 metros',
       target: 'Fuerza de tracción',
       weight: {
@@ -266,7 +266,7 @@ export class TimelineExercisesComponent implements OnDestroy {
     {
       name: 'ROWING',
       description:
-        'Remar con fuerza para activar la parte superior del cuerpo.',
+        'Remada eficiente: piernas–tronco–brazos en la tracción y brazos–tronco–piernas en el retorno. Mantén ritmo estable, espalda neutra y palada completa.',
       duration: {
         individual: {
           men: {
@@ -324,7 +324,7 @@ export class TimelineExercisesComponent implements OnDestroy {
     },
     {
       name: 'HUSSAFELL CARRY',
-      description: 'Transporta el saco a lo largo de 500 metros.',
+      description: 'Abraza el saco contra el pecho, codos pegados y core activo. Avanza de forma continua priorizando la postura y la respiración.',
       duration: '500 metros',
       target: 'Cardio y fuerza',
       weight: {
@@ -348,7 +348,7 @@ export class TimelineExercisesComponent implements OnDestroy {
     {
       name: 'SKI ERG',
       description:
-        'Simula el gesto del esquí nórdico, enfocando la tracción del tren superior y el core. Mantén una cadencia constante, cadera estable y tira desde dorsales para maximizar eficiencia.',
+        'Simula el gesto del esquí nórdico activando dorsales, tríceps y core. Mantén una cadencia constante, cadera estable y tracciona desde dorsales; evita flexionar en exceso la zona lumbar.',
       duration: {
         individual: {
           men: {
@@ -407,7 +407,7 @@ export class TimelineExercisesComponent implements OnDestroy {
     {
       name: 'WALKING LUNGES',
       description:
-        'Da un paso hacia adelante y baja la rodilla trasera hacia el suelo.',
+        'Zancadas caminando con control: rodilla delantera sobre el tobillo, torso erguido y cadera estable. Alterna piernas manteniendo la profundidad y el equilibrio.',
       duration: '100 metros',
       target: 'Fuerza unilateral',
       weight: {
@@ -430,7 +430,7 @@ export class TimelineExercisesComponent implements OnDestroy {
     },
     {
       name: 'BEAR CRAWL',
-      description: 'Desplázate en cuatro patas mientras desplazas una pelota.',
+      description: 'Gateo atlético con balón: caderas bajas, rodillas cerca del suelo y manos bajo hombros. Avanza coordinado y controlado mientras desplazas la pelota.',
       duration: '100 metros',
       target: 'Resistencia muscular',
       weight: {
@@ -453,7 +453,7 @@ export class TimelineExercisesComponent implements OnDestroy {
     },
     {
       name: 'BURPEE WALL BALLS',
-      description: 'Realiza un burpee y lanza la pelota contra la pared.',
+      description: 'Combina un burpee completo con lanzamiento a diana. Mantén la profundidad de sentadilla, recibe la pelota en el pecho y encadena repeticiones con ritmo y respiración controlada.',
       duration: {
         individual: {
           men: {
