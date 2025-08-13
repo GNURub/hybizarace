@@ -1,4 +1,4 @@
-import { DatePipe, NgClass } from '@angular/common';
+import { DatePipe, NgClass, NgOptimizedImage } from '@angular/common';
 import { Component, HostListener, inject } from '@angular/core';
 import { LucideAngularModule } from 'lucide-angular';
 import { CountdownComponent } from '../../components/countdown.component';
@@ -18,6 +18,7 @@ import { EVENT_DATE } from '../../tokens/EVENT_DATE';
     GymFloorPlanComponent,
     LucideAngularModule,
     DatePipe,
+    NgOptimizedImage,
   ],
   templateUrl: './home.html',
   styleUrl: './home.css',

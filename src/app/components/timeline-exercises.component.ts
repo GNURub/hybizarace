@@ -19,11 +19,11 @@ export interface Exercise {
   name: string;
   description: string;
   duration:
-    | string
-    | Record<
-        ParticipationType,
-        Record<GenderGroup, Record<WorkoutLevel, string>>
-      >;
+  | string
+  | Record<
+    ParticipationType,
+    Record<GenderGroup, Record<WorkoutLevel, string>>
+  >;
   target: string;
   weight?: Record<
     ParticipationType,
@@ -66,14 +66,14 @@ export interface Exercise {
               <!-- Exercise content -->
               <div
                 [ngClass]="{ 'md:pr-16': i % 2 === 0, 'md:pl-16': i % 2 === 1 }"
-                class="w-full md:w-1/2 p-6"
+                class="w-full md:w-1/2 p-6 z-20"
               >
                 <div
                   class="bg-gradient-to-br from-slate-900/90 to-slate-800/90 backdrop-blur-sm border border-yellow-400/30 rounded-2xl p-8 transform hover:scale-105 transition-all duration-300 group"
                 >
                   <div class="flex items-center mb-6">
                     <div
-                      class="size-24 bg-cover bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center mr-4 group-hover:animate-bounce"
+                      class="size-24 aspect-square bg-cover bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center mr-4 group-hover:animate-bounce"
                       [ngStyle]="{
                         'background-image':
                           'url(/ejercicios/' + (i + 1) + '.jpg)',
@@ -133,7 +133,7 @@ export interface Exercise {
                     'md:pl-16': i % 2 === 0,
                     'md:pr-16': i % 2 === 1,
                   }"
-                  class="w-auto p-6 mt-50"
+                  class="w-auto p-6 md:mt-50"
                 >
                   <div
                     class="bg-gradient-to-br from-cyan-900/40 to-blue-900/40 backdrop-blur-sm border border-cyan-400/30 rounded-2xl p-6 transform hover:scale-105 transition-all duration-300"
