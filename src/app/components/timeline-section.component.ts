@@ -1,10 +1,7 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { CategorySelectorComponent } from './category-selector.component';
 import {
-  GenderGroup,
-  ParticipationType,
-  TimelineExercisesComponent,
-  WorkoutLevel,
+  TimelineExercisesComponent
 } from './timeline-exercises.component';
 
 @Component({
@@ -62,19 +59,11 @@ import {
               Selecciona tu categoría y modalidad
             </h2>
 
-            <app-category-selector
-              [(participantType)]="participantType"
-              [(genderGroup)]="genderGroup"
-              [(workoutLevel)]="workoutLevel"
-            />
+            <app-category-selector />
           </div>
         </div>
 
-        <app-timeline-exercises
-          [participantType]="participantType()"
-          [genderGroup]="genderGroup()"
-          [workoutLevel]="workoutLevel()"
-        />
+        <app-timeline-exercises />
 
         <div class="text-center mt-16">
           <div class="relative inline-block">
@@ -114,9 +103,7 @@ import {
   ],
 })
 export class TimelineSectionComponent {
-  public readonly participantType = signal<ParticipationType>('individual');
-  public readonly genderGroup = signal<GenderGroup>('men');
-  public readonly workoutLevel = signal<WorkoutLevel>('open');
+
 
 
 }

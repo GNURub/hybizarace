@@ -1,4 +1,5 @@
-import { Component, effect, model, untracked } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { CategoryService } from '../services/category.service';
 import {
   GenderGroup,
   ParticipationType,
@@ -36,13 +37,13 @@ export interface WorkoutLevelOption {
           @for (pt of participantTypes; track pt.value) {
             <div
               class="flex flex-col items-center gap-4"
-              [class.opacity-30]="participantType() !== pt.value"
+              [class.opacity-30]="categoryService.participantType() !== pt.value"
             >
               <button
-                (click)="participantType.set(pt.value)"
-                [class.ring-4]="participantType() === pt.value"
-                [class.ring-yellow-400]="participantType() === pt.value"
-                [class.scale-110]="participantType() === pt.value"
+                (click)="categoryService.participantType.set(pt.value)"
+                [class.ring-4]="categoryService.participantType() === pt.value"
+                [class.ring-yellow-400]="categoryService.participantType() === pt.value"
+                [class.scale-110]="categoryService.participantType() === pt.value"
                 class="group relative cursor-pointer size-20 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 flex items-center justify-center font-black text-slate-900 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-yellow-400/50"
               >
                 <img
@@ -67,13 +68,13 @@ export interface WorkoutLevelOption {
           @for (gg of genderGroups; track gg.value) {
             <div
               class="flex flex-col items-center gap-4"
-              [class.opacity-30]="genderGroup() !== gg.value"
+              [class.opacity-30]="categoryService.genderGroup() !== gg.value"
             >
               <button
-                (click)="genderGroup.set(gg.value)"
-                [class.ring-4]="genderGroup() === gg.value"
-                [class.ring-yellow-400]="genderGroup() === gg.value"
-                [class.scale-110]="genderGroup() === gg.value"
+                (click)="categoryService.genderGroup.set(gg.value)"
+                [class.ring-4]="categoryService.genderGroup() === gg.value"
+                [class.ring-yellow-400]="categoryService.genderGroup() === gg.value"
+                [class.scale-110]="categoryService.genderGroup() === gg.value"
                 class="group relative cursor-pointer size-16 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 flex items-center justify-center font-black text-slate-900 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-yellow-400/50"
               >
                 <img
@@ -99,13 +100,13 @@ export interface WorkoutLevelOption {
           @for (wl of workoutLevels; track wl.value) {
             <div
               class="flex flex-col items-center gap-4"
-              [class.opacity-30]="workoutLevel() !== wl.value"
+              [class.opacity-30]="categoryService.workoutLevel() !== wl.value"
             >
               <button
-                (click)="workoutLevel.set(wl.value)"
-                [class.ring-4]="workoutLevel() === wl.value"
-                [class.ring-yellow-400]="workoutLevel() === wl.value"
-                [class.scale-110]="workoutLevel() === wl.value"
+                (click)="categoryService.workoutLevel.set(wl.value)"
+                [class.ring-4]="categoryService.workoutLevel() === wl.value"
+                [class.ring-yellow-400]="categoryService.workoutLevel() === wl.value"
+                [class.scale-110]="categoryService.workoutLevel() === wl.value"
                 class="group cursor-pointer relative size-12 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 flex items-center justify-center font-black text-slate-900 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-yellow-400/50"
               >
                 <img
@@ -125,10 +126,7 @@ export interface WorkoutLevelOption {
   `,
 })
 export class CategorySelectorComponent {
-
-  readonly participantType = model.required<ParticipationType>();
-  readonly genderGroup = model.required<GenderGroup>();
-  readonly workoutLevel = model.required<WorkoutLevel>();
+  protected readonly categoryService = inject(CategoryService);
 
   public readonly participantTypes = [
     {
@@ -173,7 +171,7 @@ export class CategorySelectorComponent {
   ];
 
   get genderGroups() {
-    const activeParticipantType = this.participantType();
+    const activeParticipantType = this.categoryService.participantType();
     let genderGroups = this._genderGroup;
     if (activeParticipantType === 'individual') {
       genderGroups = genderGroups.filter((type) => !type.value.includes('mix'));
@@ -183,15 +181,5 @@ export class CategorySelectorComponent {
       ...type,
       src: `/categories/${activeParticipantType}_${type.value}.jpeg`,
     }));
-  }
-
-  constructor() {
-    effect(() => {
-      const participantType = this.participantType();
-      const genderGroup = untracked(() => this.genderGroup());
-      if (participantType === 'individual' && genderGroup === 'mix') {
-        this.genderGroup.set('men');
-      }
-    });
   }
 }

@@ -3,13 +3,14 @@ import {
   afterNextRender,
   Component,
   ElementRef,
-  input,
+  inject,
   OnDestroy,
-  viewChildren,
+  viewChildren
 } from '@angular/core';
 import { LucideAngularModule } from 'lucide-angular';
 import { ExerciseDurationPipe } from '../pipes/exercise-duration.pipe';
 import { ExerciseWeightPipe } from '../pipes/exercise-weight.pipe';
+import { CategoryService } from '../services/category.service';
 
 export type ParticipationType = 'individual' | 'duo' | 'team';
 export type GenderGroup = 'men' | 'women' | 'mix';
@@ -84,7 +85,7 @@ export interface Exercise {
                   </p>
 
                   <div class="space-y-3">
-                    @if (exercise | exerciseWeight: participantType() : genderGroup() : workoutLevel(); as weight) {
+                    @if (exercise | exerciseWeight: categoryService.participantType() : categoryService.genderGroup() : categoryService.workoutLevel(); as weight) {
                       <div class="flex items-center ">
                         <span class="mr-2">🏋️ Peso: </span>
                         <span class="font-bold text-cyan-400">{{
@@ -95,7 +96,7 @@ export interface Exercise {
                     <div class="flex items-center">
                       <span class="mr-2">🎯 Objetivo: </span>
                       <span class="font-bold text-cyan-400">
-                        {{ exercise | exerciseDuration: participantType() : genderGroup() : workoutLevel() }}</span
+                        {{ exercise | exerciseDuration: categoryService.participantType() : categoryService.genderGroup() : categoryService.workoutLevel() }}</span
                       >
                     </div>
                     <div class="flex items-center text-yellow-400">
@@ -138,12 +139,9 @@ export interface Exercise {
   `,
 })
 export class TimelineExercisesComponent implements OnDestroy {
+  protected readonly categoryService = inject(CategoryService);
   exerciseElements = viewChildren<ElementRef<HTMLElement>>('exerciseElement');
   private observer?: IntersectionObserver;
-
-  public readonly participantType = input.required<ParticipationType>();
-  public readonly genderGroup = input.required<GenderGroup>();
-  public readonly workoutLevel = input.required<WorkoutLevel>();
 
   exercises: Exercise[] = [
     {
