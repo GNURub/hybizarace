@@ -145,7 +145,7 @@ export class Home {
     },
     {
       title: 'CONTACTO',
-      links: ['info@hybizarace.es', '+34 971 XXX XXX', 'Ibiza, España'],
+      links: ['info@hybizarace.es', 'Ibiza, España'],
     },
   ];
 }

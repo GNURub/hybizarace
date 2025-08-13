@@ -1,10 +1,10 @@
-import { NgClass, NgStyle } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
 import type { Area, Station } from '../../models/gym.models';
 import { GymDataService } from '../../services/gym-data.service';
 
 @Component({
-  imports: [NgClass, NgStyle],
+  imports: [NgClass],
   selector: 'app-gym-floor-plan',
   templateUrl: './gym-floor-plan.component.html',
   styleUrls: ['./gym-floor-plan.component.css'],
