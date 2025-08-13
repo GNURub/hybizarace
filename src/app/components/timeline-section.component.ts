@@ -55,15 +55,24 @@ import { Category, ExerciseType, TimelineExercisesComponent } from './timeline-e
               <h3 class="text-xl font-bold text-yellow-400 mb-4 text-center">Categoría</h3>
               <div class="flex gap-4 justify-center">
                 @for (cat of categories; track cat.value) {
-                  <button
-                    (click)="category.set(cat.value)"
-                    [class.ring-4]="category() === cat.value"
-                    [class.ring-yellow-400]="category() === cat.value"
-                    [class.scale-110]="category() === cat.value"
-                    class="group relative w-20 h-20 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 flex items-center justify-center font-black text-slate-900 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-yellow-400/50"
-                  >
-                    <span class="text-sm">{{ cat.label }}</span>
-                  </button>
+                  <div class="flex flex-col items-center gap-4"  [class.opacity-30]="category() !== cat.value">
+                    <button
+                      (click)="category.set(cat.value)"
+                      [class.ring-4]="category() === cat.value"
+                      [class.ring-yellow-400]="category() === cat.value"
+                      [class.scale-110]="category() === cat.value"
+                      class="group relative w-20 h-20 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 flex items-center justify-center font-black text-slate-900 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-yellow-400/50"
+                    >
+                      <img
+                        [src]="cat.src"
+                        alt="{{ cat.label }}"
+                        class="w-full h-full object-cover rounded-full"
+                      />
+                    </button>
+                    <span class="flex items-center justify-center font-bold">
+                      {{ cat.label }}
+                    </span>
+                  </div>
                 }
               </div>
             </div>
@@ -73,15 +82,24 @@ import { Category, ExerciseType, TimelineExercisesComponent } from './timeline-e
               <h3 class="text-xl font-bold text-yellow-400 mb-4 text-center">Modalidad</h3>
               <div class="flex gap-3 justify-center flex-wrap">
                 @for (type of exerciseTypes; track type.value) {
-                  <button
-                    (click)="exerciseType.set(type.value)"
-                    [class.ring-4]="exerciseType() === type.value"
-                    [class.ring-yellow-400]="exerciseType() === type.value"
-                    [class.scale-110]="exerciseType() === type.value"
-                    class="group relative w-16 h-16 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 flex items-center justify-center font-bold text-slate-900 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-yellow-400/50"
-                  >
-                    <span class="text-xs">{{ type.label }}</span>
-                  </button>
+                   <div class="flex flex-col items-center gap-4"  [class.opacity-30]="exerciseType() !== type.value">
+                    <button
+                      (click)="exerciseType.set(type.value)"
+                      [class.ring-4]="exerciseType() === type.value"
+                      [class.ring-yellow-400]="exerciseType() === type.value"
+                      [class.scale-110]="exerciseType() === type.value"
+                      class="group relative size-16 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 flex items-center justify-center font-black text-slate-900 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-yellow-400/50"
+                    >
+                      <img
+                        [src]="type.src"
+                        alt="{{ type.label }}"
+                        class="w-full h-full object-cover rounded-full"
+                      />
+                    </button>
+                    <span class="flex items-center justify-center font-bold">
+                      {{ type.label }}
+                    </span>
+                  </div>
                 }
               </div>
             </div>
@@ -132,17 +150,33 @@ export class TimelineSectionComponent {
   public readonly exerciseType = signal<ExerciseType>('men');
 
   public readonly categories = [
-    { value: 'individual' as Category, label: 'IND' },
-    { value: 'duo' as Category, label: 'DUO' },
-    { value: 'team' as Category, label: 'TEAM' }
+    { value: 'individual' as Category, label: 'Individual', src: '/categories/individual_women.jpeg' },
+    { value: 'duo' as Category, label: 'Duo', src: '/categories/duo_men.jpeg' },
+    { value: 'team' as Category, label: 'Equipo', src: '/categories/team_women.jpeg' }
   ];
 
-  public readonly exerciseTypes = [
-    { value: 'men' as ExerciseType, label: 'H' },
-    { value: 'women' as ExerciseType, label: 'M' },
-    { value: 'mix' as ExerciseType, label: 'MIX' },
-    { value: 'pro_men' as ExerciseType, label: 'PRO H' },
-    { value: 'pro_women' as ExerciseType, label: 'PRO M' },
-    { value: 'pro_mix' as ExerciseType, label: 'PRO MIX' }
+  private readonly _exerciseTypes = [
+    { value: 'men' as ExerciseType, label: 'Masculino', },
+    { value: 'women' as ExerciseType, label: 'Femenino', },
+    { value: 'mix' as ExerciseType, label: 'Mixto', },
+    { value: 'pro_men' as ExerciseType, label: 'PRO Masculino', },
+    { value: 'pro_women' as ExerciseType, label: 'PRO Femenino', },
+    { value: 'pro_mix' as ExerciseType, label: 'PRO Mixto', },
+    { value: 'elite_men' as ExerciseType, label: 'ELITE Masculino', },
+    { value: 'elite_women' as ExerciseType, label: 'ELITE Femenino', },
+    { value: 'elite_mix' as ExerciseType, label: 'ELITE Mixto', }
   ];
+
+  get exerciseTypes() {
+    const currentCategory = this.category();
+    let exercises = this._exerciseTypes;
+    if (currentCategory === 'individual') {
+      exercises = exercises.filter(type => !type.value.includes('mix'));
+    }
+
+    return exercises.map(type => ({
+      ...type,
+      src: `/categories/${currentCategory}_${type.value}.jpeg`
+    }));
+  }
 }
