@@ -1,4 +1,5 @@
-import { Component, input, output, signal } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
+import { CategoryService } from '../services/category.service';
 import { CategorySelectorComponent } from './category-selector.component';
 
 export interface RegistrationModalConfig {
@@ -76,7 +77,7 @@ export interface RegistrationModalConfig {
                 💰 Información de Precio
               </h3>
               <div class="text-3xl font-bold text-yellow-400 text-center mb-4">
-                <span>80€</span>
+                <span>{{categoryService.paymentInfo().price}} €</span>
               </div>
             </div>
           </div>
@@ -91,7 +92,7 @@ export interface RegistrationModalConfig {
                 Cancelar
               </button>
               <a
-                [href]="stripeUrl()"
+                [href]="categoryService.paymentInfo().stripeLink"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="flex-1 px-6 py-3 bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-slate-900 font-black text-center rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-yellow-400/50 flex items-center justify-center gap-2"
@@ -112,9 +113,9 @@ export interface RegistrationModalConfig {
   `,
 })
 export class RegistrationModalComponent {
+  public readonly categoryService = inject(CategoryService);
   // Inputs
   readonly isOpen = input<boolean>(false);
-  readonly stripeUrl = signal<string>('');
   readonly title = input<string>('🏃‍♂️ Inscripción HYBIZA RACE');
   readonly description = input<string>('Completa tu inscripción para el desafío más épico de Ibiza');
 

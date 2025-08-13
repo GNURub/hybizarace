@@ -62,7 +62,7 @@ import {
             <app-category-selector />
 
             <!-- Botón de Inscripción -->
-            <div class="mt-8 text-center">
+            <!-- <div class="mt-8 text-center">
               <button
                 (click)="openRegistrationModal()"
                 class="px-8 py-4 bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-slate-900 font-black text-xl rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-yellow-400/50 flex items-center justify-center gap-3 mx-auto"
@@ -72,7 +72,7 @@ import {
                 </svg>
                 ¡INSCRÍBETE AHORA!
               </button>
-            </div>
+            </div> -->
           </div>
         </div>
 
