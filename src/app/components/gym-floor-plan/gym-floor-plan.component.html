@@ -9,13 +9,23 @@
             class="absolute inset-8 bg-slate-200 rounded-lg border-2 border-slate-300 p-5 mr-40 pr-[50px]"
           >
             <div class="relative h-full">
+              <span
+                class="text-2xl text-black font-black absolute top-[-15px] right-44"
+                >←←🏃</span
+              >
               <!-- Running Lanes -->
               <div
                 class="absolute left-4 top-4 bottom-4 w-2/3 bg-slate-50 rounded border border-slate-300"
               >
                 <div class="h-full flex flex-col justify-evenly p-4">
                   @for (lane of createArray(8); track $index) {
-                    <div class="h-1 bg-slate-300 rounded"></div>
+                    <div
+                      class="h-1 bg-slate-300 rounded relative"
+                      [ngClass]="{
+                        'left-[-15px]': $index % 2 === 0,
+                        'right-[-15px]': $index % 2 !== 0,
+                      }"
+                    ></div>
                   }
                 </div>
               </div>
@@ -42,7 +52,6 @@
                     "
                     (mouseenter)="onMouseEnter('station-' + station.id)"
                     (mouseleave)="onMouseLeave()"
-                    (click)="onStationClick(station)"
                   >
                     <!-- <div
                       class="w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg"
@@ -65,26 +74,39 @@
               </div>
 
               <div class="absolute top-[20px] right-[129px]">
-                <span
-                  class="bg-red-500 text-white text-center py-2 rounded font-bold text-sm"
-                  >OUT</span
+                <button
+                  (click)="onStationClick(getStationById(9))"
+                  class="bg-red-500 cursor-pointer text-white text-center py-2 rounded font-bold text-sm"
                 >
+                  OUT
+                </button>
               </div>
 
               <!-- Entry Points -->
               <div class="absolute bottom-4 right-[129px]">
                 <div class="flex items-center gap-4">
-                  <span class="badge bg-green-500 rounded text-white px-2 py-2"
-                    >IN</span
+                  <button
+                    (click)="onStationClick(getStationById(8))"
+                    class="badge bg-green-500 rounded cursor-pointer text-white px-2 py-2"
                   >
+                    IN
+                  </button>
                 </div>
               </div>
 
               <div class="absolute bottom-[-35px] right-[-50px]">
-                <span class="badge bg-blue-500 text-white rounded px-4 py-2"
-                  >Start</span
+                <button
+                  class="badge cursor-pointer bg-blue-500 text-white rounded px-4 py-2"
+                  (click)="onStationClick(getStationById(7))"
                 >
+                  Start
+                </button>
               </div>
+
+              <span
+                class="text-2xl text-black font-black absolute bottom-[-15px] right-44"
+                >🏃→→</span
+              >
             </div>
           </div>
 
@@ -109,9 +131,9 @@
               </div>
             }
 
-            <div class="absolute bottom-[-70px] right-7">
+            <div class="absolute bottom-[-82px] right-7">
               <span
-                class="badge bg-green-500 font-bold rounded text-white px-4 py-2"
+                class="badge bg-green-500 font-bold rounded text-white px-4 py-6"
                 >CHECK IN</span
               >
             </div>
@@ -133,9 +155,7 @@
   <div class="lg:w-80">
     <div class="card sticky top-4">
       <div class="p-6">
-        <h3 class="text-xl font-bold mb-4 text-slate-800">
-          Información del Área
-        </h3>
+        <h3 class="text-xl font-bold mb-4 text-white">Información del Área</h3>
 
         <!-- Selected Station Info -->
         @if (selectedStation()) {
@@ -149,7 +169,7 @@
               </div>
               <h4 class="font-bold text-lg">{{ selectedStation()!.name }}</h4>
             </div>
-            <p class="text-slate-600">{{ selectedStation()!.description }}</p>
+            <p class="text-white">{{ selectedStation()!.description }}</p>
             <div>
               <h5 class="font-semibold mb-2">Equipamiento:</h5>
               <div class="flex flex-wrap gap-2">
@@ -173,13 +193,13 @@
               ></div>
               <h4 class="font-bold text-lg">{{ selectedArea()!.name }}</h4>
             </div>
-            <p class="text-slate-600">{{ selectedArea()!.description }}</p>
+            <p class="text-white">{{ selectedArea()!.description }}</p>
           </div>
         }
 
         <!-- Default Info -->
         @if (!selectedStation() && !selectedArea()) {
-          <div class="text-center text-slate-500 py-8">
+          <div class="text-center text-white py-8">
             <p class="mb-4">
               Haz clic en cualquier estación o área del plano para ver más
               información

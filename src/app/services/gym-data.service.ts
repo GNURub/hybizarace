@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import type { Station, Area } from '../models/gym.models';
+import type { Area, Station } from '../models/gym.models';
 
 @Injectable({
   providedIn: 'root',
@@ -53,6 +53,27 @@ export class GymDataService {
         equipment: ['Máquinas multiestación', 'Poleas', 'Prensa'],
         color: 'bg-indigo-500',
       },
+      {
+        id: 7,
+        name: 'Zona de inicio',
+        description: 'Aquí comienza tu aventura',
+        equipment: [],
+        color: 'bg-teal-500',
+      },
+      {
+        id: 8,
+        name: 'Entrada después de la carrera',
+        description: '',
+        equipment: [],
+        color: 'bg-lime-500',
+      },
+      {
+        id: 9,
+        name: 'Salida después de completar la estación',
+        description: '',
+        equipment: [],
+        color: 'bg-yellow-500',
+      }
     ];
   }
 
@@ -79,7 +100,7 @@ export class GymDataService {
       {
         id: 'preso',
         name: 'Preso',
-        description: 'Zona de entrenamiento de alta intensidad',
+        description: 'Afloja tus músculos con nuestra máquina de presoterapia',
         color: 'bg-yellow-400',
       },
       {

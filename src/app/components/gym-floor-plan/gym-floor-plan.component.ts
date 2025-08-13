@@ -1,10 +1,10 @@
-import { NgClass } from '@angular/common';
+import { NgClass, NgStyle } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
 import type { Area, Station } from '../../models/gym.models';
 import { GymDataService } from '../../services/gym-data.service';
 
 @Component({
-  imports: [NgClass],
+  imports: [NgClass, NgStyle],
   selector: 'app-gym-floor-plan',
   templateUrl: './gym-floor-plan.component.html',
   styleUrls: ['./gym-floor-plan.component.css'],
@@ -23,7 +23,12 @@ export class GymFloorPlanComponent {
     this.areas = this.gymDataService.getAreas();
   }
 
-  onStationClick(station: Station): void {
+  getStationById(id: number): Station | undefined {
+    return this.stations.find((station) => station.id === id);
+  }
+
+  onStationClick(station: Station | undefined): void {
+    if (!station) return;
     this.selectedStation.set(station);
     this.selectedArea.set(null);
   }
