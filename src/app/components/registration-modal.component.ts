@@ -93,16 +93,21 @@ export interface RegistrationModalConfig {
             </div>
 
             <!-- Pricing Info -->
-            <div
-              class="bg-gradient-to-r from-yellow-400/10 to-orange-500/10 border border-yellow-400/30 rounded-xl p-6 mb-6"
-            >
-              <h3 class="text-xl font-bold text-white mb-3 text-center">
-                💰 Información de Precio
-              </h3>
-              <div class="text-3xl font-bold text-yellow-400 text-center mb-4">
-                <span>{{ categoryService.paymentInfo().price }} €</span>
-              </div>
-            </div>
+             @let paymentInfo = categoryService.paymentInfo();
+             @if (categoryService.workoutLevel() === 'elite') {
+              <p>Acceso sólo vía invitación privada</p>
+             } @else {
+               <div
+                 class="bg-gradient-to-r from-yellow-400/10 to-orange-500/10 border border-yellow-400/30 rounded-xl p-6 mb-6"
+               >
+                 <h3 class="text-xl font-bold text-white mb-3 text-center">
+                   💰 Información de Precio
+                 </h3>
+                 <div class="text-3xl font-bold text-yellow-400 text-center mb-4">
+                   <span>{{ paymentInfo?.price }} €</span>
+                 </div>
+               </div>
+             }
           </div>
 
           <!-- Modal Footer -->
@@ -116,8 +121,9 @@ export interface RegistrationModalConfig {
               >
                 Cancelar
               </button>
-              <a
-                [href]="categoryService.paymentInfo().stripeLink"
+              @if (paymentInfo) {
+                <a
+                [href]="paymentInfo.stripeLink"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="flex-1 px-6 py-3 bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-slate-900 font-black text-center rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-yellow-400/50 flex items-center justify-center gap-2"
@@ -137,6 +143,7 @@ export interface RegistrationModalConfig {
                 </svg>
                 Proceder al Pago
               </a>
+              }
             </div>
             <p class="text-xs text-gray-400 text-center mt-3">
               Serás redirigido a Stripe para completar el pago de forma segura

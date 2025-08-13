@@ -185,6 +185,7 @@ export class CategoryService {
   };
 
   public readonly paymentInfo = computed(() => {
+    if (this.workoutLevel() === 'elite') return null;
     return this.info[this.participantType()][this.genderGroup()][
       this.workoutLevel()
     ];
