@@ -50,8 +50,7 @@ export class Home {
     {
       icon: 'clock',
       title: '800 METROS RUNNING',
-      description:
-        'Entre cada estación, corre 800 metros.',
+      description: 'Entre cada estación, corre 800 metros.',
       color: 'yellow',
       delay: '200',
     },

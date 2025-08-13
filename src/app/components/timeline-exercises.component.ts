@@ -1,15 +1,31 @@
 import { NgClass, NgStyle } from '@angular/common';
-import { afterNextRender, Component, ElementRef, input, OnDestroy, viewChildren } from '@angular/core';
-import { LucideAngularModule } from "lucide-angular";
+import {
+  afterNextRender,
+  Component,
+  ElementRef,
+  input,
+  OnDestroy,
+  viewChildren,
+} from '@angular/core';
+import { LucideAngularModule } from 'lucide-angular';
 
-export type Category = 'individual' | 'duo' | 'team';
-export type ExerciseType = 'men' | 'women' | 'mix' | 'pro_men' | 'pro_men' | 'pro_women' | 'pro_mix' | 'elite_men' | 'elite_men' | 'elite_women' | 'elite_mix';
+export type ParticipationType = 'individual' | 'duo' | 'team';
+export type GenderGroup = 'men' | 'women' | 'mix';
+export type WorkoutLevel = 'open' | 'pro' | 'elite';
 interface Exercise {
   name: string;
   description: string;
-  duration: string | Record<Category, Record<Partial<ExerciseType>, string>>;
+  duration:
+  | string
+  | Record<
+    ParticipationType,
+    Record<GenderGroup, Record<WorkoutLevel, string>>
+  >;
   target: string;
-  weight?: Record<Category, Record<ExerciseType, string>>;
+  weight?: Record<
+    ParticipationType,
+    Record<GenderGroup, Record<WorkoutLevel, string>>
+  >;
 }
 
 @Component({
@@ -49,9 +65,11 @@ interface Exercise {
                   <div class="flex items-center mb-6">
                     <div
                       class="size-24 bg-cover bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center mr-4 group-hover:animate-bounce"
-                      [ngStyle]="{ 'background-image': 'url(/ejercicios/' + (i + 1) + '.jpg)' }"
-                    >
-                    </div>
+                      [ngStyle]="{
+                        'background-image':
+                          'url(/ejercicios/' + (i + 1) + '.jpg)',
+                      }"
+                    ></div>
                     <h3 class="text-2xl font-black text-yellow-400">
                       {{ exercise.name }}
                     </h3>
@@ -64,14 +82,19 @@ interface Exercise {
                   </p>
 
                   <div class="space-y-3">
-                    @if ( getWeight(exercise); as weight) {
+                    @if (getWeight(exercise); as weight) {
                       <div class="flex items-center ">
                         <span class="mr-2">🏋️ Peso: </span>
-                        <span class="font-bold text-cyan-400">{{ weight }}</span>
+                        <span class="font-bold text-cyan-400">{{
+                          weight
+                        }}</span>
                       </div>
                     }
                     <div class="flex items-center">
-                     <span class="mr-2">🎯 Objetivo: </span> <span class="font-bold text-cyan-400"> {{ getDuration(exercise) }}</span>
+                      <span class="mr-2">🎯 Objetivo: </span>
+                      <span class="font-bold text-cyan-400">
+                        {{ getDuration(exercise) }}</span
+                      >
                     </div>
                     <div class="flex items-center text-yellow-400">
                       <i-lucide name="target" class="w-4 h-4 mr-2" />
@@ -116,8 +139,9 @@ export class TimelineExercisesComponent implements OnDestroy {
   exerciseElements = viewChildren<ElementRef<HTMLElement>>('exerciseElement');
   private observer?: IntersectionObserver;
 
-  public readonly category = input.required<Category>();
-  public readonly exerciseType = input.required<ExerciseType>();
+  public readonly participantType = input.required<ParticipationType>();
+  public readonly genderGroup = input.required<GenderGroup>();
+  public readonly workoutLevel = input.required<WorkoutLevel>();
 
   exercises: Exercise[] = [
     {
@@ -127,38 +151,20 @@ export class TimelineExercisesComponent implements OnDestroy {
       target: 'Resistencia cardiovascular',
       weight: {
         individual: {
-          men: '25 kg',
-          women: '20 kg',
-          mix: '',
-          pro_men: '30 kg',
-          pro_women: '25 kg',
-          pro_mix: '',
-          elite_men: '2x20 kg',
-          elite_women: '30 kg',
-          elite_mix: ''
+          men: { open: '25 kg', pro: '30 kg', elite: '2x20 kg' },
+          women: { open: '20 kg', pro: '25 kg', elite: '30 kg' },
+          mix: { open: '', pro: '', elite: '' },
         },
         duo: {
-          men: '25 kg',
-          women: '20 kg',
-          mix: '25 kg',
-          pro_men: '30 kg',
-          pro_women: '25 kg',
-          pro_mix: '30 kg',
-          elite_men: '2x20 kg',
-          elite_women: '30 kg',
-          elite_mix: '2x20 kg'
+          men: { open: '25 kg', pro: '30 kg', elite: '2x20 kg' },
+          women: { open: '20 kg', pro: '25 kg', elite: '30 kg' },
+          mix: { open: '25 kg', pro: '30 kg', elite: '2x20 kg' },
         },
         team: {
-          men: '25 kg',
-          women: '20 kg',
-          mix: '25 kg',
-          pro_men: '30 kg',
-          pro_women: '25 kg',
-          pro_mix: '30 kg',
-          elite_men: '2x20 kg',
-          elite_women: '30 kg',
-          elite_mix: '2x20 kg'
-        }
+          men: { open: '25 kg', pro: '30 kg', elite: '2x20 kg' },
+          women: { open: '20 kg', pro: '25 kg', elite: '30 kg' },
+          mix: { open: '25 kg', pro: '30 kg', elite: '2x20 kg' },
+        },
       },
     },
     {
@@ -166,38 +172,52 @@ export class TimelineExercisesComponent implements OnDestroy {
       description: 'Pedalea con fuerza para activar todo el cuerpo.',
       duration: {
         individual: {
-          men: '20 Calorías',
-          women: '20 Calorías',
-          mix: '',
-          pro_men: '50 Calorías',
-          pro_women: '50 Calorías',
-          pro_mix: '',
-          elite_men: '50 Calorías',
-          elite_women: '50 Calorías',
-          elite_mix: ''
+          men: {
+            open: '20 Calorías',
+            pro: '50 Calorías',
+            elite: '50 Calorías',
+          },
+          women: {
+            open: '20 Calorías',
+            pro: '50 Calorías',
+            elite: '50 Calorías',
+          },
+          mix: { open: '', pro: '', elite: '' },
         },
         duo: {
-          men: '20 Calorías',
-          women: '20 Calorías',
-          mix: '20 Calorías',
-          pro_men: '50 Calorías',
-          pro_women: '50 Calorías',
-          pro_mix: '50 Calorías',
-          elite_men: '50 Calorías',
-          elite_women: '50 Calorías',
-          elite_mix: '50 Calorías'
+          men: {
+            open: '20 Calorías',
+            pro: '50 Calorías',
+            elite: '50 Calorías',
+          },
+          women: {
+            open: '20 Calorías',
+            pro: '50 Calorías',
+            elite: '50 Calorías',
+          },
+          mix: {
+            open: '20 Calorías',
+            pro: '50 Calorías',
+            elite: '50 Calorías',
+          },
         },
         team: {
-          men: '20 Calorías',
-          women: '20 Calorías',
-          mix: '20 Calorías',
-          pro_men: '50 Calorías',
-          pro_women: '50 Calorías',
-          pro_mix: '50 Calorías',
-          elite_men: '50 Calorías',
-          elite_women: '50 Calorías',
-          elite_mix: '50 Calorías'
-        }
+          men: {
+            open: '20 Calorías',
+            pro: '50 Calorías',
+            elite: '50 Calorías',
+          },
+          women: {
+            open: '20 Calorías',
+            pro: '50 Calorías',
+            elite: '50 Calorías',
+          },
+          mix: {
+            open: '20 Calorías',
+            pro: '50 Calorías',
+            elite: '50 Calorías',
+          },
+        },
       },
       target: 'Fuerza explosiva',
     },
@@ -208,77 +228,78 @@ export class TimelineExercisesComponent implements OnDestroy {
       target: 'Fuerza de tracción',
       weight: {
         individual: {
-          men: '2x10kg',
-          women: '2x5kg',
-          mix: '',
-          pro_men: '2x12.5kg',
-          pro_women: '2x7.5kg',
-          pro_mix: '',
-          elite_men: '2x15kg',
-          elite_women: '2x10kg',
-          elite_mix: ''
+          men: { open: '2x10kg', pro: '2x12.5kg', elite: '2x15kg' },
+          women: { open: '2x5kg', pro: '2x7.5kg', elite: '2x10kg' },
+          mix: { open: '', pro: '', elite: '' },
         },
         duo: {
-          men: '2x10kg',
-          women: '2x5kg',
-          mix: '2x10kg',
-          pro_men: '2x12.5kg',
-          pro_women: '2x7.5kg',
-          pro_mix: '2x7.5kg',
-          elite_men: '2x15kg',
-          elite_women: '2x10kg',
-          elite_mix: '2x15kg'
+          men: { open: '2x10kg', pro: '2x12.5kg', elite: '2x15kg' },
+          women: { open: '2x5kg', pro: '2x7.5kg', elite: '2x10kg' },
+          mix: { open: '2x10kg', pro: '2x7.5kg', elite: '2x15kg' },
         },
         team: {
-          men: '2x10kg',
-          women: '2x5kg',
-          mix: '2x10kg',
-          pro_men: '2x12.5kg',
-          pro_women: '2x7.5kg',
-          pro_mix: '2x7.5kg',
-          elite_men: '2x15kg',
-          elite_women: '2x10kg',
-          elite_mix: '2x15kg'
-        }
+          men: { open: '2x10kg', pro: '2x12.5kg', elite: '2x15kg' },
+          women: { open: '2x5kg', pro: '2x7.5kg', elite: '2x10kg' },
+          mix: { open: '2x10kg', pro: '2x7.5kg', elite: '2x15kg' },
+        },
       },
     },
     {
       name: 'ROWING',
-      description: 'Remar con fuerza para activar la parte superior del cuerpo.',
+      description:
+        'Remar con fuerza para activar la parte superior del cuerpo.',
       duration: {
         individual: {
-          men: '20 Calorías',
-          women: '20 Calorías',
-          mix: '20 Calorías',
-          pro_men: '50 Calorías',
-          pro_women: '50 Calorías',
-          pro_mix: '50 Calorías',
-          elite_men: '50 Calorías',
-          elite_women: '50 Calorías',
-          elite_mix: '50 Calorías'
+          men: {
+            open: '20 Calorías',
+            pro: '50 Calorías',
+            elite: '50 Calorías',
+          },
+          women: {
+            open: '20 Calorías',
+            pro: '50 Calorías',
+            elite: '50 Calorías',
+          },
+          mix: {
+            open: '20 Calorías',
+            pro: '50 Calorías',
+            elite: '50 Calorías',
+          },
         },
         duo: {
-          men: '20 Calorías',
-          women: '20 Calorías',
-          mix: '20 Calorías',
-          pro_men: '50 Calorías',
-          pro_women: '50 Calorías',
-          pro_mix: '50 Calorías',
-          elite_men: '50 Calorías',
-          elite_women: '50 Calorías',
-          elite_mix: '50 Calorías'
+          men: {
+            open: '20 Calorías',
+            pro: '50 Calorías',
+            elite: '50 Calorías',
+          },
+          women: {
+            open: '20 Calorías',
+            pro: '50 Calorías',
+            elite: '50 Calorías',
+          },
+          mix: {
+            open: '20 Calorías',
+            pro: '50 Calorías',
+            elite: '50 Calorías',
+          },
         },
         team: {
-          men: '20 Calorías',
-          women: '20 Calorías',
-          mix: '20 Calorías',
-          pro_men: '50 Calorías',
-          pro_women: '50 Calorías',
-          pro_mix: '50 Calorías',
-          elite_men: '50 Calorías',
-          elite_women: '50 Calorías',
-          elite_mix: '50 Calorías'
-        }
+          men: {
+            open: '20 Calorías',
+            pro: '50 Calorías',
+            elite: '50 Calorías',
+          },
+          women: {
+            open: '20 Calorías',
+            pro: '50 Calorías',
+            elite: '50 Calorías',
+          },
+          mix: {
+            open: '20 Calorías',
+            pro: '50 Calorías',
+            elite: '50 Calorías',
+          },
+        },
       },
       target: 'Potencia y resistencia',
     },
@@ -289,119 +310,103 @@ export class TimelineExercisesComponent implements OnDestroy {
       target: 'Cardio y fuerza',
       weight: {
         individual: {
-          men: '30 kg',
-          women: '20 kg',
-          mix: '',
-          pro_men: '40 kg',
-          pro_women: '30 kg',
-          pro_mix: '',
-          elite_men: '50 kg',
-          elite_women: '40 kg',
-          elite_mix: ''
+          men: { open: '30 kg', pro: '40 kg', elite: '50 kg' },
+          women: { open: '20 kg', pro: '30 kg', elite: '40 kg' },
+          mix: { open: '', pro: '', elite: '' },
         },
         duo: {
-          men: '30 kg',
-          women: '20 kg',
-          mix: '30 kg',
-          pro_men: '40 kg',
-          pro_women: '30 kg',
-          pro_mix: '40 kg',
-          elite_men: '50 kg',
-          elite_women: '40 kg',
-          elite_mix: '50 kg'
+          men: { open: '30 kg', pro: '40 kg', elite: '50 kg' },
+          women: { open: '20 kg', pro: '30 kg', elite: '40 kg' },
+          mix: { open: '30 kg', pro: '40 kg', elite: '50 kg' },
         },
         team: {
-          men: '30 kg',
-          women: '20 kg',
-          mix: '30 kg',
-          pro_men: '40 kg',
-          pro_women: '30 kg',
-          pro_mix: '40 kg',
-          elite_men: '50 kg',
-          elite_women: '40 kg',
-          elite_mix: '50 kg'
-        }
+          men: { open: '30 kg', pro: '40 kg', elite: '50 kg' },
+          women: { open: '20 kg', pro: '30 kg', elite: '40 kg' },
+          mix: { open: '30 kg', pro: '40 kg', elite: '50 kg' },
+        },
       },
     },
     {
       name: 'SKI ERG',
-      description: 'Deslízate hacia atrás y hacia adelante para activar todo el cuerpo.',
+      description:
+        'Deslízate hacia atrás y hacia adelante para activar todo el cuerpo.',
       duration: {
         individual: {
-          men: '20 Calorías',
-          women: '20 Calorías',
-          mix: '20 Calorías',
-          pro_men: '50 Calorías',
-          pro_women: '50 Calorías',
-          pro_mix: '50 Calorías',
-          elite_men: '50 Calorías',
-          elite_women: '50 Calorías',
-          elite_mix: '50 Calorías'
+          men: {
+            open: '20 Calorías',
+            pro: '50 Calorías',
+            elite: '50 Calorías',
+          },
+          women: {
+            open: '20 Calorías',
+            pro: '50 Calorías',
+            elite: '50 Calorías',
+          },
+          mix: {
+            open: '20 Calorías',
+            pro: '50 Calorías',
+            elite: '50 Calorías',
+          },
         },
         duo: {
-          men: '20 Calorías',
-          women: '20 Calorías',
-          mix: '20 Calorías',
-          pro_men: '50 Calorías',
-          pro_women: '50 Calorías',
-          pro_mix: '50 Calorías',
-          elite_men: '50 Calorías',
-          elite_women: '50 Calorías',
-          elite_mix: '50 Calorías'
+          men: {
+            open: '20 Calorías',
+            pro: '50 Calorías',
+            elite: '50 Calorías',
+          },
+          women: {
+            open: '20 Calorías',
+            pro: '50 Calorías',
+            elite: '50 Calorías',
+          },
+          mix: {
+            open: '20 Calorías',
+            pro: '50 Calorías',
+            elite: '50 Calorías',
+          },
         },
         team: {
-          men: '20 Calorías',
-          women: '20 Calorías',
-          mix: '20 Calorías',
-          pro_men: '50 Calorías',
-          pro_women: '50 Calorías',
-          pro_mix: '50 Calorías',
-          elite_men: '50 Calorías',
-          elite_women: '50 Calorías',
-          elite_mix: '50 Calorías'
-        }
+          men: {
+            open: '20 Calorías',
+            pro: '50 Calorías',
+            elite: '50 Calorías',
+          },
+          women: {
+            open: '20 Calorías',
+            pro: '50 Calorías',
+            elite: '50 Calorías',
+          },
+          mix: {
+            open: '20 Calorías',
+            pro: '50 Calorías',
+            elite: '50 Calorías',
+          },
+        },
       },
       target: 'Fuerza funcional',
     },
     {
       name: 'WALKING LUNGES',
-      description: 'Da un paso hacia adelante y baja la rodilla trasera hacia el suelo.',
+      description:
+        'Da un paso hacia adelante y baja la rodilla trasera hacia el suelo.',
       duration: '100 metros',
       target: 'Fuerza unilateral',
       weight: {
         individual: {
-          men: '2x12.5kg',
-          women: '2x7.5kg',
-          mix: '',
-          pro_men: '2x15kg',
-          pro_women: '2x10kg',
-          pro_mix: '',
-          elite_men: '2x20kg',
-          elite_women: '2x15kg',
-          elite_mix: '2x20kg'
+          men: { open: '2x12.5kg', pro: '2x15kg', elite: '2x20kg' },
+          women: { open: '2x7.5kg', pro: '2x10kg', elite: '2x15kg' },
+          mix: { open: '', pro: '', elite: '' },
         },
         duo: {
-          men: '2x12.5kg',
-          women: '2x7.5kg',
-          mix: '2x12.5kg',
-          pro_men: '2x15kg',
-          pro_women: '2x10kg',
-          pro_mix: '2x15kg',
-          elite_men: '2x20kg',
-          elite_women: '2x15kg',
-          elite_mix: '2x20kg'
+          men: { open: '2x12.5kg', pro: '2x15kg', elite: '2x20kg' },
+          women: { open: '2x7.5kg', pro: '2x10kg', elite: '2x15kg' },
+          mix: { open: '2x12.5kg', pro: '2x15kg', elite: '2x20kg' },
         },
         team: {
-          men: '2x12.5kg',
-          women: '2x7.5kg',
-          mix: '2x12.5kg',
-          pro_men: '2x15kg',
-          pro_women: '2x10kg',
-          pro_mix: '2x15kg',
-          elite_men: '2x20kg',
-          elite_women: '2x15kg',
-          elite_mix: '2x20kg'
-        }
+          men: { open: '2x12.5kg', pro: '2x15kg', elite: '2x20kg' },
+          women: { open: '2x7.5kg', pro: '2x10kg', elite: '2x15kg' },
+          mix: { open: '2x12.5kg', pro: '2x15kg', elite: '2x20kg' },
+        },
       },
     },
     {
@@ -411,38 +416,20 @@ export class TimelineExercisesComponent implements OnDestroy {
       target: 'Resistencia muscular',
       weight: {
         individual: {
-          men: '25 kg',
-          women: '20 kg',
-          mix: '',
-          pro_men: '30 kg',
-          pro_women: '25 kg',
-          pro_mix: '',
-          elite_men: '2x25kg',
-          elite_women: '2x20kg',
-          elite_mix: ''
+          men: { open: '25 kg', pro: '30 kg', elite: '2x25kg' },
+          women: { open: '20 kg', pro: '25 kg', elite: '2x20kg' },
+          mix: { open: '', pro: '', elite: '' },
         },
         duo: {
-          men: '25 kg',
-          women: '20 kg',
-          mix: '25 kg',
-          pro_men: '30 kg',
-          pro_women: '25 kg',
-          pro_mix: '30 kg',
-          elite_men: '2x25kg',
-          elite_women: '2x20kg',
-          elite_mix: '2x25kg'
+          men: { open: '25 kg', pro: '30 kg', elite: '2x25kg' },
+          women: { open: '20 kg', pro: '25 kg', elite: '2x20kg' },
+          mix: { open: '25 kg', pro: '30 kg', elite: '2x25kg' },
         },
         team: {
-          men: '25 kg',
-          women: '20 kg',
-          mix: '25 kg',
-          pro_men: '30 kg',
-          pro_women: '25 kg',
-          pro_mix: '30 kg',
-          elite_men: '2x25kg',
-          elite_women: '2x20kg',
-          elite_mix: '2x25kg'
-        }
+          men: { open: '25 kg', pro: '30 kg', elite: '2x25kg' },
+          women: { open: '20 kg', pro: '25 kg', elite: '2x20kg' },
+          mix: { open: '25 kg', pro: '30 kg', elite: '2x25kg' },
+        },
       },
     },
     {
@@ -450,74 +437,70 @@ export class TimelineExercisesComponent implements OnDestroy {
       description: 'Realiza un burpee y lanza la pelota contra la pared.',
       duration: {
         individual: {
-          men: '20 repeticiones',
-          women: '20 repeticiones',
-          mix: '20 repeticiones',
-          pro_men: '30 repeticiones',
-          pro_women: '30 repeticiones',
-          pro_mix: '30 repeticiones',
-          elite_men: '50 repeticiones',
-          elite_women: '50 repeticiones',
-          elite_mix: '50 repeticiones'
+          men: {
+            open: '20 repeticiones',
+            pro: '30 repeticiones',
+            elite: '50 repeticiones',
+          },
+          women: {
+            open: '20 repeticiones',
+            pro: '30 repeticiones',
+            elite: '50 repeticiones',
+          },
+          mix: { open: '', pro: '', elite: '' },
         },
         duo: {
-          men: '50 repeticiones',
-          women: '50 repeticiones',
-          mix: '50 repeticiones',
-          pro_men: '50 repeticiones',
-          pro_women: '50 repeticiones',
-          pro_mix: '50 repeticiones',
-          elite_men: '50 repeticiones',
-          elite_women: '50 repeticiones',
-          elite_mix: '50 repeticiones'
+          men: {
+            open: '50 repeticiones',
+            pro: '50 repeticiones',
+            elite: '50 repeticiones',
+          },
+          women: {
+            open: '50 repeticiones',
+            pro: '50 repeticiones',
+            elite: '50 repeticiones',
+          },
+          mix: {
+            open: '50 repeticiones',
+            pro: '50 repeticiones',
+            elite: '50 repeticiones',
+          },
         },
         team: {
-          men: '50 repeticiones',
-          women: '50 repeticiones',
-          mix: '50 repeticiones',
-          pro_men: '50 repeticiones',
-          pro_women: '50 repeticiones',
-          pro_mix: '50 repeticiones',
-          elite_men: '50 repeticiones',
-          elite_women: '50 repeticiones',
-          elite_mix: '50 repeticiones'
-        }
+          men: {
+            open: '50 repeticiones',
+            pro: '50 repeticiones',
+            elite: '50 repeticiones',
+          },
+          women: {
+            open: '50 repeticiones',
+            pro: '50 repeticiones',
+            elite: '50 repeticiones',
+          },
+          mix: {
+            open: '50 repeticiones',
+            pro: '50 repeticiones',
+            elite: '50 repeticiones',
+          },
+        },
       },
       target: 'Resistencia muscular',
       weight: {
         individual: {
-          men: '6 kg',
-          women: '4 kg',
-          mix: '',
-          pro_men: '9 kg',
-          pro_women: '6 kg',
-          pro_mix: '',
-          elite_men: '12 kg',
-          elite_women: '9 kg',
-          elite_mix: '12 kg'
+          men: { open: '6 kg', pro: '9 kg', elite: '12 kg' },
+          women: { open: '4 kg', pro: '6 kg', elite: '9 kg' },
+          mix: { open: '', pro: '', elite: '' },
         },
         duo: {
-          men: '6 kg',
-          women: '4 kg',
-          mix: '6 kg',
-          pro_men: '9 kg',
-          pro_women: '6 kg',
-          pro_mix: '9 kg',
-          elite_men: '12 kg',
-          elite_women: '9 kg',
-          elite_mix: '12 kg'
+          men: { open: '6 kg', pro: '9 kg', elite: '12 kg' },
+          women: { open: '4 kg', pro: '6 kg', elite: '9 kg' },
+          mix: { open: '6 kg', pro: '9 kg', elite: '12 kg' },
         },
         team: {
-          men: '6 kg',
-          women: '4 kg',
-          mix: '6 kg',
-          pro_men: '9 kg',
-          pro_women: '6 kg',
-          pro_mix: '9 kg',
-          elite_men: '12 kg',
-          elite_women: '9 kg',
-          elite_mix: '12 kg'
-        }
+          men: { open: '6 kg', pro: '9 kg', elite: '12 kg' },
+          women: { open: '4 kg', pro: '6 kg', elite: '9 kg' },
+          mix: { open: '6 kg', pro: '9 kg', elite: '12 kg' },
+        },
       },
     },
   ];
@@ -526,18 +509,27 @@ export class TimelineExercisesComponent implements OnDestroy {
     if (typeof exercise.duration === 'string') {
       return exercise.duration;
     }
-    const categoryData = exercise.duration[this.category()];
+    const categoryData = exercise.duration[this.participantType()];
     if (categoryData) {
-      return categoryData[this.exerciseType()] || 'N/A';
+      const subCategoryData = categoryData[this.genderGroup()];
+      if (subCategoryData) {
+        return subCategoryData[this.workoutLevel()] || 'N/A';
+      }
     }
     return 'N/A';
   }
 
   getWeight(exercise: Exercise): string {
+    console.log(
+      `Getting weight for ${exercise.name} - Participant: ${this.participantType()} - Gender: ${this.genderGroup()} - Level: ${this.workoutLevel()}`
+    );
     if (exercise.weight) {
-      const categoryData = exercise.weight[this.category()];
+      const categoryData = exercise.weight[this.participantType()];
       if (categoryData) {
-        return categoryData[this.exerciseType()] || 'N/A';
+        const subCategoryData = categoryData[this.genderGroup()];
+        if (subCategoryData) {
+          return subCategoryData[this.workoutLevel()] || 'N/A';
+        }
       }
     }
     return '';
@@ -548,7 +540,6 @@ export class TimelineExercisesComponent implements OnDestroy {
       this.setupIntersectionObserver();
     });
   }
-
 
   ngOnDestroy() {
     if (this.observer) {
@@ -570,13 +561,13 @@ export class TimelineExercisesComponent implements OnDestroy {
       },
       {
         threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-      }
+        rootMargin: '0px 0px -50px 0px',
+      },
     );
 
     // Observar todos los elementos cuando estén disponibles
     setTimeout(() => {
-      this.exerciseElements().forEach(elementRef => {
+      this.exerciseElements().forEach((elementRef) => {
         this.observer?.observe(elementRef.nativeElement);
       });
     }, 0);

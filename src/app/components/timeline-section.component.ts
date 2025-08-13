@@ -1,5 +1,10 @@
-import { Component, signal } from '@angular/core';
-import { Category, ExerciseType, TimelineExercisesComponent } from './timeline-exercises.component';
+import { Component, effect, signal, untracked } from '@angular/core';
+import {
+  GenderGroup,
+  ParticipationType,
+  TimelineExercisesComponent,
+  WorkoutLevel,
+} from './timeline-exercises.component';
 
 @Component({
   selector: 'app-timeline-section',
@@ -49,28 +54,69 @@ import { Category, ExerciseType, TimelineExercisesComponent } from './timeline-e
 
         <!-- Selector de categoria/exerciseType -->
         <div class="flex justify-center mb-16">
-          <div class="bg-slate-900/50 backdrop-blur-sm border border-yellow-400/30 rounded-2xl p-8">
+          <div
+            class="bg-slate-900/50 backdrop-blur-sm border border-yellow-400/30 rounded-2xl p-8"
+          >
+            <h2 class="text-3xl font-bold text-white mb-6 text-center">
+              Selecciona tu categoría y modalidad
+            </h2>
             <!-- Selector de Categoría -->
             <div class="mb-8">
-              <h3 class="text-xl font-bold text-yellow-400 mb-4 text-center">Categoría</h3>
+              <h3 class="text-xl font-bold text-yellow-400 mb-4 text-center">
+                Grupo de participación
+              </h3>
               <div class="flex gap-4 justify-center">
-                @for (cat of categories; track cat.value) {
-                  <div class="flex flex-col items-center gap-4"  [class.opacity-30]="category() !== cat.value">
+                @for (pt of participantTypes; track pt.value) {
+                  <div
+                    class="flex flex-col items-center gap-4"
+                    [class.opacity-30]="participantType() !== pt.value"
+                  >
                     <button
-                      (click)="category.set(cat.value)"
-                      [class.ring-4]="category() === cat.value"
-                      [class.ring-yellow-400]="category() === cat.value"
-                      [class.scale-110]="category() === cat.value"
+                      (click)="participantType.set(pt.value)"
+                      [class.ring-4]="participantType() === pt.value"
+                      [class.ring-yellow-400]="participantType() === pt.value"
+                      [class.scale-110]="participantType() === pt.value"
                       class="group relative w-20 h-20 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 flex items-center justify-center font-black text-slate-900 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-yellow-400/50"
                     >
                       <img
-                        [src]="cat.src"
-                        alt="{{ cat.label }}"
+                        [src]="pt.src"
+                        alt="{{ pt.label }}"
                         class="w-full h-full object-cover rounded-full"
                       />
                     </button>
                     <span class="flex items-center justify-center font-bold">
-                      {{ cat.label }}
+                      {{ pt.label }}
+                    </span>
+                  </div>
+                }
+              </div>
+            </div>
+
+            <div class="mb-8">
+              <h3 class="text-xl font-bold text-yellow-400 mb-4 text-center">
+                Categoría
+              </h3>
+              <div class="flex gap-3 justify-center flex-wrap">
+                @for (gg of genderGroups; track gg.value) {
+                  <div
+                    class="flex flex-col items-center gap-4"
+                    [class.opacity-30]="genderGroup() !== gg.value"
+                  >
+                    <button
+                      (click)="genderGroup.set(gg.value)"
+                      [class.ring-4]="genderGroup() === gg.value"
+                      [class.ring-yellow-400]="genderGroup() === gg.value"
+                      [class.scale-110]="genderGroup() === gg.value"
+                      class="group relative size-16 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 flex items-center justify-center font-black text-slate-900 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-yellow-400/50"
+                    >
+                      <img
+                        [src]="gg.src"
+                        alt="{{ gg.label }}"
+                        class="w-full h-full object-cover rounded-full"
+                      />
+                    </button>
+                    <span class="flex items-center justify-center font-bold">
+                      {{ gg.label }}
                     </span>
                   </div>
                 }
@@ -79,25 +125,30 @@ import { Category, ExerciseType, TimelineExercisesComponent } from './timeline-e
 
             <!-- Selector de Tipo de Ejercicio -->
             <div>
-              <h3 class="text-xl font-bold text-yellow-400 mb-4 text-center">Modalidad</h3>
+              <h3 class="text-xl font-bold text-yellow-400 mb-4 text-center">
+                Modalidad
+              </h3>
               <div class="flex gap-3 justify-center flex-wrap">
-                @for (type of exerciseTypes; track type.value) {
-                   <div class="flex flex-col items-center gap-4"  [class.opacity-30]="exerciseType() !== type.value">
+                @for (wl of workoutLevels; track wl.value) {
+                  <div
+                    class="flex flex-col items-center gap-4"
+                    [class.opacity-30]="workoutLevel() !== wl.value"
+                  >
                     <button
-                      (click)="exerciseType.set(type.value)"
-                      [class.ring-4]="exerciseType() === type.value"
-                      [class.ring-yellow-400]="exerciseType() === type.value"
-                      [class.scale-110]="exerciseType() === type.value"
-                      class="group relative size-16 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 flex items-center justify-center font-black text-slate-900 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-yellow-400/50"
+                      (click)="workoutLevel.set(wl.value)"
+                      [class.ring-4]="workoutLevel() === wl.value"
+                      [class.ring-yellow-400]="workoutLevel() === wl.value"
+                      [class.scale-110]="workoutLevel() === wl.value"
+                      class="group relative size-12 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 flex items-center justify-center font-black text-slate-900 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-yellow-400/50"
                     >
                       <img
-                        [src]="type.src"
-                        alt="{{ type.label }}"
+                        [src]="wl.src"
+                        alt="{{ wl.label }}"
                         class="w-full h-full object-cover rounded-full"
                       />
                     </button>
                     <span class="flex items-center justify-center font-bold">
-                      {{ type.label }}
+                      {{ wl.label }}
                     </span>
                   </div>
                 }
@@ -106,7 +157,11 @@ import { Category, ExerciseType, TimelineExercisesComponent } from './timeline-e
           </div>
         </div>
 
-        <app-timeline-exercises [category]="category()" [exerciseType]="exerciseType()" />
+        <app-timeline-exercises
+          [participantType]="participantType()"
+          [genderGroup]="genderGroup()"
+          [workoutLevel]="workoutLevel()"
+        />
 
         <div class="text-center mt-16">
           <div class="relative inline-block">
@@ -146,37 +201,72 @@ import { Category, ExerciseType, TimelineExercisesComponent } from './timeline-e
   ],
 })
 export class TimelineSectionComponent {
-  public readonly category = signal<Category>('individual');
-  public readonly exerciseType = signal<ExerciseType>('men');
+  public readonly participantType = signal<ParticipationType>('individual');
+  public readonly genderGroup = signal<GenderGroup>('men');
+  public readonly workoutLevel = signal<WorkoutLevel>('open');
 
-  public readonly categories = [
-    { value: 'individual' as Category, label: 'Individual', src: '/categories/individual_women.jpeg' },
-    { value: 'duo' as Category, label: 'Duo', src: '/categories/duo_men.jpeg' },
-    { value: 'team' as Category, label: 'Equipo', src: '/categories/team_women.jpeg' }
+  public readonly participantTypes = [
+    {
+      value: 'individual' as ParticipationType,
+      label: 'Individual',
+      src: '/categories/individual_women.jpeg',
+    },
+    {
+      value: 'duo' as ParticipationType,
+      label: 'Duo',
+      src: '/categories/duo_men.jpeg',
+    },
+    {
+      value: 'team' as ParticipationType,
+      label: 'Equipo',
+      src: '/categories/team_women.jpeg',
+    },
   ];
 
-  private readonly _exerciseTypes = [
-    { value: 'men' as ExerciseType, label: 'Masculino', },
-    { value: 'women' as ExerciseType, label: 'Femenino', },
-    { value: 'mix' as ExerciseType, label: 'Mixto', },
-    { value: 'pro_men' as ExerciseType, label: 'PRO Masculino', },
-    { value: 'pro_women' as ExerciseType, label: 'PRO Femenino', },
-    { value: 'pro_mix' as ExerciseType, label: 'PRO Mixto', },
-    { value: 'elite_men' as ExerciseType, label: 'ELITE Masculino', },
-    { value: 'elite_women' as ExerciseType, label: 'ELITE Femenino', },
-    { value: 'elite_mix' as ExerciseType, label: 'ELITE Mixto', }
+  private readonly _genderGroup = [
+    { value: 'men' as GenderGroup, label: 'Masculino' },
+    { value: 'women' as GenderGroup, label: 'Femenino' },
+    { value: 'mix' as GenderGroup, label: 'Mixto' },
   ];
 
-  get exerciseTypes() {
-    const currentCategory = this.category();
-    let exercises = this._exerciseTypes;
-    if (currentCategory === 'individual') {
-      exercises = exercises.filter(type => !type.value.includes('mix'));
+  public readonly workoutLevels = [
+    {
+      value: 'open' as WorkoutLevel,
+      label: 'Abierto',
+      src: '/categories/open.jpeg',
+    },
+    {
+      value: 'advanced' as WorkoutLevel,
+      label: 'Avanzado',
+      src: '/categories/advanced.jpeg',
+    },
+    {
+      value: 'elite' as WorkoutLevel,
+      label: 'Élite',
+      src: '/categories/elite.jpeg',
+    },
+  ];
+
+  get genderGroups() {
+    const activeParticipantType = this.participantType();
+    let genderGroups = this._genderGroup;
+    if (activeParticipantType === 'individual') {
+      genderGroups = genderGroups.filter((type) => !type.value.includes('mix'));
     }
 
-    return exercises.map(type => ({
+    return genderGroups.map((type) => ({
       ...type,
-      src: `/categories/${currentCategory}_${type.value}.jpeg`
+      src: `/categories/${activeParticipantType}_${type.value}.jpeg`,
     }));
+  }
+
+  constructor() {
+    effect(() => {
+      const participantType = this.participantType();
+      const genderGroup = untracked(() => this.genderGroup());
+      if (participantType === 'individual' && genderGroup === 'mix') {
+        this.genderGroup.set('men');
+      }
+    });
   }
 }
