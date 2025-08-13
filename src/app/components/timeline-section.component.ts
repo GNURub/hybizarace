@@ -76,7 +76,7 @@ import {
                       [class.ring-4]="participantType() === pt.value"
                       [class.ring-yellow-400]="participantType() === pt.value"
                       [class.scale-110]="participantType() === pt.value"
-                      class="group relative w-20 h-20 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 flex items-center justify-center font-black text-slate-900 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-yellow-400/50"
+                      class="group relative cursor-pointer size-20 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 flex items-center justify-center font-black text-slate-900 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-yellow-400/50"
                     >
                       <img
                         [src]="pt.src"
@@ -107,7 +107,7 @@ import {
                       [class.ring-4]="genderGroup() === gg.value"
                       [class.ring-yellow-400]="genderGroup() === gg.value"
                       [class.scale-110]="genderGroup() === gg.value"
-                      class="group relative size-16 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 flex items-center justify-center font-black text-slate-900 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-yellow-400/50"
+                      class="group relative cursor-pointer size-16 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 flex items-center justify-center font-black text-slate-900 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-yellow-400/50"
                     >
                       <img
                         [src]="gg.src"
@@ -139,7 +139,7 @@ import {
                       [class.ring-4]="workoutLevel() === wl.value"
                       [class.ring-yellow-400]="workoutLevel() === wl.value"
                       [class.scale-110]="workoutLevel() === wl.value"
-                      class="group relative size-12 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 flex items-center justify-center font-black text-slate-900 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-yellow-400/50"
+                      class="group cursor-pointer relative size-12 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 flex items-center justify-center font-black text-slate-900 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-yellow-400/50"
                     >
                       <img
                         [src]="wl.src"
