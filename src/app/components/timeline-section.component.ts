@@ -236,8 +236,8 @@ export class TimelineSectionComponent {
       src: '/categories/open.jpeg',
     },
     {
-      value: 'advanced' as WorkoutLevel,
-      label: 'Avanzado',
+      value: 'pro' as WorkoutLevel,
+      label: 'Pro',
       src: '/categories/advanced.jpeg',
     },
     {

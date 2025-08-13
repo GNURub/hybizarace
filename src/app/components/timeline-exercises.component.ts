@@ -8,11 +8,13 @@ import {
   viewChildren,
 } from '@angular/core';
 import { LucideAngularModule } from 'lucide-angular';
+import { ExerciseDurationPipe } from '../pipes/exercise-duration.pipe';
+import { ExerciseWeightPipe } from '../pipes/exercise-weight.pipe';
 
 export type ParticipationType = 'individual' | 'duo' | 'team';
 export type GenderGroup = 'men' | 'women' | 'mix';
 export type WorkoutLevel = 'open' | 'pro' | 'elite';
-interface Exercise {
+export interface Exercise {
   name: string;
   description: string;
   duration:
@@ -30,7 +32,7 @@ interface Exercise {
 
 @Component({
   selector: 'app-timeline-exercises',
-  imports: [NgClass, NgStyle, LucideAngularModule],
+  imports: [NgClass, NgStyle, LucideAngularModule, ExerciseDurationPipe, ExerciseWeightPipe],
   template: `
     <div class="max-w-6xl mx-auto">
       <div class="relative">
@@ -82,7 +84,7 @@ interface Exercise {
                   </p>
 
                   <div class="space-y-3">
-                    @if (getWeight(exercise); as weight) {
+                    @if (exercise | exerciseWeight: participantType() : genderGroup() : workoutLevel(); as weight) {
                       <div class="flex items-center ">
                         <span class="mr-2">🏋️ Peso: </span>
                         <span class="font-bold text-cyan-400">{{
@@ -93,7 +95,7 @@ interface Exercise {
                     <div class="flex items-center">
                       <span class="mr-2">🎯 Objetivo: </span>
                       <span class="font-bold text-cyan-400">
-                        {{ getDuration(exercise) }}</span
+                        {{ exercise | exerciseDuration: participantType() : genderGroup() : workoutLevel() }}</span
                       >
                     </div>
                     <div class="flex items-center text-yellow-400">
@@ -504,36 +506,6 @@ export class TimelineExercisesComponent implements OnDestroy {
       },
     },
   ];
-
-  getDuration(exercise: Exercise): string {
-    if (typeof exercise.duration === 'string') {
-      return exercise.duration;
-    }
-    const categoryData = exercise.duration[this.participantType()];
-    if (categoryData) {
-      const subCategoryData = categoryData[this.genderGroup()];
-      if (subCategoryData) {
-        return subCategoryData[this.workoutLevel()] || 'N/A';
-      }
-    }
-    return 'N/A';
-  }
-
-  getWeight(exercise: Exercise): string {
-    console.log(
-      `Getting weight for ${exercise.name} - Participant: ${this.participantType()} - Gender: ${this.genderGroup()} - Level: ${this.workoutLevel()}`
-    );
-    if (exercise.weight) {
-      const categoryData = exercise.weight[this.participantType()];
-      if (categoryData) {
-        const subCategoryData = categoryData[this.genderGroup()];
-        if (subCategoryData) {
-          return subCategoryData[this.workoutLevel()] || 'N/A';
-        }
-      }
-    }
-    return '';
-  }
 
   constructor() {
     afterNextRender(() => {
