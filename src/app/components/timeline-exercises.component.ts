@@ -1,11 +1,11 @@
 import { NgClass, NgStyle } from '@angular/common';
 import {
-  afterNextRender,
+  afterEveryRender,
   Component,
   ElementRef,
   inject,
   OnDestroy,
-  viewChildren,
+  viewChildren
 } from '@angular/core';
 import { LucideAngularModule } from 'lucide-angular';
 import { ExerciseDurationPipe } from '../pipes/exercise-duration.pipe';
@@ -50,6 +50,21 @@ export interface Exercise {
 
         <!-- Exercises -->
         <div class="space-y-16">
+          <div>
+            <div
+                    class="bg-gradient-to-br max-w-2xl mx-auto from-cyan-900/40 to-blue-900/40 backdrop-blur-sm border border-cyan-400/30 rounded-2xl p-6 transform hover:scale-105 transition-all duration-300"
+                  >
+                    <div class="flex items-center justify-center text-center">
+                      <div class="text-cyan-400">
+                        <i
+                          class="lucide-zap w-8 h-8 mx-auto mb-2 animate-pulse"
+                        ></i>
+                        <p class="font-black text-lg">Iniciamos la competición con nuestros primeros 🏃 500m Run</p>
+                        <!-- <p class="text-sm text-gray-300">Por las calles de Ibiza</p> -->
+                      </div>
+                    </div>
+                  </div>
+          </div>
           @for (exercise of exercises; track exercise.name; let i = $index) {
             <div
               #exerciseElement
@@ -127,7 +142,7 @@ export interface Exercise {
               </div>
 
               <!-- Running segment (opposite side) -->
-              @if (i < exercises.length - 1) {
+              @if (i <= exercises.length - 1) {
                 <div
                   [ngClass]="{
                     'md:pl-16': i % 2 === 0,
@@ -151,6 +166,7 @@ export interface Exercise {
                 </div>
               }
             </div>
+
           }
         </div>
       </div>
@@ -525,7 +541,7 @@ export class TimelineExercisesComponent implements OnDestroy {
   ];
 
   constructor() {
-    afterNextRender(() => {
+    afterEveryRender(() => {
       this.setupIntersectionObserver();
     });
   }
