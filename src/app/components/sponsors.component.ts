@@ -60,48 +60,37 @@ import { LucideAngularModule } from 'lucide-angular';
 
         <!-- Main sponsors marquee -->
         <div class="relative mb-16">
-          <div
-            class="overflow-hidden rounded-lg border border-cyan-400/20 bg-gradient-to-r from-slate-900/50 to-slate-800/50 backdrop-blur-sm"
-          >
-            <div class="flex">
-              <!-- First set of sponsors -->
-              @for (sponsor of sponsors; track sponsor.name) {
+
+          <div class="flex flex-wrap justify-center items-center gap-2 max-w-5xl mx-auto">
+          <!-- First set of sponsors -->
+          @for (sponsor of sponsors; track sponsor.name) {
+            <div
+              class="flex-shrink-0 w-[200px] h-[100px] mx-4 relative group/sponsor"
+            >
+              <div
+                class="w-full h-full flex items-center justify-center p-4 transition-all duration-500 group-hover/sponsor:scale-110"
+              >
+                <img
+                  [src]="sponsor.logo"
+                  [alt]="sponsor.name + ' logo'"
+                  class="max-w-full max-h-full rounded object-contain transition-all duration-500 group-hover/sponsor:drop-shadow-lg grayscale group-hover/sponsor:grayscale-0"
+                />
+
+                <!-- Hover glow effect -->
                 <div
-                  class="flex-shrink-0 w-[200px] h-[100px] mx-4 relative group/sponsor"
-                >
-                  <div
-                    class="w-full h-full flex items-center justify-center p-4 transition-all duration-500 group-hover/sponsor:scale-110"
-                  >
-                    <img
-                      [src]="sponsor.logo"
-                      [alt]="sponsor.name + ' logo'"
-                      class="max-w-full max-h-full object-contain transition-all duration-500 group-hover/sponsor:drop-shadow-lg grayscale invert"
-                    />
+                  class="absolute inset-0 bg-gradient-to-r from-cyan-400/10 to-yellow-400/10 rounded opacity-0 group-hover/sponsor:opacity-100 transition-opacity duration-500"
+                ></div>
+              </div>
 
-                    <!-- Hover glow effect -->
-                    <div
-                      class="absolute inset-0 bg-gradient-to-r from-cyan-400/10 to-yellow-400/10 rounded opacity-0 group-hover/sponsor:opacity-100 transition-opacity duration-500"
-                    ></div>
-                  </div>
-
-                  <!-- Sponsor name tooltip -->
-                  <div
-                    class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-slate-800 text-cyan-400 text-xs font-bold px-2 py-1 rounded opacity-0 group-hover/sponsor:opacity-100 transition-all duration-300 whitespace-nowrap"
-                  >
-                    {{ sponsor.name }}
-                  </div>
-                </div>
-              }
+              <!-- Sponsor name tooltip -->
+              <div
+                class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-slate-800 text-cyan-400 text-xs font-bold px-2 py-1 rounded opacity-0 group-hover/sponsor:opacity-100 transition-all duration-300 whitespace-nowrap"
+              >
+                {{ sponsor.name }}
+              </div>
             </div>
+          }
           </div>
-
-          <!-- Gradient overlays for smooth edges -->
-          <div
-            class="absolute top-0 left-0 w-16 h-full bg-gradient-to-r from-slate-950 to-transparent pointer-events-none z-10"
-          ></div>
-          <div
-            class="absolute top-0 right-0 w-16 h-full bg-gradient-to-l from-slate-950 to-transparent pointer-events-none z-10"
-          ></div>
         </div>
 
         <!-- Partnership call-to-action -->
@@ -198,7 +187,41 @@ export class SponsorsComponent {
     },
     {
       name: 'VibraHotels',
-      logo: '/patrocinadores/logovibra.png',
+      logo: '/patrocinadores/vibrahotels.jpg',
     },
+    {
+      name: 'Sportgraf',
+      logo: '/patrocinadores/sportgraf.png',
+    },
+    {
+      name: 'Jordi Costa',
+      logo: '/patrocinadores/jordicosta.jpeg',
+    },
+    {
+      name: 'Cerre Fit',
+      logo: '/patrocinadores/cerrefit.png',
+    },
+    {
+      name: 'Pilates Ibiza',
+      logo: '/patrocinadores/pilatesibiza.png',
+    }, {
+      name: 'SingularWod',
+      logo: '/patrocinadores/singularwod.png',
+    }, {
+      name: 'Alvaro Morales, Fisioterapia deportiva',
+      logo: '/patrocinadores/alvaromorales.png',
+    }, {
+      name: 'Galeno Clinic',
+      logo: '/patrocinadores/galenoclinic.png',
+    }, {
+      name: 'Hybizaathletes',
+      logo: '/patrocinadores/hybizaathletes.png',
+    }, {
+      name: 'Toni Costa, Constructora',
+      logo: '/patrocinadores/tonicosta.png',
+    }, {
+      name: 'Ayuntamiento de Ibiza',
+      logo: '/patrocinadores/ayuntamientodeibiza.png',
+    }
   ];
 }
