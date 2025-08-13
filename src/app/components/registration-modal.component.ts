@@ -20,7 +20,7 @@ export interface RegistrationModalConfig {
       >
         <!-- Modal Content -->
         <div
-          class="bg-slate-900 overflow-hidden! rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border-2 border-yellow-400/30 shadow-2xl shadow-yellow-400/20"
+          class="bg-slate-900 rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border-2 border-yellow-400/30 shadow-2xl shadow-yellow-400/20"
           (click)="$event.stopPropagation()"
         >
           <!-- Modal Header -->
