@@ -1,1 +1,7 @@
 <router-outlet />
+
+<!-- Registration Modal -->
+<app-registration-modal
+  [isOpen]="appState.isRegistrationModalOpen()"
+  (close)="appState.closeRegistrationModal()"
+/>

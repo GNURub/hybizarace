@@ -4,6 +4,7 @@ import { LucideAngularModule } from 'lucide-angular';
 import { CountdownComponent } from '../../components/countdown.component';
 import { SponsorsComponent } from '../../components/sponsors.component';
 import { TimelineSectionComponent } from '../../components/timeline-section.component';
+import { AppStateService } from '../../services/state.service';
 import { EVENT_DATE } from '../../tokens/EVENT_DATE';
 
 @Component({
@@ -20,6 +21,7 @@ import { EVENT_DATE } from '../../tokens/EVENT_DATE';
   styleUrl: './home.css',
 })
 export class Home {
+  public readonly appState = inject(AppStateService);
   protected readonly EVENT_DATE = inject(EVENT_DATE);
   mousePosition = { x: 0, y: 0 };
   scrollY = 0;

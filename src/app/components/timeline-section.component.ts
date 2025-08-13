@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { CategorySelectorComponent } from './category-selector.component';
 import {
   TimelineExercisesComponent
@@ -60,6 +60,19 @@ import {
             </h2>
 
             <app-category-selector />
+
+            <!-- Botón de Inscripción -->
+            <div class="mt-8 text-center">
+              <button
+                (click)="openRegistrationModal()"
+                class="px-8 py-4 bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-slate-900 font-black text-xl rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-yellow-400/50 flex items-center justify-center gap-3 mx-auto"
+              >
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z"></path>
+                </svg>
+                ¡INSCRÍBETE AHORA!
+              </button>
+            </div>
           </div>
         </div>
 
@@ -103,7 +116,17 @@ import {
   ],
 })
 export class TimelineSectionComponent {
+  // State para el modal de inscripción
+  readonly isRegistrationModalOpen = signal(false);
 
+  // URL de Stripe (deberías configurar esto según tu enlace real)
+  readonly stripePaymentUrl = 'https://buy.stripe.com/tu-enlace-de-stripe';
 
+  openRegistrationModal(): void {
+    this.isRegistrationModalOpen.set(true);
+  }
 
+  closeRegistrationModal(): void {
+    this.isRegistrationModalOpen.set(false);
+  }
 }

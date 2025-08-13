@@ -52,7 +52,7 @@ export interface WorkoutLevelOption {
                   class="w-full h-full object-cover rounded-full"
                 />
               </button>
-              <span class="flex items-center justify-center font-bold">
+              <span class="flex items-center justify-center font-bold text-white">
                 {{ pt.label }}
               </span>
             </div>
@@ -83,7 +83,7 @@ export interface WorkoutLevelOption {
                   class="w-full h-full object-cover rounded-full"
                 />
               </button>
-              <span class="flex items-center justify-center font-bold">
+              <span class="flex items-center justify-center font-bold text-white">
                 {{ gg.label }}
               </span>
             </div>
@@ -115,7 +115,7 @@ export interface WorkoutLevelOption {
                   class="w-full h-full object-cover rounded-full"
                 />
               </button>
-              <span class="flex items-center justify-center font-bold">
+              <span class="flex items-center justify-center font-bold text-white">
                 {{ wl.label }}
               </span>
             </div>
