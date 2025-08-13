@@ -348,7 +348,7 @@ export class TimelineExercisesComponent implements OnDestroy {
     {
       name: 'SKI ERG',
       description:
-        'Deslízate hacia atrás y hacia adelante para activar todo el cuerpo.',
+        'Simula el gesto del esquí nórdico, enfocando la tracción del tren superior y el core. Mantén una cadencia constante, cadera estable y tira desde dorsales para maximizar eficiencia.',
       duration: {
         individual: {
           men: {
