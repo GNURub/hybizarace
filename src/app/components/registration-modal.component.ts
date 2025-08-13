@@ -93,21 +93,23 @@ export interface RegistrationModalConfig {
             </div>
 
             <!-- Pricing Info -->
-             @let paymentInfo = categoryService.paymentInfo();
-             @if (categoryService.workoutLevel() === 'elite') {
+            @let paymentInfo = categoryService.paymentInfo();
+            @if (categoryService.workoutLevel() === 'elite') {
               <p>Acceso sólo vía invitación privada</p>
-             } @else {
-               <div
-                 class="bg-gradient-to-r from-yellow-400/10 to-orange-500/10 border border-yellow-400/30 rounded-xl p-6 mb-6"
-               >
-                 <h3 class="text-xl font-bold text-white mb-3 text-center">
-                   💰 Información de Precio
-                 </h3>
-                 <div class="text-3xl font-bold text-yellow-400 text-center mb-4">
-                   <span>{{ paymentInfo?.price }} €</span>
-                 </div>
-               </div>
-             }
+            } @else {
+              <div
+                class="bg-gradient-to-r from-yellow-400/10 to-orange-500/10 border border-yellow-400/30 rounded-xl p-6 mb-6"
+              >
+                <h3 class="text-xl font-bold text-white mb-3 text-center">
+                  💰 Información de Precio
+                </h3>
+                <div
+                  class="text-3xl font-bold text-yellow-400 text-center mb-4"
+                >
+                  <span>{{ paymentInfo?.price }} €</span>
+                </div>
+              </div>
+            }
           </div>
 
           <!-- Modal Footer -->
@@ -123,26 +125,26 @@ export interface RegistrationModalConfig {
               </button>
               @if (paymentInfo) {
                 <a
-                [href]="paymentInfo.stripeLink"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="flex-1 px-6 py-3 bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-slate-900 font-black text-center rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-yellow-400/50 flex items-center justify-center gap-2"
-              >
-                <svg
-                  class="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
+                  [href]="paymentInfo.stripeLink"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="flex-1 px-6 py-3 bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-slate-900 font-black text-center rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-yellow-400/50 flex items-center justify-center gap-2"
                 >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
-                  ></path>
-                </svg>
-                Proceder al Pago
-              </a>
+                  <svg
+                    class="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
+                    ></path>
+                  </svg>
+                  Proceder al Pago
+                </a>
               }
             </div>
             <p class="text-xs text-gray-400 text-center mt-3">

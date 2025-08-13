@@ -73,7 +73,7 @@ export class GymDataService {
         description: '',
         equipment: [],
         color: 'bg-yellow-500',
-      }
+      },
     ];
   }
 

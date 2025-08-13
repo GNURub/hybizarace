@@ -56,7 +56,7 @@ export class Home {
       if (footer) {
         footer.scrollIntoView({
           behavior: 'smooth',
-          block: 'start'
+          block: 'start',
         });
         return;
       }
@@ -66,7 +66,7 @@ export class Home {
     if (element) {
       element.scrollIntoView({
         behavior: 'smooth',
-        block: 'start'
+        block: 'start',
       });
     }
   }

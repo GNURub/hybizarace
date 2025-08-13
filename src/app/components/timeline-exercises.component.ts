@@ -5,7 +5,7 @@ import {
   ElementRef,
   inject,
   OnDestroy,
-  viewChildren
+  viewChildren,
 } from '@angular/core';
 import { LucideAngularModule } from 'lucide-angular';
 import { ExerciseDurationPipe } from '../pipes/exercise-duration.pipe';
@@ -19,11 +19,11 @@ export interface Exercise {
   name: string;
   description: string;
   duration:
-  | string
-  | Record<
-    ParticipationType,
-    Record<GenderGroup, Record<WorkoutLevel, string>>
-  >;
+    | string
+    | Record<
+        ParticipationType,
+        Record<GenderGroup, Record<WorkoutLevel, string>>
+      >;
   target: string;
   weight?: Record<
     ParticipationType,
@@ -52,18 +52,52 @@ export interface Exercise {
         <div class="space-y-16">
           <div>
             <div
-                    class="bg-gradient-to-br max-w-2xl mx-auto from-cyan-900/40 to-blue-900/40 backdrop-blur-sm border border-cyan-400/30 rounded-2xl p-6 transform hover:scale-105 transition-all duration-300"
-                  >
-                    <div class="flex items-center justify-center text-center">
-                      <div class="text-cyan-400">
-                        <i
-                          class="lucide-zap w-8 h-8 mx-auto mb-2 animate-pulse"
-                        ></i>
-                        <p class="font-black text-lg">Iniciamos la competición con nuestros primeros 🏃 500m Run</p>
-                        <!-- <p class="text-sm text-gray-300">Por las calles de Ibiza</p> -->
-                      </div>
-                    </div>
+              class="bg-gradient-to-br max-w-2xl mx-auto from-cyan-900/40 to-blue-900/40 backdrop-blur-sm border border-cyan-400/30 rounded-2xl p-6 transform hover:scale-105 transition-all duration-300"
+            >
+              <div class="flex items-center justify-center text-center">
+                <div class="text-cyan-400">
+                  <div class="relative mb-3">
+                    <div
+                      class="absolute inset-0 blur-xl opacity-40 bg-gradient-to-r from-cyan-400 via-emerald-400 to-blue-500 animate-pulse"
+                    ></div>
+                    <i-lucide
+                      name="flag"
+                      class="relative w-10 h-10 mx-auto text-cyan-300 drop-shadow"
+                    />
                   </div>
+                  <h2
+                    class="font-black tracking-tight text-2xl md:text-3xl leading-tight bg-gradient-to-r from-cyan-200 via-emerald-300 to-blue-300 bg-clip-text text-transparent"
+                  >
+                    ¡Arrancamos la competición!<br />
+                    <span class="text-cyan-200/90"
+                      >Primer desafío: 🏃 500m Run</span
+                    >
+                  </h2>
+                  <p
+                    class="mt-3 text-sm md:text-base text-cyan-100/80 max-w-md mx-auto leading-relaxed"
+                  >
+                    Siente la adrenalina de la salida, encuentra tu ritmo y deja
+                    que el pulso marque el comienzo de tu mejor versión.
+                  </p>
+                  <div
+                    class="mt-4 flex flex-wrap gap-2 justify-center text-[11px] uppercase font-semibold tracking-wider"
+                  >
+                    <span
+                      class="px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-300/20 text-cyan-200"
+                      >Focus</span
+                    >
+                    <span
+                      class="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-300/20 text-emerald-200"
+                      >Ritmo</span
+                    >
+                    <span
+                      class="px-3 py-1 rounded-full bg-blue-500/10 border border-blue-300/20 text-blue-200"
+                      >Energía</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           @for (exercise of exercises; track exercise.name; let i = $index) {
             <div
@@ -166,7 +200,6 @@ export interface Exercise {
                 </div>
               }
             </div>
-
           }
         </div>
       </div>
@@ -181,7 +214,8 @@ export class TimelineExercisesComponent implements OnDestroy {
   exercises: Exercise[] = [
     {
       name: 'SANDBAG',
-      description: 'Carga el saco y recorre la distancia manteniendo el core firme. Abraza el peso, da pasos cortos y controla la respiración para proteger la zona lumbar.',
+      description:
+        'Carga el saco y recorre la distancia manteniendo el core firme. Abraza el peso, da pasos cortos y controla la respiración para proteger la zona lumbar.',
       duration: '500 metros',
       target: 'Resistencia cardiovascular',
       weight: {
@@ -204,7 +238,8 @@ export class TimelineExercisesComponent implements OnDestroy {
     },
     {
       name: 'Assault Bike',
-      description: 'Trabaja tren superior e inferior a la vez. Mantén una cadencia constante, empuja y tira con los brazos sin bloquear los codos y evita esprintar al inicio.',
+      description:
+        'Trabaja tren superior e inferior a la vez. Mantén una cadencia constante, empuja y tira con los brazos sin bloquear los codos y evita esprintar al inicio.',
       duration: {
         individual: {
           men: {
@@ -258,7 +293,8 @@ export class TimelineExercisesComponent implements OnDestroy {
     },
     {
       name: 'Farmers Carry',
-      description: 'Transporta las cargas con postura alta. Hombros abajo y atrás, agarre fuerte, pasos cortos y mirada al frente para minimizar el balanceo.',
+      description:
+        'Transporta las cargas con postura alta. Hombros abajo y atrás, agarre fuerte, pasos cortos y mirada al frente para minimizar el balanceo.',
       duration: '100 metros',
       target: 'Fuerza de tracción',
       weight: {
@@ -340,7 +376,8 @@ export class TimelineExercisesComponent implements OnDestroy {
     },
     {
       name: 'HUSSAFELL CARRY',
-      description: 'Abraza el saco contra el pecho, codos pegados y core activo. Avanza de forma continua priorizando la postura y la respiración.',
+      description:
+        'Abraza el saco contra el pecho, codos pegados y core activo. Avanza de forma continua priorizando la postura y la respiración.',
       duration: '500 metros',
       target: 'Cardio y fuerza',
       weight: {
@@ -446,7 +483,8 @@ export class TimelineExercisesComponent implements OnDestroy {
     },
     {
       name: 'BEAR CRAWL',
-      description: 'Gateo atlético con balón: caderas bajas, rodillas cerca del suelo y manos bajo hombros. Avanza coordinado y controlado mientras desplazas la pelota.',
+      description:
+        'Gateo atlético con balón: caderas bajas, rodillas cerca del suelo y manos bajo hombros. Avanza coordinado y controlado mientras desplazas la pelota.',
       duration: '100 metros',
       target: 'Resistencia muscular',
       weight: {
@@ -469,7 +507,8 @@ export class TimelineExercisesComponent implements OnDestroy {
     },
     {
       name: 'BURPEE WALL BALLS',
-      description: 'Combina un burpee completo con lanzamiento a diana. Mantén la profundidad de sentadilla, recibe la pelota en el pecho y encadena repeticiones con ritmo y respiración controlada.',
+      description:
+        'Combina un burpee completo con lanzamiento a diana. Mantén la profundidad de sentadilla, recibe la pelota en el pecho y encadena repeticiones con ritmo y respiración controlada.',
       duration: {
         individual: {
           men: {
