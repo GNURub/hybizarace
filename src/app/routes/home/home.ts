@@ -38,6 +38,38 @@ export class Home {
     this.scrollY = window.scrollY;
   }
 
+  // Smooth scroll to section
+  scrollToSection(sectionId: string) {
+    // Normalize section ID by removing accents and converting to lowercase
+    const normalizedId = sectionId
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, ''); // Remove diacritics
+
+    let elementId = normalizedId;
+
+    // Handle special cases
+    if (normalizedId === 'contacto') {
+      // For contact, scroll to footer since there's no dedicated contact section
+      const footer = document.querySelector('footer');
+      if (footer) {
+        footer.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+        return;
+      }
+    }
+
+    const element = document.getElementById(elementId);
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  }
+
   // Navigation items for the header
   navItems = ['EVENTO', 'CATEGORÍAS', 'PREMIOS', 'CONTACTO'];
 

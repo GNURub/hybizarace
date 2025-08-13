@@ -142,3 +142,28 @@
     animation-duration: 30s;
   }
 }
+
+/* Smooth scrolling behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Offset for fixed header when scrolling to sections */
+section[id] {
+  scroll-margin-top: 100px;
+}
+
+/* Navigation button styles */
+.nav-button {
+  position: relative;
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.nav-button:focus-visible {
+  outline: 2px solid rgb(34 211 238); /* cyan-400 */
+  outline-offset: 2px;
+  border-radius: 4px;
+}

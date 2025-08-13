@@ -66,15 +66,15 @@
 
         <div class="hidden md:flex items-center space-x-8">
           @for (item of navItems; track item) {
-            <a
-              [href]="'#' + item.toLowerCase()"
-              class="relative text-white hover:text-cyan-400 font-bold transition-all duration-300 group"
+            <button
+              (click)="scrollToSection(item)"
+              class="nav-button relative text-white hover:text-cyan-400 font-bold transition-all duration-300 group"
             >
               {{ item }}
               <div
                 class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-yellow-400 group-hover:w-full transition-all duration-300"
               ></div>
-            </a>
+            </button>
           }
         </div>
 
