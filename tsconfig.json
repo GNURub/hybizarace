@@ -15,7 +15,9 @@
     "target": "ES2022",
     "module": "preserve",
     "paths": {
-      "@": ["./src/app"]
+      "@": [
+        "./src/app"
+      ]
     }
   },
   "angularCompilerOptions": {
@@ -23,7 +25,8 @@
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "typeCheckHostBindings": true,
-    "strictTemplates": true
+    "strictTemplates": true,
+    "disableTypeScriptVersionCheck": true
   },
   "files": [],
   "references": [

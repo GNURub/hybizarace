@@ -3,7 +3,7 @@ import { afterNextRender, Component, ElementRef, input, OnDestroy, viewChildren 
 import { LucideAngularModule } from "lucide-angular";
 
 export type Category = 'individual' | 'duo' | 'team';
-export type ExerciseType = 'men' | 'women' | 'mix' | 'pro_men' | 'pro_men' | 'pro_women' | 'pro_mix';
+export type ExerciseType = 'men' | 'women' | 'mix' | 'pro_men' | 'pro_men' | 'pro_women' | 'pro_mix' | 'elite_men' | 'elite_men' | 'elite_women' | 'elite_mix';
 interface Exercise {
   name: string;
   description: string;
@@ -130,9 +130,12 @@ export class TimelineExercisesComponent implements OnDestroy {
           men: '25 kg',
           women: '20 kg',
           mix: '',
-          pro_men: '40 kg',
-          pro_women: '30 kg',
-          pro_mix: ''
+          pro_men: '30 kg',
+          pro_women: '25 kg',
+          pro_mix: '',
+          elite_men: '2x20 kg',
+          elite_women: '30 kg',
+          elite_mix: ''
         },
         duo: {
           men: '25 kg',
@@ -140,15 +143,21 @@ export class TimelineExercisesComponent implements OnDestroy {
           mix: '25 kg',
           pro_men: '30 kg',
           pro_women: '25 kg',
-          pro_mix: '30 kg'
+          pro_mix: '30 kg',
+          elite_men: '2x20 kg',
+          elite_women: '30 kg',
+          elite_mix: '2x20 kg'
         },
         team: {
           men: '25 kg',
           women: '20 kg',
-          mix: '20-25 kg',
-          pro_men: '25 kg',
-          pro_women: '20 kg',
-          pro_mix: '20-25 kg'
+          mix: '25 kg',
+          pro_men: '30 kg',
+          pro_women: '25 kg',
+          pro_mix: '30 kg',
+          elite_men: '2x20 kg',
+          elite_women: '30 kg',
+          elite_mix: '2x20 kg'
         }
       },
     },
@@ -159,10 +168,13 @@ export class TimelineExercisesComponent implements OnDestroy {
         individual: {
           men: '20 Calorías',
           women: '20 Calorías',
-          mix: '20 Calorías',
+          mix: '',
           pro_men: '50 Calorías',
           pro_women: '50 Calorías',
-          pro_mix: '50 Calorías'
+          pro_mix: '',
+          elite_men: '50 Calorías',
+          elite_women: '50 Calorías',
+          elite_mix: ''
         },
         duo: {
           men: '20 Calorías',
@@ -170,7 +182,10 @@ export class TimelineExercisesComponent implements OnDestroy {
           mix: '20 Calorías',
           pro_men: '50 Calorías',
           pro_women: '50 Calorías',
-          pro_mix: '50 Calorías'
+          pro_mix: '50 Calorías',
+          elite_men: '50 Calorías',
+          elite_women: '50 Calorías',
+          elite_mix: '50 Calorías'
         },
         team: {
           men: '20 Calorías',
@@ -178,7 +193,10 @@ export class TimelineExercisesComponent implements OnDestroy {
           mix: '20 Calorías',
           pro_men: '50 Calorías',
           pro_women: '50 Calorías',
-          pro_mix: '50 Calorías'
+          pro_mix: '50 Calorías',
+          elite_men: '50 Calorías',
+          elite_women: '50 Calorías',
+          elite_mix: '50 Calorías'
         }
       },
       target: 'Fuerza explosiva',
@@ -192,10 +210,13 @@ export class TimelineExercisesComponent implements OnDestroy {
         individual: {
           men: '2x10kg',
           women: '2x5kg',
-          mix: '2x5kg-10kg',
-          pro_men: '2x15kg',
-          pro_women: '2x10kg',
-          pro_mix: '2x10kg-15kg'
+          mix: '',
+          pro_men: '2x12.5kg',
+          pro_women: '2x7.5kg',
+          pro_mix: '',
+          elite_men: '2x15kg',
+          elite_women: '2x10kg',
+          elite_mix: ''
         },
         duo: {
           men: '2x10kg',
@@ -203,15 +224,21 @@ export class TimelineExercisesComponent implements OnDestroy {
           mix: '2x10kg',
           pro_men: '2x12.5kg',
           pro_women: '2x7.5kg',
-          pro_mix: '2x7.5kg'
+          pro_mix: '2x7.5kg',
+          elite_men: '2x15kg',
+          elite_women: '2x10kg',
+          elite_mix: '2x15kg'
         },
         team: {
           men: '2x10kg',
           women: '2x5kg',
-          mix: '2x5kg-10kg',
+          mix: '2x10kg',
           pro_men: '2x12.5kg',
           pro_women: '2x7.5kg',
-          pro_mix: '2x7.5kg-12.5kg'
+          pro_mix: '2x7.5kg',
+          elite_men: '2x15kg',
+          elite_women: '2x10kg',
+          elite_mix: '2x15kg'
         }
       },
     },
@@ -223,9 +250,12 @@ export class TimelineExercisesComponent implements OnDestroy {
           men: '20 Calorías',
           women: '20 Calorías',
           mix: '20 Calorías',
-          pro_men: '20 Calorías',
-          pro_women: '20 Calorías',
-          pro_mix: '20 Calorías'
+          pro_men: '50 Calorías',
+          pro_women: '50 Calorías',
+          pro_mix: '50 Calorías',
+          elite_men: '50 Calorías',
+          elite_women: '50 Calorías',
+          elite_mix: '50 Calorías'
         },
         duo: {
           men: '20 Calorías',
@@ -233,15 +263,21 @@ export class TimelineExercisesComponent implements OnDestroy {
           mix: '20 Calorías',
           pro_men: '50 Calorías',
           pro_women: '50 Calorías',
-          pro_mix: '50 Calorías'
+          pro_mix: '50 Calorías',
+          elite_men: '50 Calorías',
+          elite_women: '50 Calorías',
+          elite_mix: '50 Calorías'
         },
         team: {
           men: '20 Calorías',
           women: '20 Calorías',
           mix: '20 Calorías',
-          pro_men: '20 Calorías',
-          pro_women: '20 Calorías',
-          pro_mix: '20 Calorías'
+          pro_men: '50 Calorías',
+          pro_women: '50 Calorías',
+          pro_mix: '50 Calorías',
+          elite_men: '50 Calorías',
+          elite_women: '50 Calorías',
+          elite_mix: '50 Calorías'
         }
       },
       target: 'Potencia y resistencia',
@@ -255,10 +291,13 @@ export class TimelineExercisesComponent implements OnDestroy {
         individual: {
           men: '30 kg',
           women: '20 kg',
-          mix: '20-30 kg',
+          mix: '',
           pro_men: '40 kg',
           pro_women: '30 kg',
-          pro_mix: '30-40 kg'
+          pro_mix: '',
+          elite_men: '50 kg',
+          elite_women: '40 kg',
+          elite_mix: ''
         },
         duo: {
           men: '30 kg',
@@ -266,15 +305,21 @@ export class TimelineExercisesComponent implements OnDestroy {
           mix: '30 kg',
           pro_men: '40 kg',
           pro_women: '30 kg',
-          pro_mix: '40 kg'
+          pro_mix: '40 kg',
+          elite_men: '50 kg',
+          elite_women: '40 kg',
+          elite_mix: '50 kg'
         },
         team: {
           men: '30 kg',
           women: '20 kg',
-          mix: '20-30 kg',
+          mix: '30 kg',
           pro_men: '40 kg',
           pro_women: '30 kg',
-          pro_mix: '30-40 kg'
+          pro_mix: '40 kg',
+          elite_men: '50 kg',
+          elite_women: '40 kg',
+          elite_mix: '50 kg'
         }
       },
     },
@@ -286,9 +331,12 @@ export class TimelineExercisesComponent implements OnDestroy {
           men: '20 Calorías',
           women: '20 Calorías',
           mix: '20 Calorías',
-          pro_men: '20 Calorías',
-          pro_women: '20 Calorías',
-          pro_mix: '20 Calorías'
+          pro_men: '50 Calorías',
+          pro_women: '50 Calorías',
+          pro_mix: '50 Calorías',
+          elite_men: '50 Calorías',
+          elite_women: '50 Calorías',
+          elite_mix: '50 Calorías'
         },
         duo: {
           men: '20 Calorías',
@@ -296,15 +344,21 @@ export class TimelineExercisesComponent implements OnDestroy {
           mix: '20 Calorías',
           pro_men: '50 Calorías',
           pro_women: '50 Calorías',
-          pro_mix: '50 Calorías'
+          pro_mix: '50 Calorías',
+          elite_men: '50 Calorías',
+          elite_women: '50 Calorías',
+          elite_mix: '50 Calorías'
         },
         team: {
           men: '20 Calorías',
           women: '20 Calorías',
           mix: '20 Calorías',
-          pro_men: '20 Calorías',
-          pro_women: '20 Calorías',
-          pro_mix: '20 Calorías'
+          pro_men: '50 Calorías',
+          pro_women: '50 Calorías',
+          pro_mix: '50 Calorías',
+          elite_men: '50 Calorías',
+          elite_women: '50 Calorías',
+          elite_mix: '50 Calorías'
         }
       },
       target: 'Fuerza funcional',
@@ -318,10 +372,13 @@ export class TimelineExercisesComponent implements OnDestroy {
         individual: {
           men: '2x12.5kg',
           women: '2x7.5kg',
-          mix: '2x7.5kg-12.5kg',
+          mix: '',
           pro_men: '2x15kg',
           pro_women: '2x10kg',
-          pro_mix: '2x10kg-15kg'
+          pro_mix: '',
+          elite_men: '2x20kg',
+          elite_women: '2x15kg',
+          elite_mix: '2x20kg'
         },
         duo: {
           men: '2x12.5kg',
@@ -329,15 +386,21 @@ export class TimelineExercisesComponent implements OnDestroy {
           mix: '2x12.5kg',
           pro_men: '2x15kg',
           pro_women: '2x10kg',
-          pro_mix: '2x15kg'
+          pro_mix: '2x15kg',
+          elite_men: '2x20kg',
+          elite_women: '2x15kg',
+          elite_mix: '2x20kg'
         },
         team: {
           men: '2x12.5kg',
           women: '2x7.5kg',
-          mix: '2x7.5kg-12.5kg',
+          mix: '2x12.5kg',
           pro_men: '2x15kg',
           pro_women: '2x10kg',
-          pro_mix: '2x10kg-15kg'
+          pro_mix: '2x15kg',
+          elite_men: '2x20kg',
+          elite_women: '2x15kg',
+          elite_mix: '2x20kg'
         }
       },
     },
@@ -350,10 +413,13 @@ export class TimelineExercisesComponent implements OnDestroy {
         individual: {
           men: '25 kg',
           women: '20 kg',
-          mix: '20-25 kg',
-          pro_men: '40 kg',
-          pro_women: '30 kg',
-          pro_mix: '30-40 kg'
+          mix: '',
+          pro_men: '30 kg',
+          pro_women: '25 kg',
+          pro_mix: '',
+          elite_men: '2x25kg',
+          elite_women: '2x20kg',
+          elite_mix: ''
         },
         duo: {
           men: '25 kg',
@@ -361,31 +427,74 @@ export class TimelineExercisesComponent implements OnDestroy {
           mix: '25 kg',
           pro_men: '30 kg',
           pro_women: '25 kg',
-          pro_mix: '30 kg'
+          pro_mix: '30 kg',
+          elite_men: '2x25kg',
+          elite_women: '2x20kg',
+          elite_mix: '2x25kg'
         },
         team: {
           men: '25 kg',
           women: '20 kg',
-          mix: '20-25 kg',
+          mix: '25 kg',
           pro_men: '30 kg',
           pro_women: '25 kg',
-          pro_mix: '25-30 kg'
+          pro_mix: '30 kg',
+          elite_men: '2x25kg',
+          elite_women: '2x20kg',
+          elite_mix: '2x25kg'
         }
       },
     },
     {
       name: 'BURPEE WALL BALLS',
       description: 'Realiza un burpee y lanza la pelota contra la pared.',
-      duration: '20 repeticiones',
+      duration: {
+        individual: {
+          men: '20 repeticiones',
+          women: '20 repeticiones',
+          mix: '20 repeticiones',
+          pro_men: '30 repeticiones',
+          pro_women: '30 repeticiones',
+          pro_mix: '30 repeticiones',
+          elite_men: '50 repeticiones',
+          elite_women: '50 repeticiones',
+          elite_mix: '50 repeticiones'
+        },
+        duo: {
+          men: '50 repeticiones',
+          women: '50 repeticiones',
+          mix: '50 repeticiones',
+          pro_men: '50 repeticiones',
+          pro_women: '50 repeticiones',
+          pro_mix: '50 repeticiones',
+          elite_men: '50 repeticiones',
+          elite_women: '50 repeticiones',
+          elite_mix: '50 repeticiones'
+        },
+        team: {
+          men: '50 repeticiones',
+          women: '50 repeticiones',
+          mix: '50 repeticiones',
+          pro_men: '50 repeticiones',
+          pro_women: '50 repeticiones',
+          pro_mix: '50 repeticiones',
+          elite_men: '50 repeticiones',
+          elite_women: '50 repeticiones',
+          elite_mix: '50 repeticiones'
+        }
+      },
       target: 'Resistencia muscular',
       weight: {
         individual: {
           men: '6 kg',
           women: '4 kg',
-          mix: '4-6 kg',
-          pro_men: '8 kg',
+          mix: '',
+          pro_men: '9 kg',
           pro_women: '6 kg',
-          pro_mix: '6-8 kg'
+          pro_mix: '',
+          elite_men: '12 kg',
+          elite_women: '9 kg',
+          elite_mix: '12 kg'
         },
         duo: {
           men: '6 kg',
@@ -393,15 +502,21 @@ export class TimelineExercisesComponent implements OnDestroy {
           mix: '6 kg',
           pro_men: '9 kg',
           pro_women: '6 kg',
-          pro_mix: '9 kg'
+          pro_mix: '9 kg',
+          elite_men: '12 kg',
+          elite_women: '9 kg',
+          elite_mix: '12 kg'
         },
         team: {
           men: '6 kg',
           women: '4 kg',
-          mix: '4-6 kg',
-          pro_men: '8 kg',
+          mix: '6 kg',
+          pro_men: '9 kg',
           pro_women: '6 kg',
-          pro_mix: '6-8 kg'
+          pro_mix: '9 kg',
+          elite_men: '12 kg',
+          elite_women: '9 kg',
+          elite_mix: '12 kg'
         }
       },
     },
