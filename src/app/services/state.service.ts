@@ -1,11 +1,12 @@
-import { Injectable, signal } from "@angular/core";
+import { Injectable, signal } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AppStateService {
   private _isRegistrationModalOpen = signal<boolean>(false);
-  public readonly isRegistrationModalOpen = this._isRegistrationModalOpen.asReadonly();
+  public readonly isRegistrationModalOpen =
+    this._isRegistrationModalOpen.asReadonly();
 
   openRegistrationModal() {
     this._isRegistrationModalOpen.set(true);

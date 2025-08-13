@@ -2,6 +2,7 @@ import { DatePipe, NgClass } from '@angular/common';
 import { Component, HostListener, inject } from '@angular/core';
 import { LucideAngularModule } from 'lucide-angular';
 import { CountdownComponent } from '../../components/countdown.component';
+import { GymFloorPlanComponent } from '../../components/gym-floor-plan/gym-floor-plan.component';
 import { SponsorsComponent } from '../../components/sponsors.component';
 import { TimelineSectionComponent } from '../../components/timeline-section.component';
 import { AppStateService } from '../../services/state.service';
@@ -14,6 +15,7 @@ import { EVENT_DATE } from '../../tokens/EVENT_DATE';
     TimelineSectionComponent,
     SponsorsComponent,
     NgClass,
+    GymFloorPlanComponent,
     LucideAngularModule,
     DatePipe,
   ],
@@ -51,8 +53,8 @@ export class Home {
     },
     {
       icon: 'clock',
-      title: '800 METROS RUNNING',
-      description: 'Entre cada estación, corre 800 metros.',
+      title: '500 METROS RUNNING',
+      description: 'Entre cada estación, corre 500 metros.',
       color: 'yellow',
       delay: '200',
     },

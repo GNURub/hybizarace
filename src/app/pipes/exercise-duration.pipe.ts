@@ -1,16 +1,20 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Exercise, GenderGroup, ParticipationType, WorkoutLevel } from '../components/timeline-exercises.component';
-
+import {
+  Exercise,
+  GenderGroup,
+  ParticipationType,
+  WorkoutLevel,
+} from '../components/timeline-exercises.component';
 
 @Pipe({
-  name: 'exerciseDuration'
+  name: 'exerciseDuration',
 })
 export class ExerciseDurationPipe implements PipeTransform {
   transform(
     exercise: Exercise,
     participantType: ParticipationType,
     genderGroup: GenderGroup,
-    workoutLevel: WorkoutLevel
+    workoutLevel: WorkoutLevel,
   ): string {
     if (typeof exercise.duration === 'string') {
       return exercise.duration;

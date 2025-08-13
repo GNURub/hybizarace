@@ -1,8 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { CategorySelectorComponent } from './category-selector.component';
-import {
-  TimelineExercisesComponent
-} from './timeline-exercises.component';
+import { TimelineExercisesComponent } from './timeline-exercises.component';
 
 @Component({
   selector: 'app-timeline-section',

@@ -1,0 +1,214 @@
+<div class="flex flex-col lg:flex-row gap-8">
+  <!-- Floor Plan -->
+  <div class="flex-1">
+    <div class="card p-6">
+      <div class="relative bg-gray-500 rounded-lg p-8 min-h-[600px]">
+        <div class="relative bg-slate-100 rounded-lg p-8 pr-16! min-h-[600px]">
+          <!-- Main Workout Area -->
+          <div
+            class="absolute inset-8 bg-slate-200 rounded-lg border-2 border-slate-300 p-5 mr-40 pr-[50px]"
+          >
+            <div class="relative h-full">
+              <!-- Running Lanes -->
+              <div
+                class="absolute left-4 top-4 bottom-4 w-2/3 bg-slate-50 rounded border border-slate-300"
+              >
+                <div class="h-full flex flex-col justify-evenly p-4">
+                  @for (lane of createArray(8); track $index) {
+                    <div class="h-1 bg-slate-300 rounded"></div>
+                  }
+                </div>
+              </div>
+
+              <!-- Equipment Stations -->
+              <div
+                class="absolute right-0 top-4 w-1/4 space-y-2 bg-white h-[460px] flex flex-col justify-between"
+              >
+                <!-- OUT Sign -->
+
+                <!-- Equipment Grid -->
+                <div class="bg-slate-300 rounded p-2 grid grid-cols-2 gap-1">
+                  @for (item of createArray(16); track $index) {
+                    <div class="w-3 h-3 bg-slate-500 rounded-sm"></div>
+                  }
+                </div>
+
+                <!-- Numbered Stations -->
+                @for (station of getReversedStations(); track station.id) {
+                  <div
+                    class="relative cursor-pointer transition-all duration-300"
+                    [class.scale-110]="
+                      hoveredElement() === 'station-' + station.id
+                    "
+                    (mouseenter)="onMouseEnter('station-' + station.id)"
+                    (mouseleave)="onMouseLeave()"
+                    (click)="onStationClick(station)"
+                  >
+                    <!-- <div
+                      class="w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg"
+                      [ngClass]="station.color"
+                    >
+                      {{ station.id }}
+                    </div> -->
+
+                    @if (station.id <= 4) {
+                      <div
+                        class="mt-1 bg-slate-400 rounded p-1 grid grid-cols-5 gap-px min-h-10"
+                      >
+                        @for (dot of createArray(10); track $index) {
+                          <div class="w-1 h-1 bg-slate-600 rounded-full"></div>
+                        }
+                      </div>
+                    }
+                  </div>
+                }
+              </div>
+
+              <div class="absolute top-[20px] right-[129px]">
+                <span
+                  class="bg-red-500 text-white text-center py-2 rounded font-bold text-sm"
+                  >OUT</span
+                >
+              </div>
+
+              <!-- Entry Points -->
+              <div class="absolute bottom-4 right-[129px]">
+                <div class="flex items-center gap-4">
+                  <span class="badge bg-green-500 rounded text-white px-2 py-2"
+                    >IN</span
+                  >
+                </div>
+              </div>
+
+              <div class="absolute bottom-[-35px] right-[-50px]">
+                <span class="badge bg-blue-500 text-white rounded px-4 py-2"
+                  >Start</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Side Areas -->
+          <div class="absolute right-0 top-1/4 space-y-6">
+            @for (area of areas; track area.id) {
+              <div
+                class="p-4 rounded-lg cursor-pointer transition-all duration-300 text-white font-bold text-center shadow-lg"
+                [ngClass]="[
+                  area.color,
+                  hoveredElement() === 'area-' + area.id
+                    ? 'scale-105 shadow-xl'
+                    : '',
+                ]"
+                (mouseenter)="onMouseEnter('area-' + area.id)"
+                (mouseleave)="onMouseLeave()"
+                (click)="onAreaClick(area)"
+              >
+                <div class="text-sm font-bold">
+                  {{ area.name.toUpperCase() }}
+                </div>
+              </div>
+            }
+
+            <div class="absolute bottom-[-70px] right-7">
+              <span
+                class="badge bg-green-500 font-bold rounded text-white px-4 py-2"
+                >CHECK IN</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="absolute bottom-1 left-14">
+          <span
+            class="badge badge-secondary p-2 bg-yellow-500 rounded text-white"
+          >
+            WARM UP
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Information Panel -->
+  <div class="lg:w-80">
+    <div class="card sticky top-4">
+      <div class="p-6">
+        <h3 class="text-xl font-bold mb-4 text-slate-800">
+          Información del Área
+        </h3>
+
+        <!-- Selected Station Info -->
+        @if (selectedStation()) {
+          <div class="space-y-4">
+            <div class="flex items-center gap-3">
+              <div
+                class="w-8 h-8 rounded-full flex items-center justify-center text-white font-bold"
+                [ngClass]="selectedStation()!.color"
+              >
+                {{ selectedStation()!.id }}
+              </div>
+              <h4 class="font-bold text-lg">{{ selectedStation()!.name }}</h4>
+            </div>
+            <p class="text-slate-600">{{ selectedStation()!.description }}</p>
+            <div>
+              <h5 class="font-semibold mb-2">Equipamiento:</h5>
+              <div class="flex flex-wrap gap-2">
+                @for (item of selectedStation()!.equipment; track $index) {
+                  <span class="badge badge-outline">
+                    {{ item }}
+                  </span>
+                }
+              </div>
+            </div>
+          </div>
+        }
+
+        <!-- Selected Area Info -->
+        @if (selectedArea()) {
+          <div class="space-y-4">
+            <div class="flex items-center gap-3">
+              <div
+                class="w-8 h-8 rounded-lg"
+                [ngClass]="selectedArea()!.color"
+              ></div>
+              <h4 class="font-bold text-lg">{{ selectedArea()!.name }}</h4>
+            </div>
+            <p class="text-slate-600">{{ selectedArea()!.description }}</p>
+          </div>
+        }
+
+        <!-- Default Info -->
+        @if (!selectedStation() && !selectedArea()) {
+          <div class="text-center text-slate-500 py-8">
+            <p class="mb-4">
+              Haz clic en cualquier estación o área del plano para ver más
+              información
+            </p>
+            <div class="space-y-2 text-sm">
+              <p>🔵 Estaciones numeradas: Equipos de entrenamiento</p>
+              <p>🟦 Áreas coloreadas: Servicios y zonas especiales</p>
+            </div>
+          </div>
+        }
+
+        <div class="mt-6 pt-4 border-t">
+          <h5 class="font-semibold mb-2">Leyenda:</h5>
+          <div class="space-y-2 text-sm">
+            <div class="flex items-center gap-2">
+              <div class="w-4 h-4 bg-green-500 rounded-full"></div>
+              <span>Entrada/Salida</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="w-4 h-4 bg-slate-300 rounded"></div>
+              <span>Área de calentamiento</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <div class="w-4 h-4 bg-blue-500 rounded-full"></div>
+              <span>Estaciones de entrenamiento</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -37,13 +37,19 @@ export interface WorkoutLevelOption {
           @for (pt of participantTypes; track pt.value) {
             <div
               class="flex flex-col items-center gap-4"
-              [class.opacity-30]="categoryService.participantType() !== pt.value"
+              [class.opacity-30]="
+                categoryService.participantType() !== pt.value
+              "
             >
               <button
                 (click)="categoryService.participantType.set(pt.value)"
                 [class.ring-4]="categoryService.participantType() === pt.value"
-                [class.ring-yellow-400]="categoryService.participantType() === pt.value"
-                [class.scale-110]="categoryService.participantType() === pt.value"
+                [class.ring-yellow-400]="
+                  categoryService.participantType() === pt.value
+                "
+                [class.scale-110]="
+                  categoryService.participantType() === pt.value
+                "
                 class="group relative cursor-pointer size-20 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 flex items-center justify-center font-black text-slate-900 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-yellow-400/50"
               >
                 <img
@@ -52,7 +58,9 @@ export interface WorkoutLevelOption {
                   class="w-full h-full object-cover rounded-full"
                 />
               </button>
-              <span class="flex items-center justify-center font-bold text-white">
+              <span
+                class="flex items-center justify-center font-bold text-white"
+              >
                 {{ pt.label }}
               </span>
             </div>
@@ -73,7 +81,9 @@ export interface WorkoutLevelOption {
               <button
                 (click)="categoryService.genderGroup.set(gg.value)"
                 [class.ring-4]="categoryService.genderGroup() === gg.value"
-                [class.ring-yellow-400]="categoryService.genderGroup() === gg.value"
+                [class.ring-yellow-400]="
+                  categoryService.genderGroup() === gg.value
+                "
                 [class.scale-110]="categoryService.genderGroup() === gg.value"
                 class="group relative cursor-pointer size-16 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 flex items-center justify-center font-black text-slate-900 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-yellow-400/50"
               >
@@ -83,7 +93,9 @@ export interface WorkoutLevelOption {
                   class="w-full h-full object-cover rounded-full"
                 />
               </button>
-              <span class="flex items-center justify-center font-bold text-white">
+              <span
+                class="flex items-center justify-center font-bold text-white"
+              >
                 {{ gg.label }}
               </span>
             </div>
@@ -105,7 +117,9 @@ export interface WorkoutLevelOption {
               <button
                 (click)="categoryService.workoutLevel.set(wl.value)"
                 [class.ring-4]="categoryService.workoutLevel() === wl.value"
-                [class.ring-yellow-400]="categoryService.workoutLevel() === wl.value"
+                [class.ring-yellow-400]="
+                  categoryService.workoutLevel() === wl.value
+                "
                 [class.scale-110]="categoryService.workoutLevel() === wl.value"
                 class="group cursor-pointer relative size-12 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 flex items-center justify-center font-black text-slate-900 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-yellow-400/50"
               >
@@ -115,7 +129,9 @@ export interface WorkoutLevelOption {
                   class="w-full h-full object-cover rounded-full"
                 />
               </button>
-              <span class="flex items-center justify-center font-bold text-white">
+              <span
+                class="flex items-center justify-center font-bold text-white"
+              >
                 {{ wl.label }}
               </span>
             </div>

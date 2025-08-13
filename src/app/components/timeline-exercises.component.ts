@@ -5,7 +5,7 @@ import {
   ElementRef,
   inject,
   OnDestroy,
-  viewChildren
+  viewChildren,
 } from '@angular/core';
 import { LucideAngularModule } from 'lucide-angular';
 import { ExerciseDurationPipe } from '../pipes/exercise-duration.pipe';
@@ -19,11 +19,11 @@ export interface Exercise {
   name: string;
   description: string;
   duration:
-  | string
-  | Record<
-    ParticipationType,
-    Record<GenderGroup, Record<WorkoutLevel, string>>
-  >;
+    | string
+    | Record<
+        ParticipationType,
+        Record<GenderGroup, Record<WorkoutLevel, string>>
+      >;
   target: string;
   weight?: Record<
     ParticipationType,
@@ -33,7 +33,13 @@ export interface Exercise {
 
 @Component({
   selector: 'app-timeline-exercises',
-  imports: [NgClass, NgStyle, LucideAngularModule, ExerciseDurationPipe, ExerciseWeightPipe],
+  imports: [
+    NgClass,
+    NgStyle,
+    LucideAngularModule,
+    ExerciseDurationPipe,
+    ExerciseWeightPipe,
+  ],
   template: `
     <div class="max-w-6xl mx-auto">
       <div class="relative">
@@ -85,7 +91,14 @@ export interface Exercise {
                   </p>
 
                   <div class="space-y-3">
-                    @if (exercise | exerciseWeight: categoryService.participantType() : categoryService.genderGroup() : categoryService.workoutLevel(); as weight) {
+                    @if (
+                      exercise
+                        | exerciseWeight
+                          : categoryService.participantType()
+                          : categoryService.genderGroup()
+                          : categoryService.workoutLevel();
+                      as weight
+                    ) {
                       <div class="flex items-center ">
                         <span class="mr-2">🏋️ Peso: </span>
                         <span class="font-bold text-cyan-400">{{
@@ -96,7 +109,13 @@ export interface Exercise {
                     <div class="flex items-center">
                       <span class="mr-2">🎯 Objetivo: </span>
                       <span class="font-bold text-cyan-400">
-                        {{ exercise | exerciseDuration: categoryService.participantType() : categoryService.genderGroup() : categoryService.workoutLevel() }}</span
+                        {{
+                          exercise
+                            | exerciseDuration
+                              : categoryService.participantType()
+                              : categoryService.genderGroup()
+                              : categoryService.workoutLevel()
+                        }}</span
                       >
                     </div>
                     <div class="flex items-center text-yellow-400">
