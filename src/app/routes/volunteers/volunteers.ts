@@ -1,9 +1,10 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { afterNextRender, Component, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-volunteers',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink, NgOptimizedImage],
   templateUrl: './volunteers.html',
   styleUrl: './volunteers.css'
 })

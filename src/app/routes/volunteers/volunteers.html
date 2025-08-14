@@ -28,6 +28,74 @@
     ></div>
   </div>
 
+  <!-- Header Navigation -->
+  <header
+    class="relative z-50 bg-slate-950/80 backdrop-blur-xl border-b border-cyan-400/30 shadow-2xl"
+  >
+    <div
+      class="absolute inset-0 bg-gradient-to-r from-cyan-400/5 to-yellow-400/5"
+    ></div>
+    <div class="container mx-auto px-4 py-4 relative">
+      <nav class="flex items-center justify-between">
+        <div class="flex items-center space-x-3 group">
+          <div class="relative">
+            <img
+              ngSrc="/hybizarace-logo.svg"
+              alt="Hybiza Race Logo"
+              width="50"
+              height="50"
+              class="rounded-lg transition-all duration-300 group-hover:scale-110 group-hover:rotate-3"
+            />
+            <div
+              class="absolute inset-0 bg-cyan-400/20 rounded-lg blur-xl group-hover:blur-2xl transition-all duration-300"
+            ></div>
+          </div>
+          <span
+            class="text-xl font-black bg-gradient-to-r from-cyan-400 to-yellow-400 bg-clip-text text-transparent"
+          >
+            HYBIZA
+          </span>
+        </div>
+
+        <div class="flex items-center space-x-6">
+          <a
+            routerLink="/"
+            class="inline-flex items-center gap-2 text-white hover:text-cyan-400 font-bold transition-all duration-300 group"
+          >
+            <svg
+              class="w-5 h-5 transition-transform duration-300 group-hover:-translate-x-1"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M10 19l-7-7m0 0l7-7m-7 7h18"
+              />
+            </svg>
+            Volver al inicio
+          </a>
+
+          <button
+            (click)="openVolunteerSignup()"
+            class="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-slate-900 font-black px-6 py-2 rounded-lg transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-yellow-400/50"
+          >
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path
+                fill-rule="evenodd"
+                d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            ¡Ser Voluntario!
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
   <!-- Content -->
   <div class="relative z-10 pt-20 pb-12">
     <div class="container mx-auto px-4">
@@ -614,11 +682,32 @@
               ¡Sé parte de la magia de
               <span class="text-cyan-400">HYBIZA RACE</span>!
             </h3>
-            <p class="text-slate-300 max-w-2xl mx-auto">
+            <p class="text-slate-300 max-w-2xl mx-auto mb-6">
               Tu contribución como voluntario es fundamental para el éxito del
               evento. Únete a nosotros y vive una experiencia única mientras
               ayudas a crear momentos inolvidables.
             </p>
+
+            <!-- Botón adicional para volver al inicio -->
+            <a
+              routerLink="/"
+              class="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-slate-600 to-slate-700 hover:from-slate-500 hover:to-slate-600 text-white font-bold px-8 py-3 rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-slate-400/20 border border-slate-500/50 hover:border-slate-400/50"
+            >
+              <svg
+                class="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                />
+              </svg>
+              Volver a la página principal
+            </a>
           </div>
         </div>
       </div>
