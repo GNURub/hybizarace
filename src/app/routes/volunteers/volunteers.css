@@ -1,0 +1,189 @@
+/* Animaciones específicas para la página de voluntarios */
+
+@keyframes gradient {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes float-up {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(0, 194, 242, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(0, 194, 242, 0.4);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Clases utilitarias */
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient 3s ease infinite;
+}
+
+.animate-float-up {
+  animation: float-up 0.6s ease-out;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Efectos de hover para las tarjetas */
+.volunteer-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.volunteer-card:hover {
+  transform: translateY(-8px);
+}
+
+.requirement-item {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.requirement-item:hover {
+  transform: translateX(8px);
+}
+
+.registration-option {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.registration-option:hover {
+  transform: translateY(-8px);
+}
+
+/* Animación de entrada para elementos */
+.volunteer-card,
+.requirement-item,
+.registration-option {
+  animation: float-up 0.6s ease-out;
+}
+
+.volunteer-card:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.requirement-item:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.requirement-item:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.requirement-item:nth-child(4) {
+  animation-delay: 0.3s;
+}
+
+.requirement-item:nth-child(5) {
+  animation-delay: 0.4s;
+}
+
+.requirement-item:nth-child(6) {
+  animation-delay: 0.5s;
+}
+
+.registration-option:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .volunteer-card,
+  .requirement-item,
+  .registration-option {
+    margin-bottom: 1rem;
+  }
+
+  .volunteer-card:hover,
+  .requirement-item:hover,
+  .registration-option:hover {
+    transform: none;
+  }
+}
+
+/* Loading states */
+.loading {
+  background: linear-gradient(
+    90deg,
+    rgba(148, 163, 184, 0.1) 25%,
+    rgba(148, 163, 184, 0.2) 50%,
+    rgba(148, 163, 184, 0.1) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Focus states */
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid rgba(0, 194, 242, 0.6);
+  outline-offset: 2px;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(30, 41, 59, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 194, 242, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 194, 242, 0.5);
+}

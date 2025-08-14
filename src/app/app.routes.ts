@@ -8,4 +8,11 @@ export const routes: Routes = [
       title: 'Hybiza Race — Evento de fitness en Ibiza',
     },
   },
+  {
+    path: 'voluntarios',
+    loadComponent: () => import('./routes/volunteers/volunteers').then((m) => m.Volunteers),
+    data: {
+      title: 'Voluntarios — Hybiza Race',
+    },
+  },
 ];
