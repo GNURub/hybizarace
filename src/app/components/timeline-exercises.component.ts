@@ -19,11 +19,11 @@ export interface Exercise {
   name: string;
   description: string;
   duration:
-    | string
-    | Record<
-        ParticipationType,
-        Record<GenderGroup, Record<WorkoutLevel, string>>
-      >;
+  | string
+  | Record<
+    ParticipationType,
+    Record<GenderGroup, Record<WorkoutLevel, string>>
+  >;
   target: string;
   weight?: Record<
     ParticipationType,
@@ -211,7 +211,7 @@ export class TimelineExercisesComponent implements OnDestroy {
   exerciseElements = viewChildren<ElementRef<HTMLElement>>('exerciseElement');
   private observer?: IntersectionObserver;
 
-  exercises: Exercise[] = [
+  public readonly exercises: Exercise[] = [
     {
       name: 'SANDBAG',
       description:
@@ -299,19 +299,19 @@ export class TimelineExercisesComponent implements OnDestroy {
       target: 'Fuerza de tracción',
       weight: {
         individual: {
-          men: { open: '2x10kg', pro: '2x12.5kg', elite: '2x15kg' },
-          women: { open: '2x5kg', pro: '2x7.5kg', elite: '2x10kg' },
+          men: { open: '2x10 kg', pro: '2x12 kg', elite: '2x15 kg' },
+          women: { open: '2x5 kg', pro: '2x7 kg', elite: '2x10 kg' },
           mix: { open: '', pro: '', elite: '' },
         },
         duo: {
-          men: { open: '2x10kg', pro: '2x12.5kg', elite: '2x15kg' },
-          women: { open: '2x5kg', pro: '2x7.5kg', elite: '2x10kg' },
-          mix: { open: '2x10kg', pro: '2x7.5kg', elite: '2x15kg' },
+          men: { open: '2x10 kg', pro: '2x12 kg', elite: '2x15 kg' },
+          women: { open: '2x5 kg', pro: '2x7 kg', elite: '2x10 kg' },
+          mix: { open: '2x10 kg', pro: '2x7 kg', elite: '2x15 kg' },
         },
         team: {
-          men: { open: '2x10kg', pro: '2x12.5kg', elite: '2x15kg' },
-          women: { open: '2x5kg', pro: '2x7.5kg', elite: '2x10kg' },
-          mix: { open: '2x10kg', pro: '2x7.5kg', elite: '2x15kg' },
+          men: { open: '2x10 kg', pro: '2x12 kg', elite: '2x15 kg' },
+          women: { open: '2x5 kg', pro: '2x7 kg', elite: '2x10 kg' },
+          mix: { open: '2x10 kg', pro: '2x7 kg', elite: '2x15 kg' },
         },
       },
     },
@@ -465,19 +465,19 @@ export class TimelineExercisesComponent implements OnDestroy {
       target: 'Fuerza unilateral',
       weight: {
         individual: {
-          men: { open: '2x12.5kg', pro: '2x15kg', elite: '2x20kg' },
-          women: { open: '2x7.5kg', pro: '2x10kg', elite: '2x15kg' },
+          men: { open: '2x12.5 kg', pro: '2x15 kg', elite: '2x20 kg' },
+          women: { open: '2x7.5 kg', pro: '2x10 kg', elite: '2x15 kg' },
           mix: { open: '', pro: '', elite: '' },
         },
         duo: {
-          men: { open: '2x12.5kg', pro: '2x15kg', elite: '2x20kg' },
-          women: { open: '2x7.5kg', pro: '2x10kg', elite: '2x15kg' },
-          mix: { open: '2x12.5kg', pro: '2x15kg', elite: '2x20kg' },
+          men: { open: '2x12.5 kg', pro: '2x15 kg', elite: '2x20 kg' },
+          women: { open: '2x7.5 kg', pro: '2x10 kg', elite: '2x15 kg' },
+          mix: { open: '2x12.5 kg', pro: '2x15 kg', elite: '2x20 kg' },
         },
         team: {
-          men: { open: '2x12.5kg', pro: '2x15kg', elite: '2x20kg' },
-          women: { open: '2x7.5kg', pro: '2x10kg', elite: '2x15kg' },
-          mix: { open: '2x12.5kg', pro: '2x15kg', elite: '2x20kg' },
+          men: { open: '2x12.5 kg', pro: '2x15 kg', elite: '2x20 kg' },
+          women: { open: '2x7.5 kg', pro: '2x10 kg', elite: '2x15 kg' },
+          mix: { open: '2x12.5 kg', pro: '2x15 kg', elite: '2x20 kg' },
         },
       },
     },
@@ -577,7 +577,7 @@ export class TimelineExercisesComponent implements OnDestroy {
         },
       },
     },
-  ];
+  ] as const;
 
   constructor() {
     afterEveryRender(() => {
