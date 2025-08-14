@@ -19,11 +19,11 @@ export interface Exercise {
   name: string;
   description: string;
   duration:
-    | string
-    | Record<
-        ParticipationType,
-        Record<GenderGroup, Record<WorkoutLevel, string>>
-      >;
+  | string
+  | Record<
+    ParticipationType,
+    Record<GenderGroup, Record<WorkoutLevel, string>>
+  >;
   target: string;
   weight?: Record<
     ParticipationType,
@@ -182,7 +182,7 @@ export interface Exercise {
                     'md:pl-16': i % 2 === 0,
                     'md:pr-16': i % 2 === 1,
                   }"
-                  class="w-auto p-6 md:mt-50"
+                  class="w-auto p-6 relative md:top-56"
                 >
                   <div
                     class="bg-gradient-to-br from-cyan-900/40 to-blue-900/40 backdrop-blur-sm border border-cyan-400/30 rounded-2xl p-6 transform hover:scale-105 transition-all duration-300"
