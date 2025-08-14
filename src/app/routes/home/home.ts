@@ -86,7 +86,7 @@ export class Home {
     },
     {
       icon: 'clock',
-      title: '500 METROS RUNNING',
+      title: '5 KILÓMETROS RUNNING',
       description: 'Entre cada estación, corre 500 metros.',
       color: 'yellow',
       delay: '200',
