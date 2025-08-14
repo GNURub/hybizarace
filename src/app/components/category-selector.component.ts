@@ -123,17 +123,12 @@ export interface WorkoutLevelOption {
                 [class.scale-110]="categoryService.workoutLevel() === wl.value"
                 class="group cursor-pointer relative size-12 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 flex items-center justify-center font-black text-slate-900 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-yellow-400/50"
               >
-                <img
-                  [src]="wl.src"
-                  [alt]="wl.label"
-                  class="w-full h-full object-cover rounded-full"
-                />
+                <span
+                  class="flex items-center justify-center font-bold text-black"
+                >
+                  {{ wl.label }}
+                </span>
               </button>
-              <span
-                class="flex items-center justify-center font-bold text-white"
-              >
-                {{ wl.label }}
-              </span>
             </div>
           }
         </div>
