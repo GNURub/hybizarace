@@ -78,9 +78,9 @@ export class Home {
   eventInfo = [
     {
       icon: 'target',
-      title: '9 ESTACIONES',
+      title: '9 WORKOUTS',
       description:
-        'Supera 9 estaciones de fitness funcional que pondrán a prueba tu fuerza, resistencia y determinación.',
+        'Supera 9 workouts que pondrán a prueba tu fuerza, resistencia y determinación.',
       color: 'cyan',
       delay: '0',
     },

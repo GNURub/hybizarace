@@ -33,7 +33,7 @@ import { TimelineExercisesComponent } from './timeline-exercises.component';
             <span
               class="bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-500 bg-clip-text text-transparent animate-gradient-x"
             >
-              9 ESTACIONES
+              9 WORKOUTS
             </span>
             <br />
             <span
