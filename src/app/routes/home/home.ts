@@ -1,6 +1,6 @@
 import { DatePipe, NgClass, NgOptimizedImage } from '@angular/common';
-import { Component, HostListener, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, HostListener, inject, signal } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 import { LucideAngularModule } from 'lucide-angular';
 import { CountdownComponent } from '../../components/countdown.component';
 import { GymFloorPlanComponent } from '../../components/gym-floor-plan/gym-floor-plan.component';
@@ -28,8 +28,13 @@ import { EVENT_DATE } from '../../tokens/EVENT_DATE';
 export class Home {
   public readonly appState = inject(AppStateService);
   protected readonly EVENT_DATE = inject(EVENT_DATE);
+  private readonly router = inject(Router);
   mousePosition = { x: 0, y: 0 };
   scrollY = 0;
+
+  // Estado del menú desplegable
+  isDropdownOpen = signal(false);
+  isMobileMenuOpen = signal(false);
 
   @HostListener('window:mousemove', ['$event'])
   onMouseMove(event: MouseEvent) {
@@ -39,6 +44,14 @@ export class Home {
   @HostListener('window:scroll')
   onScroll() {
     this.scrollY = window.scrollY;
+  }
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: Event) {
+    const target = event.target as HTMLElement;
+    if (!target.closest('.dropdown-container')) {
+      this.closeDropdown();
+    }
   }
 
   // Smooth scroll to section
@@ -73,8 +86,66 @@ export class Home {
     }
   }
 
-  // Navigation items for the header
-  navItems = ['EVENTO', 'CATEGORÍAS', 'PREMIOS', 'CONTACTO'];
+  // Navigation items for the header - main sections
+  navItems = ['EVENTO', 'CATEGORÍAS', 'PREMIOS'];
+
+  // Additional navigation items for dropdown
+  dropdownItems = [
+    { name: 'NORMATIVA', action: () => this.scrollToSection('normativa') },
+    { name: 'WORKOUTS', action: () => this.scrollToSection('workouts') },
+    { name: 'GUÍA DEL ATLETA', action: () => this.scrollToSection('guia-atleta') },
+    { name: 'PATROCINADORES', action: () => this.scrollToSection('patrocinadores') },
+    { name: 'VOLUNTARIOS', action: () => this.navigateToVolunteers() },
+    { name: 'ROPA', action: () => this.scrollToSection('ropa') },
+    { name: 'MAPA COMPETICIÓN', action: () => this.scrollToSection('mapa-competicion') },
+    { name: 'SOLICITUD ÉLITE', action: () => this.scrollToSection('solicitud-elite') },
+    { name: 'CENTROS DEPORTIVOS', action: () => this.scrollToSection('centros-deportivos') },
+    { name: 'CONTACTO', action: () => this.scrollToSection('contacto') },
+  ];
+
+  // Método para navegar a la página de voluntarios
+  navigateToVolunteers() {
+    this.router.navigate(['/voluntarios']);
+  }
+
+  // Métodos para manejar el dropdown
+  toggleDropdown() {
+    this.isDropdownOpen.set(!this.isDropdownOpen());
+  }
+
+  closeDropdown() {
+    this.isDropdownOpen.set(false);
+  }
+
+  toggleMobileMenu() {
+    this.isMobileMenuOpen.set(!this.isMobileMenuOpen());
+  }
+
+  // Manejar clics en enlaces del footer
+  handleFooterLinkClick(link: string) {
+    const linkActions: { [key: string]: () => void } = {
+      'Información': () => this.scrollToSection('evento'),
+      'Categorías': () => this.scrollToSection('categorias'),
+      'Premios': () => this.scrollToSection('premios'),
+      'Normativa': () => this.scrollToSection('normativa'),
+      'Workouts': () => this.scrollToSection('workouts'),
+      'Guía del Atleta': () => this.scrollToSection('guia-atleta'),
+      'Solicitud Élite': () => this.scrollToSection('solicitud-elite'),
+      'Centros Deportivos': () => this.scrollToSection('centros-deportivos'),
+      'Ropa': () => this.scrollToSection('ropa'),
+      'Patrocinadores': () => this.scrollToSection('patrocinadores'),
+      'Voluntarios': () => this.navigateToVolunteers(),
+      'Mapa Competición': () => this.scrollToSection('mapa-competicion'),
+    };
+
+    const action = linkActions[link];
+    if (action) {
+      action();
+    } else if (link.includes('@')) {
+      // Es un email
+      window.location.href = `mailto:${link}`;
+    }
+  }
 
   // Event info data
   eventInfo = [
@@ -172,11 +243,15 @@ export class Home {
   footerSections = [
     {
       title: 'EVENTO',
-      links: ['Información', 'Categorías', 'Premios', 'Reglamento'],
+      links: ['Información', 'Categorías', 'Premios', 'Normativa', 'Workouts'],
     },
     {
-      title: 'INSCRIPCIONES',
-      links: ['Individual', 'Equipos', 'Precios', 'FAQ'],
+      title: 'ATLETAS',
+      links: ['Guía del Atleta', 'Solicitud Élite', 'Centros Deportivos', 'Ropa'],
+    },
+    {
+      title: 'INFORMACIÓN',
+      links: ['Patrocinadores', 'Voluntarios', 'Mapa Competición'],
     },
     {
       title: 'CONTACTO',

@@ -64,7 +64,7 @@
           </span>
         </div>
 
-        <div class="hidden md:flex items-center space-x-8">
+        <div class="hidden lg:flex items-center space-x-8">
           @for (item of navItems; track item) {
             <button
               (click)="scrollToSection(item)"
@@ -76,6 +76,83 @@
               ></div>
             </button>
           }
+
+          <!-- Dropdown Menu -->
+          <div class="relative group dropdown-container">
+            <button
+              (click)="toggleDropdown()"
+              class="nav-button relative text-white hover:text-cyan-400 font-bold transition-all duration-300 group flex items-center gap-2"
+            >
+              MÁS
+              <svg
+                class="w-4 h-4 transition-transform duration-300"
+                [class.rotate-180]="isDropdownOpen()"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+              <div
+                class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-yellow-400 group-hover:w-full transition-all duration-300"
+              ></div>
+            </button>
+
+            <!-- Dropdown Content -->
+            <div
+              class="absolute top-full right-0 mt-2 w-56 bg-slate-900/95 backdrop-blur-xl border border-cyan-400/30 rounded-xl shadow-2xl transition-all duration-300 z-50"
+              [class.opacity-100]="isDropdownOpen()"
+              [class.opacity-0]="!isDropdownOpen()"
+              [class.translate-y-0]="isDropdownOpen()"
+              [class.translate-y-2]="!isDropdownOpen()"
+              [class.pointer-events-none]="!isDropdownOpen()"
+              [class.pointer-events-auto]="isDropdownOpen()"
+            >
+              <div
+                class="absolute inset-0 bg-gradient-to-br from-cyan-400/5 to-yellow-400/5 rounded-xl"
+              ></div>
+              <div class="relative z-10 py-2">
+                @for (item of dropdownItems; track item.name) {
+                  <button
+                    (click)="item.action(); closeDropdown()"
+                    class="w-full text-left px-4 py-3 text-sm text-slate-300 hover:text-cyan-400 hover:bg-slate-800/50 transition-all duration-200 flex items-center gap-3 group"
+                  >
+                    <div
+                      class="w-2 h-2 bg-cyan-400/50 rounded-full group-hover:bg-cyan-400 transition-colors duration-200"
+                    ></div>
+                    {{ item.name }}
+                  </button>
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <div class="lg:hidden flex items-center gap-4">
+          <button
+            (click)="toggleMobileMenu()"
+            class="text-white hover:text-cyan-400 transition-colors duration-300"
+          >
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </button>
         </div>
 
         <button
@@ -91,6 +168,75 @@
       </nav>
     </div>
   </header>
+
+  <!-- Mobile Menu -->
+  <div
+    class="lg:hidden fixed top-0 left-0 w-full h-full bg-slate-950/95 backdrop-blur-xl z-40 transition-all duration-300"
+    [class.opacity-100]="isMobileMenuOpen()"
+    [class.opacity-0]="!isMobileMenuOpen()"
+    [class.pointer-events-none]="!isMobileMenuOpen()"
+    [class.pointer-events-auto]="isMobileMenuOpen()"
+    (click)="toggleMobileMenu()"
+  >
+    <div
+      class="container mx-auto px-4 py-20"
+      (click)="$event.stopPropagation()"
+    >
+      <!-- Close button -->
+      <div class="flex justify-end mb-8">
+        <button
+          (click)="toggleMobileMenu()"
+          class="text-white hover:text-cyan-400 transition-colors duration-300"
+        >
+          <svg
+            class="w-8 h-8"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <div class="flex flex-col space-y-6">
+        @for (item of navItems; track item) {
+          <button
+            (click)="scrollToSection(item); toggleMobileMenu()"
+            class="text-left text-2xl font-bold text-white hover:text-cyan-400 transition-colors duration-300 py-4 border-b border-slate-800"
+          >
+            {{ item }}
+          </button>
+        }
+
+        <div class="border-t border-slate-800 pt-6">
+          <h3 class="text-lg font-bold text-cyan-400 mb-4">MÁS SECCIONES</h3>
+          @for (item of dropdownItems; track item.name) {
+            <button
+              (click)="item.action(); toggleMobileMenu()"
+              class="block w-full text-left text-lg text-slate-300 hover:text-cyan-400 transition-colors duration-300 py-3"
+            >
+              {{ item.name }}
+            </button>
+          }
+        </div>
+
+        <div class="pt-8">
+          <button
+            (click)="appState.openRegistrationModal(); toggleMobileMenu()"
+            class="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-slate-900 font-black px-6 py-4 rounded-xl transition-all duration-300"
+          >
+            ¡INSCRÍBETE!
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Hero Section -->
   <section
@@ -811,12 +957,12 @@
             <ul class="space-y-3">
               @for (link of section.links; track link) {
                 <li>
-                  <a
-                    href="#"
-                    class="text-gray-400 hover:text-cyan-400 transition-all duration-300 hover:translate-x-1 inline-block"
+                  <button
+                    (click)="handleFooterLinkClick(link)"
+                    class="text-gray-400 hover:text-cyan-400 transition-all duration-300 hover:translate-x-1 inline-block text-left"
                   >
                     {{ link }}
-                  </a>
+                  </button>
                 </li>
               }
             </ul>

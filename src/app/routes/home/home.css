@@ -167,3 +167,55 @@ section[id] {
   outline-offset: 2px;
   border-radius: 4px;
 }
+
+/* Dropdown animations and styles */
+.dropdown-container .group:hover .dropdown-content {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Mobile menu overlay */
+@media (max-width: 1023px) {
+  .mobile-menu-overlay {
+    backdrop-filter: blur(20px);
+  }
+}
+
+/* Smooth transitions for dropdown */
+.dropdown-transition {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Custom scrollbar for dropdown if needed */
+.dropdown-content::-webkit-scrollbar {
+  width: 4px;
+}
+
+.dropdown-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.dropdown-content::-webkit-scrollbar-thumb {
+  background: rgba(34, 211, 238, 0.3);
+  border-radius: 2px;
+}
+
+.dropdown-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(34, 211, 238, 0.5);
+}
+
+/* Footer link hover effects */
+footer button {
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font: inherit;
+}
+
+footer button:focus-visible {
+  outline: 2px solid rgb(34 211 238);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
