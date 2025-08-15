@@ -109,7 +109,6 @@ export class Home {
       name: 'PATROCINADORES',
       action: () => this.scrollToSection('patrocinadores'),
     },
-    { name: 'TIENDA', action: () => this.navigateToShop() },
     { name: 'VOLUNTARIOS', action: () => this.navigateToVolunteers() },
     {
       name: 'MAPA COMPETICIÓN',
@@ -121,7 +120,7 @@ export class Home {
     },
     {
       name: 'SOLICITUD ÉLITE',
-      action: () => this.scrollToSection('solicitud-elite'),
+      url: 'https://forms.office.com/pages/responsepage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAZ__poBFb9URE1EVzlBM1JJUkU4NU9KSVNSNFhTVEE0Sy4u&origin=lprLink&route=shorturl',
     },
     {
       name: 'CENTROS DEPORTIVOS',
