@@ -212,8 +212,9 @@ export class Shop implements OnInit {
 
   private showMessage(message: string, type: 'success' | 'error') {
     const notification = document.createElement('div');
-    notification.className = `fixed top-4 right-4 px-6 py-3 rounded-lg font-semibold z-50 animate-float-up ${type === 'success' ? 'bg-green-500 text-white' : 'bg-red-500 text-white'
-      }`;
+    notification.className = `fixed top-4 right-4 px-6 py-3 rounded-lg font-semibold z-50 animate-float-up ${
+      type === 'success' ? 'bg-green-500 text-white' : 'bg-red-500 text-white'
+    }`;
     notification.textContent = message;
 
     document.body.appendChild(notification);

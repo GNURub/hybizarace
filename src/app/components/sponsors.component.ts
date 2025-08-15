@@ -61,12 +61,15 @@ import { LucideAngularModule } from 'lucide-angular';
         <!-- Main sponsors marquee -->
         <div class="relative mb-16">
           <div
-            class="flex flex-wrap justify-center items-center gap-2 max-w-5xl mx-auto"
+            class="flex flex-wrap justify-center items-center gap-3 max-w-5xl mx-auto"
           >
             <!-- First set of sponsors -->
             @for (sponsor of sponsors; track sponsor.name) {
-              <div
-                class="flex-shrink-0 w-[200px] h-[100px] mx-4 relative group/sponsor"
+              <a
+                [href]="sponsor.url"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="block flex-shrink-0 w-[200px] h-[100px] mx-4 relative group/sponsor"
               >
                 <div
                   class="w-full h-full flex items-center justify-center p-4 transition-all duration-500 group-hover/sponsor:scale-110"
@@ -89,7 +92,7 @@ import { LucideAngularModule } from 'lucide-angular';
                 >
                   {{ sponsor.name }}
                 </div>
-              </div>
+            </a>
             }
           </div>
         </div>
@@ -181,54 +184,76 @@ import { LucideAngularModule } from 'lucide-angular';
   ],
 })
 export class SponsorsComponent {
-  sponsors = [
+  public readonly sponsors = [
     {
-      name: 'EliteChip',
-      logo: '/patrocinadores/elitechip.png',
+      name: 'Alvaro Morales, Fisioterapia deportiva',
+      logo: '/patrocinadores/alvaromorales.png',
+      url: 'https://share.google/WATnQ9C9kPX3blCwn',
     },
     {
-      name: 'VibraHotels',
-      logo: '/patrocinadores/vibrahotels.jpg',
-    },
-    {
-      name: 'Sportgraf',
-      logo: '/patrocinadores/sportgraf.png',
-    },
-    {
-      name: 'Jordi Costa',
-      logo: '/patrocinadores/jordicosta.jpeg',
+      name: "Ayuntament d'Eivissa",
+      logo: '/patrocinadores/ayuntamientodeibiza.png',
+      url: 'https://www.eivissa.es',
     },
     {
       name: 'Cerre Fit',
       logo: '/patrocinadores/cerrefit.png',
+      url: 'https://cerrefit.es',
     },
     {
-      name: 'Pilates Ibiza',
-      logo: '/patrocinadores/pilatesibiza.png',
-    },
-    {
-      name: 'SingularWod',
-      logo: '/patrocinadores/singularwod.png',
-    },
-    {
-      name: 'Alvaro Morales, Fisioterapia deportiva',
-      logo: '/patrocinadores/alvaromorales.png',
+      name: 'EliteChip',
+      logo: '/patrocinadores/elitechip.png',
+      url: 'https://elitechip.net',
     },
     {
       name: 'Galeno Clinic',
       logo: '/patrocinadores/galenoclinic.png',
+      url: 'https://www.galenoclinic.com',
     },
     {
-      name: 'Hybizaathletes',
+      name: 'HybizaAthletes',
       logo: '/patrocinadores/hybizaathletes.png',
+      url: 'https://hybizaathletes.wodbuster.com/',
+    },
+    {
+      name: 'Jordi Costa',
+      logo: '/patrocinadores/jordicosta.jpeg',
+      url: 'https://jordinutricionista.com',
+    },
+    {
+      name: 'La perdición',
+      logo: '/patrocinadores/laperdicion.png',
+      url: 'https://www.instagram.com/somosperdicion',
+    },
+    {
+      name: 'Pilates Ibiza',
+      logo: '/patrocinadores/pilatesibiza.png',
+      url: 'https://pilatesenibiza.com',
+    },
+    {
+      name: 'SingularWod',
+      logo: '/patrocinadores/singularwod.png',
+      url: 'https://www.singularwod.com',
+    },
+    {
+      name: 'Sisters of Beauty',
+      logo: '/patrocinadores/sistersofbeauty.png',
+      url: 'https://sistersofbeauty.es',
+    },
+    {
+      name: 'Sportograf',
+      logo: '/patrocinadores/sportograf.png',
+      url: 'https://www.sportograf.com',
     },
     {
       name: 'Toni Costa, Constructora',
       logo: '/patrocinadores/tonicosta.png',
+      url: 'https://tonicostaconstructora.com',
     },
     {
-      name: 'Ayuntamiento de Ibiza',
-      logo: '/patrocinadores/ayuntamientodeibiza.png',
+      name: 'VibraHotels',
+      logo: '/patrocinadores/vibrahotels.jpg',
+      url: 'https://vibrahotels.com',
     },
   ];
 }

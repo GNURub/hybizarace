@@ -116,7 +116,7 @@ export class Home {
     },
     {
       name: 'ALOJAMIENTO',
-      url: 'https://bookings.vibrahotels.com/es/?arrival=2026-05-06&departure=2026-05-12&adults=2&children=0&babies=0&promo=26GRP0002&view=list'
+      url: 'https://bookings.vibrahotels.com/es/?arrival=2026-05-06&departure=2026-05-12&adults=2&children=0&babies=0&promo=26GRP0002&view=list',
     },
     {
       name: 'SOLICITUD ÉLITE',
