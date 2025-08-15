@@ -116,6 +116,12 @@ export class Home {
       action: () => this.scrollToSection('mapa-competicion'),
     },
     {
+      name: 'ALOJAMIENTO',
+      action: () => {
+        this.router.navigateByUrl('https://bookings.vibrahotels.com/es/?arrival=2025-08-15&departure=2025-08-16&adults=2&children=0&babies=0&promo=BACKTOSUNSET&view=grid');
+      },
+    },
+    {
       name: 'SOLICITUD ÉLITE',
       action: () => this.scrollToSection('solicitud-elite'),
     },

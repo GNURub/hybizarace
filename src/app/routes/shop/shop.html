@@ -206,11 +206,13 @@
                 class="relative h-80 bg-gradient-to-br from-slate-700 to-slate-800 overflow-hidden"
               >
                 <div class="absolute inset-0 flex items-center justify-center">
-                  <div class="text-6xl text-slate-600">
-                    @if (product.category === "hombre") {
-                      👕
-                    } @else {
-                      👚
+                  <div class="relative size-full text-6xl text-slate-600">
+                    @for (img of product.images; track $index) {
+                      <img
+                        src="{{ img }}"
+                        alt="{{ product.name }}"
+                        class="object-contain w-full h-full"
+                      />
                     }
                   </div>
                 </div>
@@ -432,11 +434,13 @@
           <div
             class="h-64 bg-gradient-to-br from-slate-700 to-slate-800 flex items-center justify-center"
           >
-            <div class="text-8xl text-slate-600">
-              @if (selectedProduct()?.category === "hombre") {
-                👕
-              } @else {
-                👚
+            <div class="relative size-full text-8xl text-slate-600">
+              @for (img of selectedProduct()?.images; track $index) {
+                <img
+                  src="{{ img }}"
+                  alt="{{ selectedProduct()?.name }}"
+                  class="object-contain w-full h-full"
+                />
               }
             </div>
           </div>
