@@ -1,0 +1,14 @@
+#Agregamos ficheros y carpetas al docker ignore
+dist/
+node_modules/
+README.md
+Dockerfile
+Makefile
+.gitignore
+.editorconfig
+.idea/
+.git/
+.angular/
+package-lock.json
+Dockerfile
+.angular/
