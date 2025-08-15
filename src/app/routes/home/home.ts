@@ -117,9 +117,7 @@ export class Home {
     },
     {
       name: 'ALOJAMIENTO',
-      action: () => {
-        this.router.navigateByUrl('https://bookings.vibrahotels.com/es/?arrival=2025-08-15&departure=2025-08-16&adults=2&children=0&babies=0&promo=BACKTOSUNSET&view=grid');
-      },
+      url: 'https://bookings.vibrahotels.com/es/?arrival=2026-05-06&departure=2026-05-12&adults=2&children=0&babies=0&promo=26GRP0002&view=list'
     },
     {
       name: 'SOLICITUD ÉLITE',
