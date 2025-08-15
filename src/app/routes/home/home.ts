@@ -1,9 +1,11 @@
-import { DatePipe, NgClass, NgOptimizedImage } from '@angular/common';
+import { NgClass, NgOptimizedImage } from '@angular/common';
 import { Component, HostListener, inject, signal } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { LucideAngularModule } from 'lucide-angular';
 import { CountdownComponent } from '../../components/countdown.component';
 import { GymFloorPlanComponent } from '../../components/gym-floor-plan/gym-floor-plan.component';
+import { HeroSectionComponent } from '../../components/hero-section.component';
+import { PrizesSectionComponent } from '../../components/prizes-section.component';
 import { SponsorsComponent } from '../../components/sponsors.component';
 import { TimelineSectionComponent } from '../../components/timeline-section.component';
 import { AppStateService } from '../../services/state.service';
@@ -14,12 +16,13 @@ import { EVENT_DATE } from '../../tokens/EVENT_DATE';
   imports: [
     CountdownComponent,
     TimelineSectionComponent,
+    PrizesSectionComponent,
+    HeroSectionComponent,
     SponsorsComponent,
     NgClass,
     RouterLink,
     GymFloorPlanComponent,
     LucideAngularModule,
-    DatePipe,
     NgOptimizedImage,
   ],
   templateUrl: './home.html',
@@ -28,9 +31,8 @@ import { EVENT_DATE } from '../../tokens/EVENT_DATE';
 export class Home {
   public readonly appState = inject(AppStateService);
   protected readonly EVENT_DATE = inject(EVENT_DATE);
-  private readonly router = inject(Router);
+  private readonly router: Router = inject(Router);
   mousePosition = { x: 0, y: 0 };
-  scrollY = 0;
 
   // Estado del menú desplegable
   isDropdownOpen = signal(false);
@@ -39,11 +41,6 @@ export class Home {
   @HostListener('window:mousemove', ['$event'])
   onMouseMove(event: MouseEvent) {
     this.mousePosition = { x: event.clientX, y: event.clientY };
-  }
-
-  @HostListener('window:scroll')
-  onScroll() {
-    this.scrollY = window.scrollY;
   }
 
   @HostListener('document:click', ['$event'])
@@ -56,6 +53,7 @@ export class Home {
 
   // Smooth scroll to section
   scrollToSection(sectionId: string) {
+    console.log(`Scrolling to section: ${sectionId}`);
     // Normalize section ID by removing accents and converting to lowercase
     const normalizedId = sectionId
       .toLowerCase()
@@ -107,9 +105,9 @@ export class Home {
     },
     {
       name: 'PATROCINADORES',
-      action: () => this.scrollToSection('patrocinadores'),
+      action: () => this.scrollToSection('sponsors'),
     },
-    { name: 'VOLUNTARIOS', action: () => this.navigateToVolunteers() },
+    { name: 'VOLUNTARIOS', action: () => this.router.navigate(['/voluntarios']) },
     {
       name: 'MAPA COMPETICIÓN',
       action: () => this.scrollToSection('mapa-competicion'),
@@ -129,16 +127,6 @@ export class Home {
     { name: 'CONTACTO', action: () => this.scrollToSection('contacto') },
   ];
 
-  // Método para navegar a la página de voluntarios
-  navigateToVolunteers() {
-    this.router.navigate(['/voluntarios']);
-  }
-
-  // Método para navegar a la tienda
-  navigateToShop() {
-    this.router.navigate(['/tienda']);
-  }
-
   // Métodos para manejar el dropdown
   toggleDropdown() {
     this.isDropdownOpen.set(!this.isDropdownOpen());
@@ -156,17 +144,17 @@ export class Home {
   handleFooterLinkClick(link: string) {
     const linkActions: { [key: string]: () => void } = {
       Información: () => this.scrollToSection('evento'),
-      Categorías: () => this.scrollToSection('categorias'),
-      Premios: () => this.scrollToSection('premios'),
+      Categorías: () => this.scrollToSection('categories'),
+      Premios: () => this.scrollToSection('prizes'),
       Normativa: () => this.scrollToSection('normativa'),
       Workouts: () => this.scrollToSection('workouts'),
       'Guía del Atleta': () => this.scrollToSection('guia-atleta'),
       'Solicitud Élite': () => this.scrollToSection('solicitud-elite'),
       'Centros Deportivos': () => this.scrollToSection('centros-deportivos'),
-      Ropa: () => this.navigateToShop(),
-      Tienda: () => this.navigateToShop(),
+      Ropa: () => this.router.navigate(['/tienda']),
+      Tienda: () => this.router.navigate(['/tienda']),
       Patrocinadores: () => this.scrollToSection('patrocinadores'),
-      Voluntarios: () => this.navigateToVolunteers(),
+      Voluntarios: () => this.router.navigate(['/voluntarios']),
       'Mapa Competición': () => this.scrollToSection('mapa-competicion'),
     };
 
@@ -231,43 +219,6 @@ export class Home {
       title: 'EQUIPOS',
       desc: 'Compite junto a tu compañero en esta aventura épica',
       color: 'yellow',
-    },
-  ];
-
-  // Prizes data
-  prizes = [
-    {
-      place: '1º',
-      color: 'yellow',
-      prize: '500€',
-      items: [
-        'Trofeo Hybiza Race',
-        '500€ en premios',
-        'Medalla de oro',
-        'Kit exclusivo',
-      ],
-    },
-    {
-      place: '2º',
-      color: 'cyan',
-      prize: '300€',
-      items: [
-        'Trofeo Hybiza Race',
-        '300€ en premios',
-        'Medalla de plata',
-        'Kit exclusivo',
-      ],
-    },
-    {
-      place: '3º',
-      color: 'gray',
-      prize: '200€',
-      items: [
-        'Trofeo Hybiza Race',
-        '200€ en premios',
-        'Medalla de bronce',
-        'Kit exclusivo',
-      ],
     },
   ];
 
