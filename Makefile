@@ -13,5 +13,4 @@ dockerize:
 	docker buildx build --load -t registry.traefy.com/$(NAME):$(TAG) .
 
 publish:
-	docker tag registry.traefy.com/$(NAME):$(TAG)
 	docker push registry.traefy.com/$(NAME):$(TAG)
