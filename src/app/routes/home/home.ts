@@ -2,6 +2,7 @@ import { NgClass, NgOptimizedImage } from '@angular/common';
 import { Component, HostListener, inject, signal } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { LucideAngularModule } from 'lucide-angular';
+import { CategoriesSectionComponent } from '../../components/categories-section.component';
 import { CountdownComponent } from '../../components/countdown.component';
 import { GymFloorPlanComponent } from '../../components/gym-floor-plan/gym-floor-plan.component';
 import { HeroSectionComponent } from '../../components/hero-section.component';
@@ -18,6 +19,7 @@ import { EVENT_DATE } from '../../tokens/EVENT_DATE';
     TimelineSectionComponent,
     PrizesSectionComponent,
     HeroSectionComponent,
+    CategoriesSectionComponent,
     SponsorsComponent,
     NgClass,
     RouterLink,
@@ -191,34 +193,6 @@ export class Home {
         'Conviértete en leyenda y únete al selecto grupo de finishers de Hybiza Race.',
       color: 'cyan',
       delay: '400',
-    },
-  ];
-
-  // Categories data
-  categories = [
-    {
-      name: 'RX',
-      title: 'ÉLITE',
-      desc: 'Para atletas experimentados que buscan el máximo desafío',
-      color: 'cyan',
-    },
-    {
-      name: 'OPEN',
-      title: 'ABIERTA',
-      desc: 'Perfecta para tu primera experiencia Hyrox',
-      color: 'yellow',
-    },
-    {
-      name: 'DUO',
-      title: 'PAREJAS',
-      desc: 'Compite junto a tu compañero en esta aventura épica',
-      color: 'yellow',
-    },
-    {
-      name: 'TEAM',
-      title: 'EQUIPOS',
-      desc: 'Compite junto a tu compañero en esta aventura épica',
-      color: 'yellow',
     },
   ];
 
