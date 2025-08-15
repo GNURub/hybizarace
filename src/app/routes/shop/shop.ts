@@ -37,6 +37,8 @@ export class Shop implements OnInit {
   selectedColor = signal<string>('');
   cart = signal<CartItem[]>([]);
   isModalOpen = signal(false);
+  isImageModalOpen = signal(false);
+  selectedImage = signal<string>('');
 
   // Exponer Math para usar en el template
   Math = Math;
@@ -105,6 +107,18 @@ export class Shop implements OnInit {
     this.selectedProduct.set(null);
     this.selectedSize.set('');
     this.selectedColor.set('');
+  }
+
+  // Abrir modal de imagen ampliada
+  openImageModal(imageUrl: string) {
+    this.selectedImage.set(imageUrl);
+    this.isImageModalOpen.set(true);
+  }
+
+  // Cerrar modal de imagen
+  closeImageModal() {
+    this.isImageModalOpen.set(false);
+    this.selectedImage.set('');
   }
 
   // Agregar al carrito
