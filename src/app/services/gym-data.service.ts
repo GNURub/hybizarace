@@ -91,16 +91,28 @@ export class GymDataService {
         description: 'Tienda de suplementos nutricionales y deportivos',
         color: 'bg-emerald-400',
       },
+      // {
+      //   id: 'willin',
+      //   name: 'Willin',
+      //   description: 'Área especializada de entrenamiento personalizado',
+      //   color: 'bg-cyan-400',
+      // },
+      // {
+      //   id: 'preso',
+      //   name: 'Preso',
+      //   description: 'Afloja tus músculos con nuestra máquina de presoterapia',
+      //   color: 'bg-yellow-400',
+      // },
       {
         id: 'willin',
-        name: 'Willin',
-        description: 'Área especializada de entrenamiento personalizado',
+        name: '',
+        description: '',
         color: 'bg-cyan-400',
       },
       {
         id: 'preso',
-        name: 'Preso',
-        description: 'Afloja tus músculos con nuestra máquina de presoterapia',
+        name: '',
+        description: '',
         color: 'bg-yellow-400',
       },
       {
