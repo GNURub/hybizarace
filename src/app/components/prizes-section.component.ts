@@ -18,7 +18,6 @@ interface PrizeCategory {
 
 @Component({
   selector: 'app-prizes-section',
-  standalone: true,
   imports: [NgClass, LucideAngularModule],
   template: `
     <section id="premios" class="py-24 relative overflow-hidden">

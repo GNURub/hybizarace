@@ -11,7 +11,6 @@ interface Category {
 
 @Component({
   selector: 'app-categories-section',
-  standalone: true,
   imports: [NgClass, LucideAngularModule],
   template: `
     <!-- Categories Section -->

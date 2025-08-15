@@ -7,7 +7,6 @@ import { EVENT_DATE } from '../tokens/EVENT_DATE';
 
 @Component({
   selector: 'app-hero-section',
-  standalone: true,
   imports: [RouterLink, LucideAngularModule, DatePipe, NgOptimizedImage],
   template: `
     <!-- Hero Section -->
