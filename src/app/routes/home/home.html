@@ -278,10 +278,10 @@
   <app-hero-section id="hero" />
 
   <!-- Countdown Section -->
-  <app-countdown id="countdown" />
+  <app-countdown id="evento" />
 
   <!-- Event Info Section -->
-  <section id="evento" class="py-24 relative overflow-hidden">
+  <section  class="py-24 relative overflow-hidden">
     <div
       class="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"
     ></div>
@@ -561,8 +561,12 @@
 
       <div class="border-t border-slate-800 pt-8 text-center">
         <p class="text-gray-400">
-          &copy; 2025 Hybiza Race. Todos los derechos reservados.
+          &copy; {{today.getFullYear()}} Hybiza Race. Todos los derechos reservados.
         </p>
+
+        <div class="text-gray-400 mt-1">
+          Hecho con ❤️ por <a href="https://gnurub.is-a.dev" target="_blank" rel="noopener noreferrer" class="text-cyan-400 hover:underline">@gnurub</a>.
+        </div>
       </div>
     </div>
   </footer>

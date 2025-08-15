@@ -36,6 +36,7 @@ interface InteractiveItem {
   styleUrl: './home.css',
 })
 export class Home {
+  public readonly today = new Date();
   public readonly appState = inject(AppStateService);
   protected readonly EVENT_DATE = inject(EVENT_DATE);
   private readonly router: Router = inject(Router);
@@ -97,14 +98,8 @@ export class Home {
   // Additional navigation items for dropdown
   dropdownItems: InteractiveItem[] = [
     {
-      name: 'Normativa en PDF',
-      action: () => {
-        const a = document.createElement('a');
-        a.download = 'normativa_hybizarace_2026.pdf';
-        a.href = '/documents/normativa_hybizarace_2026.pdf';
-        a.click();
-        a.remove();
-      },
+      name: 'NORMATIVA',
+      url: '/documents/normativa_hybizarace_2026.pdf',
     },
     {
       name: 'GUÍA DEL ATLETA',
