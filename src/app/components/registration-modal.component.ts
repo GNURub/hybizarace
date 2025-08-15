@@ -1,3 +1,4 @@
+import { NgClass } from '@angular/common';
 import { Component, inject, input, output } from '@angular/core';
 import { CategoryService } from '../services/category.service';
 import { CategorySelectorComponent } from './category-selector.component';
@@ -10,7 +11,7 @@ export interface RegistrationModalConfig {
 
 @Component({
   selector: 'app-registration-modal',
-  imports: [CategorySelectorComponent],
+  imports: [CategorySelectorComponent, NgClass],
   template: `
     @if (isOpen()) {
       <!-- Modal Backdrop -->
@@ -157,9 +158,12 @@ export interface RegistrationModalConfig {
               </button>
               @if (paymentInfo) {
                 <a
-                  [href]="paymentInfo.stripeLink"
+                  [href]="paymentInfo.url"
                   target="_blank"
                   rel="noopener noreferrer"
+                  [ngClass]="{
+                    'opacity-50 cursor-not-allowed pointer-events-none': !isOpenInscriptions
+                  }"
                   class="flex-1 px-6 py-3 bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-slate-900 font-black text-center rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-yellow-400/50 flex items-center justify-center gap-2"
                 >
                   <svg
@@ -175,7 +179,7 @@ export interface RegistrationModalConfig {
                       d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
                     ></path>
                   </svg>
-                  Proceder al Pago
+                  {{ isOpenInscriptions ? 'Proceder al Pago' : 'No disponible' }}
                 </a>
               }
             </div>
@@ -192,6 +196,7 @@ export class RegistrationModalComponent {
   public readonly categoryService = inject(CategoryService);
   // Inputs
   readonly isOpen = input<boolean>(false);
+  readonly isOpenInscriptions = false;
   readonly title = input<string>('🏃‍♂️ Inscripción HYBIZA RACE');
   readonly description = input<string>(
     'Completa tu inscripción para el desafío más épico de Ibiza',

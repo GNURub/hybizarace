@@ -11,7 +11,7 @@ type PaymentInfo = Record<
     GenderGroup,
     Record<
       WorkoutLevel,
-      { price: number; description: string; stripeLink: string }
+      { price: number; description: string; url: string }
     >
   >
 >;
@@ -26,159 +26,159 @@ export class CategoryService {
     individual: {
       men: {
         open: {
-          price: 45,
+          price: 0,
           description: 'Inscripción individual masculina - Categoría abierta',
-          stripeLink: 'https://book.stripe.com/test_00w00kflM0QF7Ez6UAfrW00',
+          url: '',
         },
         pro: {
-          price: 50,
+          price: 0,
           description: 'Inscripción individual masculina - Categoría pro',
-          stripeLink: 'https://book.stripe.com/test_00w00kflM0QF7Ez6UAfrW00',
+          url: '',
         },
         elite: {
-          price: 60,
+          price: 0,
           description: 'Inscripción individual masculina - Categoría élite',
-          stripeLink: 'https://book.stripe.com/test_00w00kflM0QF7Ez6UAfrW00',
+          url: '',
         },
       },
       women: {
         open: {
-          price: 45,
+          price: 0,
           description: 'Inscripción individual femenina - Categoría abierta',
-          stripeLink: 'https://book.stripe.com/test_00w00kflM0QF7Ez6UAfrW00',
+          url: '',
         },
         pro: {
-          price: 50,
+          price: 0,
           description: 'Inscripción individual femenina - Categoría pro',
-          stripeLink: 'https://book.stripe.com/test_00w00kflM0QF7Ez6UAfrW00',
+          url: '',
         },
         elite: {
-          price: 60,
+          price: 0,
           description: 'Inscripción individual femenina - Categoría élite',
-          stripeLink: 'https://book.stripe.com/test_00w00kflM0QF7Ez6UAfrW00',
+          url: '',
         },
       },
       mix: {
         open: {
-          price: 45,
+          price: 0,
           description: 'Inscripción individual mixta - Categoría abierta',
-          stripeLink: 'https://book.stripe.com/test_00w00kflM0QF7Ez6UAfrW00',
+          url: '',
         },
         pro: {
-          price: 50,
+          price: 0,
           description: 'Inscripción individual mixta - Categoría pro',
-          stripeLink: 'https://book.stripe.com/test_00w00kflM0QF7Ez6UAfrW00',
+          url: '',
         },
         elite: {
-          price: 60,
+          price: 0,
           description: 'Inscripción individual mixta - Categoría élite',
-          stripeLink: 'https://book.stripe.com/test_00w00kflM0QF7Ez6UAfrW00',
+          url: '',
         },
       },
     },
     duo: {
       men: {
         open: {
-          price: 80,
+          price: 0,
           description: 'Inscripción duo masculino - Categoría abierta',
-          stripeLink: 'https://book.stripe.com/test_00w00kflM0QF7Ez6UAfrW00',
+          url: '',
         },
         pro: {
-          price: 90,
+          price: 0,
           description: 'Inscripción duo masculino - Categoría pro',
-          stripeLink: 'https://book.stripe.com/test_00w00kflM0QF7Ez6UAfrW00',
+          url: '',
         },
         elite: {
-          price: 110,
+          price: 0,
           description: 'Inscripción duo masculino - Categoría élite',
-          stripeLink: 'https://book.stripe.com/test_00w00kflM0QF7Ez6UAfrW00',
+          url: '',
         },
       },
       women: {
         open: {
-          price: 80,
+          price: 0,
           description: 'Inscripción duo femenino - Categoría abierta',
-          stripeLink: 'https://book.stripe.com/test_00w00kflM0QF7Ez6UAfrW00',
+          url: '',
         },
         pro: {
-          price: 90,
+          price: 0,
           description: 'Inscripción duo femenino - Categoría pro',
-          stripeLink: 'https://book.stripe.com/test_00w00kflM0QF7Ez6UAfrW00',
+          url: '',
         },
         elite: {
-          price: 110,
+          price: 0,
           description: 'Inscripción duo femenino - Categoría élite',
-          stripeLink: 'https://book.stripe.com/test_00w00kflM0QF7Ez6UAfrW00',
+          url: '',
         },
       },
       mix: {
         open: {
-          price: 80,
+          price: 0,
           description: 'Inscripción duo mixto - Categoría abierta',
-          stripeLink: 'https://book.stripe.com/test_00w00kflM0QF7Ez6UAfrW00',
+          url: '',
         },
         pro: {
-          price: 90,
+          price: 0,
           description: 'Inscripción duo mixto - Categoría pro',
-          stripeLink: 'https://book.stripe.com/test_00w00kflM0QF7Ez6UAfrW00',
+          url: '',
         },
         elite: {
-          price: 110,
+          price: 0,
           description: 'Inscripción duo mixto - Categoría élite',
-          stripeLink: 'https://book.stripe.com/test_00w00kflM0QF7Ez6UAfrW00',
+          url: '',
         },
       },
     },
     team: {
       men: {
         open: {
-          price: 120,
+          price: 0,
           description: 'Inscripción equipo masculino - Categoría abierta',
-          stripeLink: 'https://book.stripe.com/test_00w00kflM0QF7Ez6UAfrW00',
+          url: '',
         },
         pro: {
-          price: 135,
+          price: 0,
           description: 'Inscripción equipo masculino - Categoría pro',
-          stripeLink: 'https://book.stripe.com/test_00w00kflM0QF7Ez6UAfrW00',
+          url: '',
         },
         elite: {
-          price: 160,
+          price: 0,
           description: 'Inscripción equipo masculino - Categoría élite',
-          stripeLink: 'https://book.stripe.com/test_00w00kflM0QF7Ez6UAfrW00',
+          url: '',
         },
       },
       women: {
         open: {
-          price: 120,
+          price: 0,
           description: 'Inscripción equipo femenino - Categoría abierta',
-          stripeLink: 'https://book.stripe.com/test_00w00kflM0QF7Ez6UAfrW00',
+          url: '',
         },
         pro: {
-          price: 135,
+          price: 0,
           description: 'Inscripción equipo femenino - Categoría pro',
-          stripeLink: 'https://book.stripe.com/test_00w00kflM0QF7Ez6UAfrW00',
+          url: '',
         },
         elite: {
-          price: 160,
+          price: 0,
           description: 'Inscripción equipo femenino - Categoría élite',
-          stripeLink: 'https://book.stripe.com/test_00w00kflM0QF7Ez6UAfrW00',
+          url: '',
         },
       },
       mix: {
         open: {
-          price: 120,
+          price: 0,
           description: 'Inscripción equipo mixto - Categoría abierta',
-          stripeLink: 'https://book.stripe.com/test_00w00kflM0QF7Ez6UAfrW00',
+          url: '',
         },
         pro: {
-          price: 135,
+          price: 0,
           description: 'Inscripción equipo mixto - Categoría pro',
-          stripeLink: 'https://book.stripe.com/test_00w00kflM0QF7Ez6UAfrW00',
+          url: '',
         },
         elite: {
-          price: 160,
+          price: 0,
           description: 'Inscripción equipo mixto - Categoría élite',
-          stripeLink: 'https://book.stripe.com/test_00w00kflM0QF7Ez6UAfrW00',
+          url: '',
         },
       },
     },

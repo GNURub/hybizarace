@@ -3,17 +3,17 @@ import { Component } from '@angular/core';
 import { LucideAngularModule } from 'lucide-angular';
 
 interface Category {
-    name: string;
-    title: string;
-    desc: string;
-    color: 'cyan' | 'yellow';
+  name: string;
+  title: string;
+  desc: string;
+  color: 'cyan' | 'yellow';
 }
 
 @Component({
-    selector: 'app-categories-section',
-    standalone: true,
-    imports: [NgClass, LucideAngularModule],
-    template: `
+  selector: 'app-categories-section',
+  standalone: true,
+  imports: [NgClass, LucideAngularModule],
+  template: `
     <!-- Categories Section -->
     <section id="categorias" class="py-24 relative overflow-hidden">
       <div
@@ -109,34 +109,34 @@ interface Category {
       </div>
     </section>
   `,
-    styles: ``,
+  styles: ``,
 })
 export class CategoriesSectionComponent {
-    // Categories data
-    categories: Category[] = [
-        {
-            name: 'RX',
-            title: 'ÉLITE',
-            desc: 'Para atletas experimentados que buscan el máximo desafío',
-            color: 'cyan',
-        },
-        {
-            name: 'OPEN',
-            title: 'ABIERTA',
-            desc: 'Perfecta para tu primera experiencia Hyrox',
-            color: 'yellow',
-        },
-        {
-            name: 'DUO',
-            title: 'PAREJAS',
-            desc: 'Compite junto a tu compañero en esta aventura épica',
-            color: 'yellow',
-        },
-        {
-            name: 'TEAM',
-            title: 'EQUIPOS',
-            desc: 'Compite junto a tu compañero en esta aventura épica',
-            color: 'yellow',
-        },
-    ];
+  // Categories data
+  categories: Category[] = [
+    {
+      name: 'OPEN',
+      title: 'ABIERTA',
+      desc: 'Perfecta para tu primera experiencia Hyrox',
+      color: 'yellow',
+    },
+    {
+      name: 'DUO',
+      title: 'PAREJAS',
+      desc: 'Compite junto a tu compañero en esta aventura épica',
+      color: 'yellow',
+    },
+    {
+      name: 'TEAM',
+      title: 'EQUIPOS',
+      desc: 'Compite junto a tu compañero en esta aventura épica',
+      color: 'yellow',
+    },
+    {
+      name: 'RX',
+      title: 'ÉLITE',
+      desc: 'Para atletas experimentados que buscan el máximo desafío',
+      color: 'cyan',
+    },
+  ];
 }
