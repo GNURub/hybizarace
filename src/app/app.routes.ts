@@ -10,9 +10,17 @@ export const routes: Routes = [
   },
   {
     path: 'voluntarios',
-    loadComponent: () => import('./routes/volunteers/volunteers').then((m) => m.Volunteers),
+    loadComponent: () =>
+      import('./routes/volunteers/volunteers').then((m) => m.Volunteers),
     data: {
       title: 'Voluntarios — Hybiza Race',
+    },
+  },
+  {
+    path: 'tienda',
+    loadComponent: () => import('./routes/shop/shop').then((m) => m.Shop),
+    data: {
+      title: 'Tienda Oficial — Hybiza Race',
     },
   },
 ];

@@ -120,7 +120,7 @@
                 @for (item of dropdownItems; track item.name) {
                   <button
                     (click)="item.action(); closeDropdown()"
-                    class="w-full text-left px-4 py-3 text-sm text-slate-300 hover:text-cyan-400 hover:bg-slate-800/50 transition-all duration-200 flex items-center gap-3 group"
+                    class="w-full cursor-pointer text-left px-4 py-3 text-sm text-slate-300 hover:text-cyan-400 hover:bg-slate-800/50 transition-all duration-200 flex items-center gap-3 group"
                   >
                     <div
                       class="w-2 h-2 bg-cyan-400/50 rounded-full group-hover:bg-cyan-400 transition-colors duration-200"
@@ -219,7 +219,7 @@
           @for (item of dropdownItems; track item.name) {
             <button
               (click)="item.action(); toggleMobileMenu()"
-              class="block w-full text-left text-lg text-slate-300 hover:text-cyan-400 transition-colors duration-300 py-3"
+              class="block cursor-pointer w-full text-left text-lg text-slate-300 hover:text-cyan-400 transition-colors duration-300 py-3"
             >
               {{ item.name }}
             </button>

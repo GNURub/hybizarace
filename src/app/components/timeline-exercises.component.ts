@@ -19,11 +19,11 @@ export interface Exercise {
   name: string;
   description: string;
   duration:
-  | string
-  | Record<
-    ParticipationType,
-    Record<GenderGroup, Record<WorkoutLevel, string>>
-  >;
+    | string
+    | Record<
+        ParticipationType,
+        Record<GenderGroup, Record<WorkoutLevel, string>>
+      >;
   target: string;
   weight?: Record<
     ParticipationType,

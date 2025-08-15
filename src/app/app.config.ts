@@ -4,7 +4,11 @@ import {
   provideBrowserGlobalErrorListeners,
   provideZonelessChangeDetection,
 } from '@angular/core';
-import { provideRouter, TitleStrategy, withViewTransitions } from '@angular/router';
+import {
+  provideRouter,
+  TitleStrategy,
+  withViewTransitions,
+} from '@angular/router';
 import { icons } from 'lucide-angular';
 
 import {

@@ -6,10 +6,9 @@ import { RouterLink } from '@angular/router';
   selector: 'app-volunteers',
   imports: [CommonModule, RouterLink, NgOptimizedImage],
   templateUrl: './volunteers.html',
-  styleUrl: './volunteers.css'
+  styleUrl: './volunteers.css',
 })
 export class Volunteers {
-
   // Señales para el estado del componente
   isLoading = signal(false);
 
@@ -28,7 +27,9 @@ export class Volunteers {
    * Maneja la animación de entrada de la página
    */
   private animateOnLoad() {
-    const elements = document.querySelectorAll('.volunteer-card, .requirement-item, .registration-option');
+    const elements = document.querySelectorAll(
+      '.volunteer-card, .requirement-item, .registration-option',
+    );
     elements.forEach((element, index) => {
       setTimeout(() => {
         element.classList.add('animate-float-up');
@@ -69,7 +70,8 @@ export class Volunteers {
   private showTemporaryMessage(message: string) {
     // Crear elemento de notificación temporal
     const notification = document.createElement('div');
-    notification.className = 'fixed top-4 right-4 bg-cyan-400 text-slate-900 px-6 py-3 rounded-lg font-semibold z-50 animate-float-up';
+    notification.className =
+      'fixed top-4 right-4 bg-cyan-400 text-slate-900 px-6 py-3 rounded-lg font-semibold z-50 animate-float-up';
     notification.textContent = message;
 
     document.body.appendChild(notification);
@@ -92,7 +94,7 @@ export class Volunteers {
     if (element) {
       element.scrollIntoView({
         behavior: 'smooth',
-        block: 'start'
+        block: 'start',
       });
     }
   }
@@ -107,13 +109,9 @@ export class Volunteers {
       schedule: '7:30H - 13:30H',
       duration: '6 horas',
       color: 'cyan',
-      benefits: [
-        'Bocadillo + Bebida',
-        'Inscripción gratis',
-        'Camiseta Staff'
-      ],
+      benefits: ['Bocadillo + Bebida', 'Inscripción gratis', 'Camiseta Staff'],
       note: 'Los voluntarios V1 que quieran competir ese mismo día saldrán en la última tanda de parejas open.',
-      icon: 'sun'
+      icon: 'sun',
     },
     {
       id: 'v2',
@@ -121,14 +119,10 @@ export class Volunteers {
       schedule: '13:00H - 19:00H',
       duration: '6 horas',
       color: 'yellow',
-      benefits: [
-        'Bocadillo + Bebida',
-        'Inscripción gratis',
-        'Camiseta Staff'
-      ],
+      benefits: ['Bocadillo + Bebida', 'Inscripción gratis', 'Camiseta Staff'],
       note: 'Los voluntarios V2 que quieran la inscripción será para el próximo evento.',
-      icon: 'moon'
-    }
+      icon: 'moon',
+    },
   ];
 
   /**
@@ -138,37 +132,41 @@ export class Volunteers {
     {
       id: 'punctuality',
       title: 'Puntualidad',
-      description: 'Llegar 20 minutos antes para la reunión previa para poder resolver las dudas y organizar a todos los voluntarios de cada sección.',
+      description:
+        'Llegar 20 minutos antes para la reunión previa para poder resolver las dudas y organizar a todos los voluntarios de cada sección.',
       icon: 'clock',
-      color: 'cyan'
+      color: 'cyan',
     },
     {
       id: 'commitment',
       title: 'Compromiso',
-      description: 'El turno debe ser completo para lograr los beneficios citados en la tabla.',
+      description:
+        'El turno debe ser completo para lograr los beneficios citados en la tabla.',
       icon: 'check-circle',
-      color: 'yellow'
+      color: 'yellow',
     },
     {
       id: 'policy',
       title: 'Política de cambios',
-      description: 'Los códigos usados no son reembolsables y cualquier cambio tiene un coste de 10€ desde la app de elitechip.',
+      description:
+        'Los códigos usados no son reembolsables y cualquier cambio tiene un coste de 10€ desde la app de elitechip.',
       icon: 'alert-triangle',
-      color: 'red'
+      color: 'red',
     },
     {
       id: 'food',
       title: 'Área de competición',
       description: 'No se permite comer en la zona de competición.',
       icon: 'x-circle',
-      color: 'orange'
+      color: 'orange',
     },
     {
       id: 'location',
       title: 'Permanencia en zona',
-      description: 'No se puede abandonar la zona asignada sin previo aviso al encargado de los voluntarios.',
+      description:
+        'No se puede abandonar la zona asignada sin previo aviso al encargado de los voluntarios.',
       icon: 'map-pin',
-      color: 'purple'
-    }
+      color: 'purple',
+    },
   ];
 }
