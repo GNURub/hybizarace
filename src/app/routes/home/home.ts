@@ -12,6 +12,11 @@ import { TimelineSectionComponent } from '../../components/timeline-section.comp
 import { AppStateService } from '../../services/state.service';
 import { EVENT_DATE } from '../../tokens/EVENT_DATE';
 
+interface InteractiveItem {
+  name: string;
+  action?: () => void;
+  url?: string;
+}
 @Component({
   selector: 'app-home',
   imports: [
@@ -90,13 +95,13 @@ export class Home {
   navItems = ['EVENTO', 'WORKOUTS', 'CATEGORÍAS', 'PREMIOS'];
 
   // Additional navigation items for dropdown
-  dropdownItems = [
+  dropdownItems: InteractiveItem[] = [
     {
       name: 'Normativa en PDF',
       action: () => {
         const a = document.createElement('a');
-        a.download = 'normativa_hybizarace:2026.pdf';
-        a.href = '/assets/docs/normativa_hybizarace:2026.pdf';
+        a.download = 'normativa_hybizarace_2026.pdf';
+        a.href = '/documents/normativa_hybizarace_2026.pdf';
         a.click();
         a.remove();
       },
@@ -109,10 +114,10 @@ export class Home {
       name: 'PATROCINADORES',
       action: () => this.scrollToSection('sponsors'),
     },
-    { name: 'VOLUNTARIOS', action: () => this.router.navigate(['/voluntarios']) },
+    { name: 'VOLUNTARIOS', action: () => this.router.navigateByUrl('/voluntarios') },
     {
       name: 'MAPA COMPETICIÓN',
-      action: () => this.scrollToSection('mapa-competicion'),
+      action: () => this.scrollToSection('gym-floor-plan'),
     },
     {
       name: 'ALOJAMIENTO',
@@ -140,33 +145,6 @@ export class Home {
 
   toggleMobileMenu() {
     this.isMobileMenuOpen.set(!this.isMobileMenuOpen());
-  }
-
-  // Manejar clics en enlaces del footer
-  handleFooterLinkClick(link: string) {
-    const linkActions: { [key: string]: () => void } = {
-      Información: () => this.scrollToSection('evento'),
-      Categorías: () => this.scrollToSection('categories'),
-      Premios: () => this.scrollToSection('prizes'),
-      Normativa: () => this.scrollToSection('normativa'),
-      Workouts: () => this.scrollToSection('workouts'),
-      'Guía del Atleta': () => this.scrollToSection('guia-atleta'),
-      'Solicitud Élite': () => this.scrollToSection('solicitud-elite'),
-      'Centros Deportivos': () => this.scrollToSection('centros-deportivos'),
-      Ropa: () => this.router.navigate(['/tienda']),
-      Tienda: () => this.router.navigate(['/tienda']),
-      Patrocinadores: () => this.scrollToSection('patrocinadores'),
-      Voluntarios: () => this.router.navigate(['/voluntarios']),
-      'Mapa Competición': () => this.scrollToSection('mapa-competicion'),
-    };
-
-    const action = linkActions[link];
-    if (action) {
-      action();
-    } else if (link.includes('@')) {
-      // Es un email
-      window.location.href = `mailto:${link}`;
-    }
   }
 
   // Event info data
@@ -197,27 +175,40 @@ export class Home {
   ];
 
   // Footer sections
-  footerSections = [
+  footerSections: { title: string; links: InteractiveItem[] }[] = [
     {
       title: 'EVENTO',
-      links: ['Información', 'Categorías', 'Premios', 'Normativa', 'Workouts'],
+      links: [
+        { name: 'Información' },
+        { name: 'Categorías', action: () => this.scrollToSection('categories') },
+        { name: 'Premios', action: () => this.scrollToSection('prizes') },
+        { name: 'Normativa', url: '/documents/normativa_hybizarace_2026.pdf' },
+        { name: 'Workouts', action: () => this.scrollToSection('workouts') },
+      ],
     },
     {
       title: 'ATLETAS',
       links: [
-        'Guía del Atleta',
-        'Solicitud Élite',
-        'Centros Deportivos',
-        'Ropa',
+        { name: 'Guía del Atleta', url: '' },
+        { name: 'Solicitud Élite', url: 'https://forms.office.com/pages/responsepage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAZ__poBFb9URE1EVzlBM1JJUkU4NU9KSVNSNFhTVEE0Sy4u&origin=lprLink&route=shorturl' },
+        { name: 'Centros Deportivos', url: '' },
+        { name: 'Tienda', action: () => this.router.navigateByUrl('tienda') },
       ],
     },
     {
       title: 'INFORMACIÓN',
-      links: ['Patrocinadores', 'Voluntarios', 'Mapa Competición'],
+      links: [
+        { name: 'Patrocinadores', action: () => this.scrollToSection('sponsors') },
+        { name: 'Voluntarios', action: () => this.router.navigateByUrl('voluntarios') },
+        { name: 'Mapa Competición', action: () => this.scrollToSection('gym-floor-plan') },
+      ],
     },
     {
       title: 'CONTACTO',
-      links: ['info@hybizarace.es', 'Ibiza, España'],
+      links: [
+        { name: 'info@hybizarace.es', url: 'mailto:info@hybizarace.es' },
+        { name: 'Ibiza, España', url: 'https://www.google.com/maps/place/Ibiza,+España' },
+      ],
     },
   ];
 }

@@ -535,12 +535,23 @@
             <ul class="space-y-3">
               @for (link of section.links; track link) {
                 <li>
-                  <button
-                    (click)="handleFooterLinkClick(link)"
-                    class="text-gray-400 hover:text-cyan-400 transition-all duration-300 hover:translate-x-1 inline-block text-left"
-                  >
-                    {{ link }}
-                  </button>
+                  @if ("action" in link) {
+                    <button
+                      (click)="link.action!()"
+                      class="text-gray-400 hover:text-cyan-400 transition-all duration-300 hover:translate-x-1 inline-block text-left"
+                    >
+                      {{ link.name }}
+                    </button>
+                  } @else if ("url" in link) {
+                    <a
+                      [href]="link.url"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="text-gray-400 hover:text-cyan-400 transition-all duration-300 hover:translate-x-1 inline-block text-left"
+                    >
+                      {{ link.name }}
+                    </a>
+                  }
                 </li>
               }
             </ul>

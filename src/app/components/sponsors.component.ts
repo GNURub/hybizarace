@@ -120,12 +120,13 @@ import { LucideAngularModule } from 'lucide-angular';
               Únete como patrocinador y apoya el evento de fitness más épico de
               las Islas Baleares
             </p>
-            <button
+            <a
+              href="mailto:info@hybizarace.com"
               class="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-slate-900 font-black px-8 py-3 rounded-lg transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-yellow-400/30"
             >
               <i-lucide name="mail" class="w-4 h-4 mr-2"></i-lucide>
               CONTACTAR
-            </button>
+            </a>
           </div>
         </div>
       </div>
