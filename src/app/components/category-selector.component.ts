@@ -123,12 +123,17 @@ export interface WorkoutLevelOption {
                 [class.scale-110]="categoryService.workoutLevel() === wl.value"
                 class="group cursor-pointer relative size-12 rounded-full bg-gradient-to-r from-yellow-400 to-orange-500 flex items-center justify-center font-black text-slate-900 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-yellow-400/50"
               >
-                <span
-                  class="flex items-center justify-center font-bold text-black"
-                >
-                  {{ wl.label }}
-                </span>
+                <img
+                  [src]="wl.src"
+                  [alt]="wl.label"
+                  class="w-full h-full object-cover rounded-full"
+                />
               </button>
+              <span
+                class="flex items-center justify-center font-bold text-white"
+              >
+                {{ wl.label }}
+              </span>
             </div>
           }
         </div>
@@ -143,17 +148,17 @@ export class CategorySelectorComponent {
     {
       value: 'individual' as ParticipationType,
       label: 'Individual',
-      src: '/categories/individual_women.jpeg',
+      src: '/categories/individual_men.jpeg',
     },
     {
       value: 'duo' as ParticipationType,
       label: 'Parejas',
-      src: '/categories/duo_men.jpeg',
+      src: '/categories/duo_mix.jpeg',
     },
     {
       value: 'team' as ParticipationType,
       label: 'Equipo',
-      src: '/categories/team_women.jpeg',
+      src: '/categories/team_mix.jpeg',
     },
   ];
 
@@ -167,17 +172,17 @@ export class CategorySelectorComponent {
     {
       value: 'open' as WorkoutLevel,
       label: 'Open',
-      src: '/categories/open.png',
+      src: '/categories/open.jpeg',
     },
     {
       value: 'pro' as WorkoutLevel,
       label: 'Pro',
-      src: '/categories/pro.png',
+      src: '/categories/pro.jpeg',
     },
     {
       value: 'elite' as WorkoutLevel,
       label: 'Élite',
-      src: '/categories/elite.png',
+      src: '/categories/elite.jpeg',
     },
   ];
 
