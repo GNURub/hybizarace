@@ -103,7 +103,7 @@ export class Home {
     },
     {
       name: 'GUÍA DEL ATLETA',
-      action: () => this.scrollToSection('guia-atleta'),
+      url: '/documents/guia_atleta.pdf',
     },
     {
       name: 'PATROCINADORES',
@@ -184,7 +184,7 @@ export class Home {
     {
       title: 'ATLETAS',
       links: [
-        { name: 'Guía del Atleta', url: '' },
+        { name: 'Guía del Atleta', url: '/documents/guia_atleta.pdf' },
         { name: 'Solicitud Élite', url: 'https://forms.office.com/pages/responsepage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAZ__poBFb9URE1EVzlBM1JJUkU4NU9KSVNSNFhTVEE0Sy4u&origin=lprLink&route=shorturl' },
         { name: 'Centros Deportivos', url: '' },
         { name: 'Tienda', action: () => this.router.navigateByUrl('tienda') },
