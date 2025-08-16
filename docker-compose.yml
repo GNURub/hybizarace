@@ -53,3 +53,4 @@ services:
       - "traefik.http.middlewares.hybizaraceweb-auth.basicauth.users=hybizarace:$$apr1$$WyftDpnp$$pzuBVdbD4WinnmMPcvZNY0"
       # Cadena de middlewares aplicada al router apex
       - "traefik.http.routers.hybizaraceweb.middlewares=no-server-hybizaraceweb,compress-hybizaraceweb,hsts-hybizaraceweb,security-headers-hybizaraceweb,ratelimit-hybizaraceweb,hybizaraceweb-auth"
+      - 'com.centurylinklabs.watchtower.enable=true'
