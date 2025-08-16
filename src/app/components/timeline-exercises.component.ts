@@ -332,9 +332,9 @@ export class TimelineExercisesComponent implements OnDestroy {
             elite: '50 Calorías',
           },
           mix: {
-            open: '50 Calorías',
-            pro: '50 Calorías',
-            elite: '50 Calorías',
+            open: '',
+            pro: '',
+            elite: '',
           },
         },
         duo: {
@@ -415,9 +415,9 @@ export class TimelineExercisesComponent implements OnDestroy {
             elite: '50 Calorías',
           },
           mix: {
-            open: '20 Calorías',
-            pro: '50 Calorías',
-            elite: '50 Calorías',
+            open: '',
+            pro: '',
+            elite: '',
           },
         },
         duo: {
