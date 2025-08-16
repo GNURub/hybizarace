@@ -339,7 +339,7 @@ export class TimelineExercisesComponent implements OnDestroy {
         },
         duo: {
           men: {
-            open: '20 Calorías',
+            open: '50 Calorías',
             pro: '50 Calorías',
             elite: '50 Calorías',
           },
@@ -356,7 +356,7 @@ export class TimelineExercisesComponent implements OnDestroy {
         },
         team: {
           men: {
-            open: '20 Calorías',
+            open: '50 Calorías',
             pro: '50 Calorías',
             elite: '50 Calorías',
           },
