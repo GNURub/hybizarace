@@ -34,7 +34,7 @@ export interface WorkoutLevelOption {
           Grupo de participación
         </h3>
         <div class="flex gap-4 justify-center">
-          @for (pt of participantTypes; track pt.value) {
+          @for (pt of categoryService.participantTypes; track pt.value) {
             <div
               class="flex flex-col items-center gap-4"
               [class.opacity-30]="
@@ -73,7 +73,7 @@ export interface WorkoutLevelOption {
           Categoría
         </h3>
         <div class="flex gap-3 justify-center flex-wrap">
-          @for (gg of genderGroups; track gg.value) {
+          @for (gg of categoryService.genderGroups(); track gg.value) {
             <div
               class="flex flex-col items-center gap-4"
               [class.opacity-30]="categoryService.genderGroup() !== gg.value"
@@ -109,7 +109,7 @@ export interface WorkoutLevelOption {
           Modalidad
         </h3>
         <div class="flex gap-3 justify-center flex-wrap">
-          @for (wl of workoutLevels; track wl.value) {
+          @for (wl of categoryService.workoutLevels(); track wl.value) {
             <div
               class="flex flex-col items-center gap-4"
               [class.opacity-30]="categoryService.workoutLevel() !== wl.value"
@@ -143,59 +143,4 @@ export interface WorkoutLevelOption {
 })
 export class CategorySelectorComponent {
   protected readonly categoryService = inject(CategoryService);
-
-  public readonly participantTypes = [
-    {
-      value: 'individual' as ParticipationType,
-      label: 'Individual',
-      src: '/categories/individual_men.jpeg',
-    },
-    {
-      value: 'duo' as ParticipationType,
-      label: 'Parejas',
-      src: '/categories/duo_mix.jpeg',
-    },
-    {
-      value: 'team' as ParticipationType,
-      label: 'Equipo',
-      src: '/categories/team_mix.jpeg',
-    },
-  ];
-
-  private readonly _genderGroup = [
-    { value: 'men' as GenderGroup, label: 'Masculino' },
-    { value: 'women' as GenderGroup, label: 'Femenino' },
-    { value: 'mix' as GenderGroup, label: 'Mixto' },
-  ];
-
-  public readonly workoutLevels = [
-    {
-      value: 'open' as WorkoutLevel,
-      label: 'Open',
-      src: '/categories/open.jpeg',
-    },
-    {
-      value: 'pro' as WorkoutLevel,
-      label: 'Pro',
-      src: '/categories/pro.jpeg',
-    },
-    {
-      value: 'elite' as WorkoutLevel,
-      label: 'Élite',
-      src: '/categories/elite.jpeg',
-    },
-  ];
-
-  get genderGroups() {
-    const activeParticipantType = this.categoryService.participantType();
-    let genderGroups = this._genderGroup;
-    if (activeParticipantType === 'individual') {
-      genderGroups = genderGroups.filter((type) => !type.value.includes('mix'));
-    }
-
-    return genderGroups.map((type) => ({
-      ...type,
-      src: `/categories/${activeParticipantType}_${type.value}.jpeg`,
-    }));
-  }
 }

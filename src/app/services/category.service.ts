@@ -19,9 +19,77 @@ type PaymentInfo = Record<
   providedIn: 'root',
 })
 export class CategoryService {
+  public readonly participantTypes = [
+    {
+      value: 'individual' as ParticipationType,
+      label: 'Individual',
+      src: '/categories/individual_men.jpeg',
+    },
+    {
+      value: 'duo' as ParticipationType,
+      label: 'Parejas',
+      src: '/categories/duo_mix.jpeg',
+    },
+    {
+      value: 'team' as ParticipationType,
+      label: 'Equipo',
+      src: '/categories/team_mix.jpeg',
+    },
+  ];
+
+  private readonly _genderGroup = [
+    { value: 'men' as GenderGroup, label: 'Masculino' },
+    { value: 'women' as GenderGroup, label: 'Femenino' },
+    { value: 'mix' as GenderGroup, label: 'Mixto' },
+  ];
+
+  private readonly _workoutLevels = [
+    {
+      value: 'open' as WorkoutLevel,
+      label: 'Open',
+      src: '/categories/open.jpeg',
+    },
+    {
+      value: 'pro' as WorkoutLevel,
+      label: 'Pro',
+      src: '/categories/pro.jpeg',
+    },
+    {
+      value: 'elite' as WorkoutLevel,
+      label: 'Élite',
+      src: '/categories/elite.jpeg',
+    },
+  ];
+
   public readonly participantType = signal<ParticipationType>('individual');
   public readonly genderGroup = signal<GenderGroup>('men');
-  public readonly workoutLevel = signal<WorkoutLevel>('open');
+
+
+  public readonly genderGroups = computed(() => {
+    const activeParticipantType = this.participantType();
+    let genderGroups = this._genderGroup;
+    if (activeParticipantType === 'individual') {
+      genderGroups = genderGroups.filter((type) => !type.value.includes('mix'));
+    }
+
+    return genderGroups.map((type) => ({
+      ...type,
+      src: `/categories/${activeParticipantType}_${type.value}.jpeg`,
+    }));
+  });
+
+  public readonly workoutLevels = computed(() => {
+    const activeParticipantType = this.participantType();
+    let workoutLevels = this._workoutLevels;
+    if (activeParticipantType === 'individual') {
+      workoutLevels = workoutLevels.filter((type) => type.value.includes('elite'));
+    }
+
+    return workoutLevels;
+  });
+
+  public readonly workoutLevel = signal<WorkoutLevel>(this.workoutLevels()[0].value);
+
   private readonly info: PaymentInfo = {
     individual: {
       men: {
@@ -198,6 +266,11 @@ export class CategoryService {
       if (participantType === 'individual' && genderGroup === 'mix') {
         this.genderGroup.set('men');
       }
+    });
+
+    effect(() => {
+      const workoutsLevels = this.workoutLevels();
+      this.workoutLevel.set(workoutsLevels[0].value);
     });
   }
 }
