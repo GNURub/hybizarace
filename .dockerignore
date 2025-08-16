@@ -12,3 +12,6 @@ Makefile
 package-lock.json
 Dockerfile
 .angular/
+pnpm-lock.yaml
+bun.lock
+
