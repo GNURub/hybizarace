@@ -83,6 +83,8 @@ export class CategoryService {
     let workoutLevels = this._workoutLevels;
     if (activeParticipantType === 'individual') {
       workoutLevels = workoutLevels.filter((type) => type.value.includes('elite'));
+    } else {
+      workoutLevels = workoutLevels.filter((type) => !['pro', 'elite'].includes(type.value));
     }
 
     return workoutLevels;
@@ -147,7 +149,7 @@ export class CategoryService {
     duo: {
       men: {
         open: {
-          price: 0,
+          price: 80,
           description: 'Inscripción duo masculino - Categoría abierta',
           url: '',
         },
@@ -164,7 +166,7 @@ export class CategoryService {
       },
       women: {
         open: {
-          price: 0,
+          price: 80,
           description: 'Inscripción duo femenino - Categoría abierta',
           url: '',
         },
@@ -181,7 +183,7 @@ export class CategoryService {
       },
       mix: {
         open: {
-          price: 0,
+          price: 80,
           description: 'Inscripción duo mixto - Categoría abierta',
           url: '',
         },
@@ -200,7 +202,7 @@ export class CategoryService {
     team: {
       men: {
         open: {
-          price: 0,
+          price: 80,
           description: 'Inscripción equipo masculino - Categoría abierta',
           url: '',
         },
@@ -217,7 +219,7 @@ export class CategoryService {
       },
       women: {
         open: {
-          price: 0,
+          price: 80,
           description: 'Inscripción equipo femenino - Categoría abierta',
           url: '',
         },
@@ -234,7 +236,7 @@ export class CategoryService {
       },
       mix: {
         open: {
-          price: 0,
+          price: 80,
           description: 'Inscripción equipo mixto - Categoría abierta',
           url: '',
         },
