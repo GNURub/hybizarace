@@ -19,11 +19,11 @@ export interface Exercise {
   name: string;
   description: string;
   duration:
-    | string
-    | Record<
-        ParticipationType,
-        Record<GenderGroup, Record<WorkoutLevel, string>>
-      >;
+  | string
+  | Record<
+    ParticipationType,
+    Record<GenderGroup, Record<WorkoutLevel, string>>
+  >;
   target: string;
   weight?: Record<
     ParticipationType,
@@ -256,34 +256,34 @@ export class TimelineExercisesComponent implements OnDestroy {
         },
         duo: {
           men: {
-            open: '20 Calorías',
+            open: '50 Calorías',
             pro: '50 Calorías',
             elite: '50 Calorías',
           },
           women: {
-            open: '20 Calorías',
+            open: '50 Calorías',
             pro: '50 Calorías',
             elite: '50 Calorías',
           },
           mix: {
-            open: '20 Calorías',
+            open: '50 Calorías',
             pro: '50 Calorías',
             elite: '50 Calorías',
           },
         },
         team: {
           men: {
-            open: '20 Calorías',
+            open: '50 Calorías',
             pro: '50 Calorías',
             elite: '50 Calorías',
           },
           women: {
-            open: '20 Calorías',
+            open: '50 Calorías',
             pro: '50 Calorías',
             elite: '50 Calorías',
           },
           mix: {
-            open: '20 Calorías',
+            open: '50 Calorías',
             pro: '50 Calorías',
             elite: '50 Calorías',
           },
@@ -327,12 +327,12 @@ export class TimelineExercisesComponent implements OnDestroy {
             elite: '50 Calorías',
           },
           women: {
-            open: '20 Calorías',
+            open: '50 Calorías',
             pro: '50 Calorías',
             elite: '50 Calorías',
           },
           mix: {
-            open: '20 Calorías',
+            open: '50 Calorías',
             pro: '50 Calorías',
             elite: '50 Calorías',
           },
@@ -344,12 +344,12 @@ export class TimelineExercisesComponent implements OnDestroy {
             elite: '50 Calorías',
           },
           women: {
-            open: '20 Calorías',
+            open: '50 Calorías',
             pro: '50 Calorías',
             elite: '50 Calorías',
           },
           mix: {
-            open: '20 Calorías',
+            open: '50 Calorías',
             pro: '50 Calorías',
             elite: '50 Calorías',
           },
@@ -361,12 +361,12 @@ export class TimelineExercisesComponent implements OnDestroy {
             elite: '50 Calorías',
           },
           women: {
-            open: '20 Calorías',
+            open: '50 Calorías',
             pro: '50 Calorías',
             elite: '50 Calorías',
           },
           mix: {
-            open: '20 Calorías',
+            open: '50 Calorías',
             pro: '50 Calorías',
             elite: '50 Calorías',
           },
@@ -422,34 +422,34 @@ export class TimelineExercisesComponent implements OnDestroy {
         },
         duo: {
           men: {
-            open: '20 Calorías',
+            open: '50 Calorías',
             pro: '50 Calorías',
             elite: '50 Calorías',
           },
           women: {
-            open: '20 Calorías',
+            open: '50 Calorías',
             pro: '50 Calorías',
             elite: '50 Calorías',
           },
           mix: {
-            open: '20 Calorías',
+            open: '50 Calorías',
             pro: '50 Calorías',
             elite: '50 Calorías',
           },
         },
         team: {
           men: {
-            open: '20 Calorías',
+            open: '50 Calorías',
             pro: '50 Calorías',
             elite: '50 Calorías',
           },
           women: {
-            open: '20 Calorías',
+            open: '50 Calorías',
             pro: '50 Calorías',
             elite: '50 Calorías',
           },
           mix: {
-            open: '20 Calorías',
+            open: '50 Calorías',
             pro: '50 Calorías',
             elite: '50 Calorías',
           },
