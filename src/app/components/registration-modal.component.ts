@@ -26,7 +26,7 @@ export interface RegistrationModalConfig {
         >
           <!-- Modal Header -->
           <div
-            class="sticky top-0 bg-slate-900 border-b border-yellow-400/30 p-6 rounded-t-3xl"
+            class="sticky z-10 top-0 bg-slate-900 border-b border-yellow-400/30 p-6 rounded-t-3xl"
           >
             <div class="flex items-center justify-between">
               <div>
