@@ -1,0 +1,37 @@
+services:
+  hybizarace-web:
+    image: "registry.traefy.com/hybizarace:latest"
+    restart: on-failure
+    expose:
+      - "80"
+    networks:
+      - proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=proxy"
+      - "traefik.http.routers.hybizaraceweb.priority=4"
+      - "traefik.http.routers.hybizaraceweb.entrypoints=websecure"
+      - "traefik.http.routers.hybizaraceweb.rule=Host(`${MAIN_DOMAIN}`) || Host(`www.${MAIN_DOMAIN}`)"
+      - "traefik.http.routers.hybizaraceweb.tls=true"
+      - "traefik.http.routers.hybizaraceweb.tls.certresolver=le-dns-hybizarace"
+      - "traefik.http.routers.hybizaraceweb.service=hybizaraceweb"
+      - "traefik.http.services.hybizaraceweb.loadbalancer.server.port=80"
+      - "traefik.http.routers.hybizaraceweb.tls.domains[0].main=${MAIN_DOMAIN}"
+      - "traefik.http.routers.hybizaraceweb.tls.domains[0].sans=*.${MAIN_DOMAIN}"
+      - "traefik.http.routers.hybizaraceweb.middlewares=no-server-hybizaraceweb"
+      - "traefik.http.routers.hybizaraceweb.middlewares=compress-hybizaraceweb"
+      - "traefik.http.middlewares.no-server-hybizaraceweb.headers.customresponseheaders.Server="
+      - "traefik.http.middlewares.no-server-hybizaraceweb.headers.customresponseheaders.via="
+      - "traefik.http.middlewares.no-server-hybizaraceweb.headers.customresponseheaders.x-varnish="
+      - "traefik.http.middlewares.no-server-hybizaraceweb.headers.customresponseheaders.x-powered-by="
+      - "traefik.http.middlewares.compress-hybizaraceweb.compress=true"
+
+      # HSTS
+      - "traefik.http.routers.hybizaraceweb.middlewares=hsts-hybizaraceweb"
+      - "traefik.http.middlewares.hsts-hybizaraceweb.headers.stsSeconds=31536000"
+      - "traefik.http.middlewares.hsts-hybizaraceweb.headers.stsIncludeSubdomains=true"
+      - "traefik.http.middlewares.hsts-hybizaraceweb.headers.stsPreload=true"
+      - "traefik.http.middlewares.hsts-hybizaraceweb.headers.forceSTSHeader=true"
+
+      - "traefik.http.routers.hybizaraceweb.middlewares=hybizaraceweb-auth"
+      - "traefik.http.middlewares.hybizaraceweb-auth.basicauth.users=hybizarace:$$apr1$$ln1t9yvh$$X1MYyXnaYVPXSC6AcALLi0"
