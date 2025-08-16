@@ -1,60 +1,63 @@
 services:
   hybizarace-web:
-    image: "registry.traefy.com/hybizarace:latest"
+    image: 'registry.traefy.com/hybizarace:latest'
     restart: on-failure
     expose:
-      - "80"
+      - '80'
     environment:
       - PORT=80
     networks:
       - proxy
     labels:
       # Router apex (sirve el sitio principal)
-      - "traefik.enable=true"
-      - "traefik.docker.network=proxy"
-      - "traefik.http.routers.hybizaraceweb.priority=4"
-      - "traefik.http.routers.hybizaraceweb.entrypoints=websecure"
-      - "traefik.http.routers.hybizaraceweb.rule=Host(`${MAIN_DOMAIN}`)"
-      - "traefik.http.routers.hybizaraceweb.tls=true"
-      - "traefik.http.routers.hybizaraceweb.tls.certresolver=le-dns-hybizarace"
-      - "traefik.http.routers.hybizaraceweb.tls.domains[0].main=${MAIN_DOMAIN}"
-      - "traefik.http.routers.hybizaraceweb.tls.domains[0].sans=*.${MAIN_DOMAIN}"
-      - "traefik.http.routers.hybizaraceweb.tls.options=modern@file"
-      - "traefik.http.services.hybizaraceweb.loadbalancer.server.port=80"
+      - 'traefik.enable=true'
+      - 'traefik.docker.network=proxy'
+      - 'traefik.http.routers.hybizaraceweb.priority=4'
+
+      - 'traefik.http.routers.hybizaraceweb.entrypoints=websecure'
+      - 'traefik.http.routers.hybizaraceweb.service=hybizaraceweb'
+      - 'traefik.http.routers.hybizaraceweb.rule=Host(`${MAIN_DOMAIN}`)'
+      - 'traefik.http.routers.hybizaraceweb.tls=true'
+      - 'traefik.http.routers.hybizaraceweb.tls.certresolver=le-dns-hybizarace'
+      - 'traefik.http.routers.hybizaraceweb.tls.domains[0].main=${MAIN_DOMAIN}'
+      - 'traefik.http.routers.hybizaraceweb.tls.domains[0].sans=*.${MAIN_DOMAIN}'
+      - 'traefik.http.services.hybizaraceweb.loadbalancer.server.port=80'
+
       # Router www -> redirección permanente al apex
-      - "traefik.http.routers.hybizaraceweb-www.entrypoints=websecure"
-      - "traefik.http.routers.hybizaraceweb-www.rule=Host(`www.${MAIN_DOMAIN}`)"
-      - "traefik.http.routers.hybizaraceweb-www.tls=true"
-      - "traefik.http.routers.hybizaraceweb-www.tls.certresolver=le-dns-hybizarace"
-      - "traefik.http.routers.hybizaraceweb-www.middlewares=redirect-to-apex"
+      - 'traefik.http.routers.hybizaraceweb-www.entrypoints=websecure'
+      - 'traefik.http.routers.hybizaraceweb-www.rule=Host(`www.${MAIN_DOMAIN}`)'
+      - 'traefik.http.routers.hybizaraceweb-www.tls=true'
+      - 'traefik.http.routers.hybizaraceweb-www.tls.certresolver=le-dns-hybizarace'
+      - 'traefik.http.routers.hybizaraceweb-www.middlewares=redirect-to-apex'
       - "traefik.http.middlewares.redirect-to-apex.redirectregex.regex=^https://www\\.(.*)"
-      - "traefik.http.middlewares.redirect-to-apex.redirectregex.replacement=https://$1"
-      - "traefik.http.middlewares.redirect-to-apex.redirectregex.permanent=true"
+      - 'traefik.http.middlewares.redirect-to-apex.redirectregex.replacement=https://$1'
+      - 'traefik.http.middlewares.redirect-to-apex.redirectregex.permanent=true'
+
       # Middlewares de seguridad / optimización
-      - "traefik.http.middlewares.no-server-hybizaraceweb.headers.customresponseheaders.Server="
-      - "traefik.http.middlewares.no-server-hybizaraceweb.headers.customresponseheaders.via="
-      - "traefik.http.middlewares.no-server-hybizaraceweb.headers.customresponseheaders.x-varnish="
-      - "traefik.http.middlewares.no-server-hybizaraceweb.headers.customresponseheaders.x-powered-by="
-      - "traefik.http.middlewares.compress-hybizaraceweb.compress=true"
-      - "traefik.http.middlewares.hsts-hybizaraceweb.headers.stsSeconds=31536000"
-      - "traefik.http.middlewares.hsts-hybizaraceweb.headers.stsIncludeSubdomains=true"
-      - "traefik.http.middlewares.hsts-hybizaraceweb.headers.stsPreload=true"
-      - "traefik.http.middlewares.hsts-hybizaraceweb.headers.forceSTSHeader=true"
-      - "traefik.http.middlewares.security-headers-hybizaraceweb.headers.contentTypeNosniff=true"
-      - "traefik.http.middlewares.security-headers-hybizaraceweb.headers.referrerPolicy=strict-origin-when-cross-origin"
-      - "traefik.http.middlewares.security-headers-hybizaraceweb.headers.permissionsPolicy=camera=(), microphone=(), geolocation=()"
-      - "traefik.http.middlewares.security-headers-hybizaraceweb.headers.customresponseheaders.X-Frame-Options=SAMEORIGIN"
-      - "traefik.http.middlewares.security-headers-hybizaraceweb.headers.customresponseheaders.Cross-Origin-Opener-Policy=same-origin"
-      - "traefik.http.middlewares.security-headers-hybizaraceweb.headers.customresponseheaders.Cross-Origin-Resource-Policy=same-origin"
-      - "traefik.http.middlewares.security-headers-hybizaraceweb.headers.customresponseheaders.Cross-Origin-Embedder-Policy=require-corp"
+      - 'traefik.http.middlewares.no-server-hybizaraceweb.headers.customresponseheaders.Server='
+      - 'traefik.http.middlewares.no-server-hybizaraceweb.headers.customresponseheaders.via='
+      - 'traefik.http.middlewares.no-server-hybizaraceweb.headers.customresponseheaders.x-varnish='
+      - 'traefik.http.middlewares.no-server-hybizaraceweb.headers.customresponseheaders.x-powered-by='
+      - 'traefik.http.middlewares.compress-hybizaraceweb.compress=true'
+      - 'traefik.http.middlewares.hsts-hybizaraceweb.headers.stsSeconds=31536000'
+      - 'traefik.http.middlewares.hsts-hybizaraceweb.headers.stsIncludeSubdomains=true'
+      - 'traefik.http.middlewares.hsts-hybizaraceweb.headers.stsPreload=true'
+      - 'traefik.http.middlewares.hsts-hybizaraceweb.headers.forceSTSHeader=true'
+      - 'traefik.http.middlewares.security-headers-hybizaraceweb.headers.contentTypeNosniff=true'
+      - 'traefik.http.middlewares.security-headers-hybizaraceweb.headers.referrerPolicy=strict-origin-when-cross-origin'
+      - 'traefik.http.middlewares.security-headers-hybizaraceweb.headers.permissionsPolicy=camera=(), microphone=(), geolocation=()'
+      - 'traefik.http.middlewares.security-headers-hybizaraceweb.headers.customresponseheaders.X-Frame-Options=SAMEORIGIN'
+      - 'traefik.http.middlewares.security-headers-hybizaraceweb.headers.customresponseheaders.Cross-Origin-Opener-Policy=same-origin'
+      - 'traefik.http.middlewares.security-headers-hybizaraceweb.headers.customresponseheaders.Cross-Origin-Resource-Policy=same-origin'
+      - 'traefik.http.middlewares.security-headers-hybizaraceweb.headers.customresponseheaders.Cross-Origin-Embedder-Policy=require-corp'
       - "traefik.http.middlewares.security-headers-hybizaraceweb.headers.customresponseheaders.Content-Security-Policy=default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; object-src 'none'; frame-ancestors 'self'; base-uri 'self';"
       # Rate limit (ajusta según necesidad)
-      - "traefik.http.middlewares.ratelimit-hybizaraceweb.ratelimit.average=100"
-      - "traefik.http.middlewares.ratelimit-hybizaraceweb.ratelimit.burst=50"
+      - 'traefik.http.middlewares.ratelimit-hybizaraceweb.ratelimit.average=100'
+      - 'traefik.http.middlewares.ratelimit-hybizaraceweb.ratelimit.burst=50'
       # Autenticación básica (considera retirar en producción pública)
-      - "traefik.http.middlewares.hybizaraceweb-auth.basicauth.users=hybizarace:$$apr1$$WyftDpnp$$pzuBVdbD4WinnmMPcvZNY0"
+      - 'traefik.http.middlewares.hybizaraceweb-auth.basicauth.users=hybizarace:$$apr1$$WyftDpnp$$pzuBVdbD4WinnmMPcvZNY0'
       # Cadena de middlewares aplicada al router apex
-      - "traefik.http.routers.hybizaraceweb.middlewares=no-server-hybizaraceweb,compress-hybizaraceweb,hsts-hybizaraceweb,security-headers-hybizaraceweb,ratelimit-hybizaraceweb,hybizaraceweb-auth"
+      - 'traefik.http.routers.hybizaraceweb.middlewares=no-server-hybizaraceweb,compress-hybizaraceweb,hsts-hybizaraceweb,security-headers-hybizaraceweb,ratelimit-hybizaraceweb,hybizaraceweb-auth'
       - 'com.centurylinklabs.watchtower.enable=true'
 networks:
   proxy:
