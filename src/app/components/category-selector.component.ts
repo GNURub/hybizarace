@@ -55,7 +55,7 @@ export interface WorkoutLevelOption {
                 <img
                   [src]="pt.src"
                   [alt]="pt.label"
-                  class="w-full h-full object-cover rounded-full"
+                  class="w-full h-full object-cover rounded-full pointer-events-none"
                 />
               </button>
               <span
@@ -90,7 +90,7 @@ export interface WorkoutLevelOption {
                 <img
                   [src]="gg.src"
                   [alt]="gg.label"
-                  class="w-full h-full object-cover rounded-full"
+                  class="w-full h-full object-cover rounded-full pointer-events-none"
                 />
               </button>
               <span
@@ -126,7 +126,7 @@ export interface WorkoutLevelOption {
                 <img
                   [src]="wl.src"
                   [alt]="wl.label"
-                  class="w-full h-full object-cover rounded-full"
+                  class="w-full h-full object-cover rounded-full pointer-events-none"
                 />
               </button>
               <span
