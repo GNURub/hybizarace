@@ -16,9 +16,6 @@ export class ExerciseWeightPipe implements PipeTransform {
     genderGroup: GenderGroup,
     workoutLevel: WorkoutLevel,
   ): string {
-    console.log(
-      `Getting weight for ${exercise.name} - Participant: ${participantType}, Gender: ${genderGroup}, Level: ${workoutLevel}`,
-    );
     if (exercise.weight) {
       const categoryData = exercise.weight[participantType];
       if (categoryData) {
