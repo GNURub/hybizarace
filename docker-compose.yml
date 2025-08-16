@@ -54,3 +54,6 @@ services:
       # Cadena de middlewares aplicada al router apex
       - "traefik.http.routers.hybizaraceweb.middlewares=no-server-hybizaraceweb,compress-hybizaraceweb,hsts-hybizaraceweb,security-headers-hybizaraceweb,ratelimit-hybizaraceweb,hybizaraceweb-auth"
       - 'com.centurylinklabs.watchtower.enable=true'
+networks:
+  proxy:
+    external: true
