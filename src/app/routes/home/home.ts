@@ -186,6 +186,8 @@ export class Home {
       links: [
         { name: 'Guía del Atleta', url: '/documents/guia_atleta.pdf' },
         { name: 'Solicitud Élite', url: 'https://forms.office.com/pages/responsepage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAZ__poBFb9URE1EVzlBM1JJUkU4NU9KSVNSNFhTVEE0Sy4u&origin=lprLink&route=shorturl' },
+        { name: 'Alojamiento', url: 'https://bookings.vibrahotels.com/es/?arrival=2026-05-06&departure=2026-05-12&adults=2&children=0&babies=0&promo=26GRP0002&view=list' },
+        { name: 'Normativa', url: '/documents/normativa_hybizarace_2026.pdf' },
         { name: 'Centros Deportivos', url: '' },
         { name: 'Tienda', action: () => this.router.navigateByUrl('tienda') },
       ],
