@@ -49,7 +49,7 @@ interface PrizeCategory {
           >
             RECOMPENSAS ÉPICAS
           </div>
-          <h2 class="text-5xl md:text-7xl font-black mb-8 relative">
+          <h2 class="text-4xl md:text-7xl font-black mb-8 relative">
             <span
               class="bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-500 bg-clip-text text-transparent animate-gradient-x"
             >
@@ -69,7 +69,7 @@ interface PrizeCategory {
             <!-- Category Header -->
             <div class="text-center mb-12">
               <div
-                class="bg-gradient-to-r from-yellow-400 to-orange-500 text-slate-900 font-black text-lg px-6 py-3 mb-4 shadow-lg shadow-yellow-400/30 inline-block rounded"
+                class="bg-gradient-to-r from-yellow-400 to-orange-500 text-slate-900 font-black text-lg px-6 py-3 mb-6 shadow-lg shadow-yellow-400/30 inline-block rounded"
               >
                 🏆 {{ category.title }} 🏆
               </div>
